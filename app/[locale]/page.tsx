@@ -1,7 +1,6 @@
 // "use client"
 import Image from "next/image";
 import initTranslations from "../i18n";
-import { useTranslation } from "react-i18next";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import Input from "@/components/Input/Input";
 
@@ -17,7 +16,6 @@ import video from "@/assets/image/youtube/video.webp";
 import audio from "@/assets/image/youtube/audio.webp";
 import free from "@/assets/image/youtube/free.webp";
 import noprogram from "@/assets/image/youtube/noprogram.webp";
-// import Youtube from "./tiktok/page";
 
 import clipIcon from "@/assets/image/icons/clip.webp";
 import Resources from "@/components/Resources/Resources";
@@ -31,9 +29,6 @@ export default async function Home({ params }: { params: Params }) {
     "youtube",
     "elements",
   ]);
-
-  // const { t } = await initTranslations(params.locale, ["header"]);
-  // const {t} = useTranslation()
 
   const sosialNetworks = [
     {
@@ -120,7 +115,6 @@ export default async function Home({ params }: { params: Params }) {
             buttonNormal={t("elements:buttonNormal")}
             placeholder={t("elements:mainInputPlaceholder")}
             icon={clipIcon}
-            // submit={sendInput}
           />
         </div>
 
