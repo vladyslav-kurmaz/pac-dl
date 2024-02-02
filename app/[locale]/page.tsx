@@ -160,11 +160,7 @@ export default async function Home({ params }: { params: Params }) {
                 1
               </span>
               <p className="base:w-4/5 w-11/12 base:max-w-[900px] text-xs base:text-2xl">
-                Скопіюйте посилання на відео (URL-адресу). У браузері достатньо
-                виділити адресу сторінки, натиснути правою кнопкою миші по ньому
-                і вибрати "Копіювати". У мобiльному додатку Ютуба вам допоможе
-                кнопка "Поділитися" під відео. Далі вибирайте пункт "Копіювати
-                посилання".
+                {t('how-download-item1')}
               </p>
             </li>
             <li className="flex justify-between items-center mb-7 ">
@@ -172,8 +168,8 @@ export default async function Home({ params }: { params: Params }) {
                 2
               </span>
               <p className="base:w-4/5 w-11/12 base:max-w-[900px] text-xs base:text-2xl">
-                Виберіть відповідну якість і натисніть кнопку "Скачати", щоб
-                завантажити Ютуб-відео у mp4 форматі на ваш пристрій.
+                {t('how-download-item2')}
+                
               </p>
             </li>
             <li className="flex justify-between items-center mb-7 ">
@@ -181,8 +177,8 @@ export default async function Home({ params }: { params: Params }) {
                 3
               </span>
               <p className="base:w-4/5 w-11/12 base:max-w-[900px] text-xs base:text-2xl">
-                Виберіть відповідну якість і натисніть кнопку "Скачати", щоб
-                завантажити Ютуб-відео у mp4 форматі на ваш пристрій.
+                {t('how-download-item3')}
+                
               </p>
             </li>
           </ul>

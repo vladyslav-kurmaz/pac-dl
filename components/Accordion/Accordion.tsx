@@ -4,9 +4,10 @@ import arrowIcon from "../../assets/image/icons/ask.webp";
 import { useState } from "react";
 
 const Accordion = ({ data }: { data: { title: string; answer: string }[] }) => {
+  const [openAnswer, setOpenAnswer] = useState(false);
   return data.map((item, i) => {
     const { title, answer } = item;
-    const [openAnswer, setOpenAnswer] = useState(false);
+    
 
     return (
       <div
