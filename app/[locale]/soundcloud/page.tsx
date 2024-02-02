@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 import initTranslations from "@/app/i18n";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
@@ -28,11 +29,11 @@ import Accordion from "@/components/Accordion/Accordion";
 
 
 const ukraineMetaData = {
-  title: 'Завантажити відео з Youtube',
+  title: 'Завантажити відео з SoundCloud',
 }
 
 const englishMetaData = {
-  title: 'Download vidio from Youtube',
+  title: 'Download vidio from SoundCloud',
 }
 
 export async function generateMetadata({ params }: {params: Params}) {
@@ -40,9 +41,9 @@ export async function generateMetadata({ params }: {params: Params}) {
 }
 
 
-export default async function Home({ params }: { params: Params }) {
+export default async function SoundCloud({ params }: { params: Params }) {
   const { t, resources } = await initTranslations(params?.locale, [
-    "youtube",
+    "soundcloud",
     "elements",
   ]);
 
@@ -128,8 +129,7 @@ export default async function Home({ params }: { params: Params }) {
       <Image src={lineLeft} alt="line right" className="absolute hidden base:block z-10 top-[60%] left-0"/>
       <Image src={pacRight} alt="line right" className="absolute hidden base:block z-10 bottom-[10%] right-0"/>
 
-
-      <div className="base:max-w-lg mx-auto px-4 relative z-20">
+      <div className="z-20 relative base:max-w-lg mx-auto px-4">
         <h1 className="text-lg font-bold leading-6 base:leading-9 base:text-[40px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
           {t("title")}
         </h1>

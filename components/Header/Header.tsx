@@ -81,10 +81,10 @@ const Header = async ({ params }: { params: Params }) => {
             <Link href="/shorts" className="ml-4 link text-sm base:text-base">
               {t("download_shorts")}
             </Link>
-            <Link href="/audio" className="ml-4 link text-sm base:text-base">
+            <Link href="/music" className="ml-4 link text-sm base:text-base">
               {t("download_audio")}
             </Link>
-            <Link href="/cataloq" className="ml-4 link text-sm base:text-base">
+            <Link href="/catalogue" className="ml-4 link text-sm base:text-base">
               {t("catalogue")}
             </Link>
 

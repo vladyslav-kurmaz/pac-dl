@@ -65,14 +65,14 @@ const HamburgerMenu = () => {
               {t("download_shorts")}
             </Link>
             <Link
-              href="/audio"
+              href="/music"
               onClick={() => setShowMenu(false)}
               className="ml-0 mb-4 link text-sm base:text-base"
             >
               {t("download_audio")}
             </Link>
             <Link
-              href="/cataloq"
+              href="/catalogue"
               onClick={() => setShowMenu(false)}
               className="ml-0 mb-4 link text-sm base:text-base"
             >
