@@ -218,10 +218,10 @@ export default async function Shorts({ params }: { params: Params }) {
               <p className="max-w-[644px] mb-3 base:mb-0 text-xs base:text-2xl">{t("how-fast-download-text1")}</p>
               <Image src={urlOne} alt="url" className="w-full mb-3 base:mb-0 max-w-[323px] h-[94px] base:h-[127px] base:max-w-[430px]"/>
             </div>
-            <div className="flex flex-col-reverse base:flex-row base:justify-between items-center mb-3 base:mb-6">
+            {/* <div className="flex flex-col-reverse base:flex-row base:justify-between items-center mb-3 base:mb-6">
               <Image src={urlTwo} alt="url2" className="w-full mb-3 base:mb-0 h-[94px] base:h-[127px] max-w-[323px] base:max-w-[430px]"/>
               <p className="max-w-[644px] mb-3 base:mb-0 text-xs base:text-2xl">{t("how-fast-download-text2")}</p>
-            </div>
+            </div> */}
             <p className="text-xs base:text-2xl">{t("how-fast-download-text3")}</p>
           </div>
         </div>
