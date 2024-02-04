@@ -57,7 +57,7 @@ const Footer = async ({ params }: { params: Params }) => {
           <p className="mb-4 font-semibold text-center base:text-start">{t("ligal-info")}</p>
           <ul className="max-w-[210px]">
             <li className="mb-2.5 text-center base:text-start">
-              <Link className="link text-sm base:text-base" href="">
+              <Link className="link text-sm base:text-base" href="policy">
                 {t("policy")}
               </Link>
             </li>

@@ -12,12 +12,14 @@ const config: Config = {
         violet1: "#EDE9FE",
         violet2: "#DDD6FE",
         grayCastom: '#F1F5F9',
+        grayCastom2: "#E2E8F0" 
       },
 
       borderColor: {
         violet1: "#EDE9FE",
         violet2: "#DDD6FE",
         grayCastom: '#F1F5F9',
+        grayCastom2: "#E2E8F0"
       },
 
       screens: {
