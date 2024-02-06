@@ -22,7 +22,10 @@ const config: Config = {
         grayCastom2: "#E2E8F0"
       },
 
+
+
       screens: {
+        small: '300px',
         sm: "375px",
         md: "768px",
         base: "1000px",

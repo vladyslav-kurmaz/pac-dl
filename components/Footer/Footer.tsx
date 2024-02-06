@@ -9,11 +9,12 @@ const Footer = async ({ params }: { params: Params }) => {
     <footer className="w-full bg-violet1 px-5">
       <div className="max-w-lg w-full  pt-10 box-border mx-auto flex justify-center flex-col items-center base:pt-20 base:pb-40 base:justify-between base:flex-row ">
         <div className="mb-7 base:mb-0 base:pr-4 box-border ">
-          <div className="mb-6 w-28 md:w-52">
+          <div className="mb-6 w-28 md:w-52 relative left-1/2 -translate-x-1/2 base:translate-x-0 base:left-0">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               // width="217"
               // height="51"
+              className=" "
               viewBox="0 0 217 51"
               fill="none"
             >
@@ -54,7 +55,9 @@ const Footer = async ({ params }: { params: Params }) => {
             </svg>
           </div>
 
-          <p className="mb-4 font-semibold text-center base:text-start">{t("ligal-info")}</p>
+          <p className="mb-4 font-semibold text-center base:text-start">
+            {t("ligal-info")}
+          </p>
           <ul className="max-w-[210px]">
             <li className="mb-2.5 text-center base:text-start">
               <Link className="link text-sm base:text-base" href="policy">
@@ -75,7 +78,9 @@ const Footer = async ({ params }: { params: Params }) => {
         </div>
 
         <div className="mb-7 base:mb-0 max-w-[520px] base:pr-4 box-border">
-          <p className="mb-4 font-semibold text-center base:text-start">{t("how-download")}</p>
+          <p className="mb-4 font-semibold text-center base:text-start">
+            {t("how-download")}
+          </p>
           <div className="flex w-full items-center flex-col base:flex-row">
             <ul className="flex flex-wrap max-w-[210px]">
               <li className="mb-2.5 w-full text-center base:text-start">
@@ -146,7 +151,9 @@ const Footer = async ({ params }: { params: Params }) => {
         </div>
 
         <div className="">
-          <p className="mb-4 font-semibold text-center base:text-start">{t("info")}</p>
+          <p className="mb-4 font-semibold text-center base:text-start">
+            {t("info")}
+          </p>
           <ul>
             <li className="mb-2.5 text-center base:text-start">
               <Link className="link text-sm base:text-base" href="">

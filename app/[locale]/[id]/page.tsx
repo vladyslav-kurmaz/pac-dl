@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 import initTranslations from "@/app/i18n";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
@@ -21,29 +22,31 @@ import lineLeft from "@/assets/image/youtube/line-left.webp";
 import pacRight from "@/assets/image/youtube/pack-right.webp";
 import pacLeft from "@/assets/image/youtube/pack-left.webp";
 
+import clipIcon from "@/assets/image/icons/clip.webp";
 import Resources from "@/components/Resources/Resources";
 import TopVideo from "@/components/TopVideo/TopVideo";
 import Accordion from "@/components/Accordion/Accordion";
 import WraperForClientContentOnMainPage from "@/components/WraperForClientContentOnMainPage/WraperForClientContentOnMainPage";
-import TranslationsProvider from "@/components/TranslationProvider/TranslationProvider";
+import { useSearchParams } from "next/navigation";
 
 const ukraineMetaData = {
-  title: "Завантажити відео з Youtube",
+  title: "Завантажити відео з Youtube shorts",
 };
 
 const englishMetaData = {
-  title: "Download video from Youtube",
+  title: "Download vidio from Youtube shorts",
 };
 
 export async function generateMetadata({ params }: { params: Params }) {
   return params.locale === "en" ? englishMetaData : ukraineMetaData;
 }
 
-export default async function Home({ params }: { params: Params }) {
-  const { t, resources } = await initTranslations(params?.locale, [
-    "youtube",
-    "elements",
-  ]);
+export default async function Shorts({ params }: { params: Params }) {
+  const { t, resources } = await initTranslations(params?.locale, ["elements"]);
+  // const router = useSearchParams();
+  // console.log(router);
+  
+  // const {  } = router;
 
   const sosialNetworks = [
     {
@@ -118,40 +121,35 @@ export default async function Home({ params }: { params: Params }) {
     },
   ];
 
-  const getInputProps = (props: object) => {
-    "use client";
-  };
-
   return (
     <div className="relative pt-20 base:pt-48 ">
-      {/* <Image src={lineRight} alt="line right" className="absolute hidden base:block z-10 top-[4%] right-0"/>
-      <Image src={lineRight} alt="line right" className="absolute hidden base:block z-10 top-[30%] right-0"/>
-      <Image src={pacLeft} alt="line right" className="absolute hidden base:block z-10 top-[10%] left-0"/>
-      <Image src={lineLeft} alt="line right" className="absolute hidden base:block z-10 top-[60%] left-0"/>
-      <Image src={pacRight} alt="line right" className="absolute hidden base:block z-10 bottom-[10%] right-0"/> */}
+      <Image
+        src={lineRight}
+        alt="line right"
+        className="absolute hidden base:block z-10 top-[4%] right-0"
+      />
+    
+      <Image
+        src={pacRight}
+        alt="line right"
+        className="absolute hidden base:block z-10 bottom-[10%] right-0"
+      />
 
-      
-        <TranslationsProvider
-          locale={params.locale}
-          namespaces={[
-            "instagram",
-            "music",
-            "shorts",
-            "soundcloud",
-            "tiktok",
-            "twitter",
-            "youtube",
-          ]}
-          resources={resources}
-        >
-          <WraperForClientContentOnMainPage
-            // t={t}
-            sosialNetworks={sosialNetworks}
-            dataFaq={dataFaq}
-            namespaces={"youtube"}
+      <div className="base:max-w-lg z-20 relative mx-auto px-4">
+        <h1 className="text-lg font-bold leading-6 base:leading-9 base:text-[40px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
+          {t("title")}
+        </h1>
+        <div className="mb-7 base:mb-24">
+          <Input
+            buttonRounded={t("elements:buttonRounded")}
+            buttonNormal={t("elements:buttonNormal")}
+            placeholder={t("elements:mainInputPlaceholder")}
+            icon={clipIcon}
           />
-        </TranslationsProvider>
-      {/* </div> */}
+        </div>
+
+       
+      </div>
     </div>
   );
 }

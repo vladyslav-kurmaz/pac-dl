@@ -2,25 +2,33 @@
 import ButtonNormal from "../Button/ButtonNormal";
 import ButtonRounded from "../Button/ButtonRounded";
 import Image, { StaticImageData } from "next/image";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import PacDlServices from "@/services/PacDlServices";
+import { useRouter } from "next/navigation";
 
 const Input = ({
   placeholder,
   icon,
   buttonRounded,
   buttonNormal,
-  // submit,
-}: {
+  getProps,
+  setLoading,
+  loading,
+}: // submit,
+{
   buttonRounded: string;
   buttonNormal: string;
   placeholder?: string;
   icon?: StaticImageData;
+  getProps?: (props: object) => void;
+  setLoading?: Dispatch<SetStateAction<boolean>>;
+  loading?: boolean;
   // submit?: (value: string) => void;
 }) => {
   const [inputValue, setInputValue] = useState("");
   const [inputError, setInputError] = useState(false);
-  const {postUrl, getVideoInfo} = PacDlServices();
+  const { postUrl, getVideoInfo } = PacDlServices();
+  const router = useRouter();
 
   useEffect(() => {
     validateInput(inputValue);
@@ -37,23 +45,30 @@ const Input = ({
   };
 
   const getVieo = async (value: string) => {
-    
+
+
+    setLoading && setLoading(true);
     try {
       const postRequest = await getVideoInfo(value);
       console.log(await postRequest);
-      
+
+      setLoading && setLoading(false);
+      router.push(`/${await postRequest.title.trim()}`, await postRequest);
+      // postRequest !== undefined ?  getProps(await postRequest) : null
+      // router.push({
+      //   pathname: `/test1`,
+      //   query: { prop1: await postRequest }
+      // });
     } catch (e) {
+      setLoading && setLoading(false);
       console.log(await e);
     }
-  }
-
-  // console.log(submit);
-  
+  };
 
   return (
     <label
       htmlFor="mainInput"
-      className="flex items-center outline-none border-[7px] base:border-[10px] border-violet1 h-12 base:h-24 relative rounded-xl"
+      className="flex items-center outline-none border-[7px] base:border-[10px] border-violet1 h-12 base:h-24 relative rounded-[30px]"
     >
       {icon && (
         <Image
@@ -71,11 +86,11 @@ const Input = ({
         onChange={(e) => setInputValue(e.target.value)}
       />
       <div className="hidden base:block">
-        <ButtonRounded text={buttonRounded} />
+        <ButtonRounded disabled={loading || inputError} text={buttonRounded} />
       </div>
-      <div className="base:ml-6 relative -right-[2] base:-right-1">
+      <div className="base:ml-6 relative ">
         <ButtonNormal
-          disabled={inputError}
+          disabled={loading || inputError}
           text={buttonNormal}
           onClick={() => getVieo(inputValue)}
         />

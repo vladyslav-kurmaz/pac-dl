@@ -26,6 +26,8 @@ import clipIcon from "@/assets/image/icons/clip.webp";
 import Resources from "@/components/Resources/Resources";
 import TopVideo from "@/components/TopVideo/TopVideo";
 import Accordion from "@/components/Accordion/Accordion";
+import TranslationsProvider from "@/components/TranslationProvider/TranslationProvider";
+import WraperForClientContentOnMainPage from "@/components/WraperForClientContentOnMainPage/WraperForClientContentOnMainPage";
 
 
 const ukraineMetaData = {
@@ -133,7 +135,7 @@ export default async function Instagram({ params }: { params: Params }) {
         <h1 className="text-lg font-bold leading-6 base:leading-9 base:text-[40px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
           {t("title")}
         </h1>
-        <div className="mb-7 base:mb-24">
+        {/* <div className="mb-7 base:mb-24">
           <Input
             buttonRounded={t("elements:buttonRounded")}
             buttonNormal={t("elements:buttonNormal")}
@@ -144,9 +146,23 @@ export default async function Instagram({ params }: { params: Params }) {
 
         <h2 className="text-lg font-bold leading-6 base:leading-9 base:text-[32px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
           {t("resources")}
-        </h2>
+        </h2> */}
 
-        <div className="mb-7 base:mb-24">
+
+        <TranslationsProvider
+           locale={params.locale}
+           namespaces={["instagram", "music", "shorts", "soundcloud", "tiktok", "twitter", "youtube"]}
+           resources={resources}
+        >
+          <WraperForClientContentOnMainPage
+            // t={t}
+            sosialNetworks={sosialNetworks}
+            dataFaq={dataFaq}
+            namespaces={'instagram'}
+          />
+        </TranslationsProvider>
+
+        {/* <div className="mb-7 base:mb-24">
           <Resources data={sosialNetworks} text={t("elements:showAll")} />
         </div>
 
@@ -224,36 +240,36 @@ export default async function Instagram({ params }: { params: Params }) {
             </div>
             <p className="text-xs base:text-2xl">{t("how-fast-download-text3")}</p>
           </div>
-        </div>
+        </div> */}
 
-        <div className="flex flex-wrap flex-col base:flex-row base:justify-between items-center base:items-start">
+        {/* <div className="flex flex-wrap flex-col base:flex-row base:justify-between items-center base:items-start"> */}
           {/* h-full max-h-[196px] base:max-h-[397px] */}
-          <div className="max-w-[168px] base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
+          {/* <div className="max-w-[168px] base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
             <Image src={video} alt="video" className="w-[68px] h-[68px] base:w-[164px] base:h-[164px] mb-3 base:mb-6"/>
             <h3 className="text-xs base:text-2xl font-semibold mb-2 base:mb-6">{t("video-title")}</h3>
             <p className="text-xs base:text-2xl">{t("video-text")}</p>
-          </div>
+          </div> */}
           {/* h-full max-h-[196px] base:max-h-[397px] */}
-          <div className="max-w-[168px] base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
+          {/* <div className="max-w-[168px] base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
             <Image src={audio} alt="audio" className="w-[68px] h-[68px] base:w-[164px] base:h-[164px] mb-3 base:mb-6"/>
             <h3 className="text-xs base:text-2xl font-semibold mb-2 base:mb-6">{t("audio-title")}</h3>
             <p className="text-xs base:text-2xl">{t("audio-text")}</p>
-          </div>
+          </div> */}
           {/* h-full max-h-[196px] base:max-h-[397px] */}
-          <div className="max-w-[168px] base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
+          {/* <div className="max-w-[168px] base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
             <Image src={free} alt="free" className="w-[68px] h-[68px] base:w-[164px] base:h-[164px] mb-3 base:mb-6"/>
             <h3 className="text-xs base:text-2xl font-semibold mb-2 base:mb-6">{t("free-title")}</h3>
             <p className="text-xs base:text-2xl">{t("free-text")}</p>
-          </div>
+          </div> */}
           {/* */}
-          <div className="max-w-[168px] base:max-w-[496px] w-full  h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
+          {/* <div className="max-w-[168px] base:max-w-[496px] w-full  h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
             <Image src={noprogram} alt="noprogram" className="w-[68px] h-[68px] base:w-[164px] base:h-[164px] mb-3 base:mb-6"/>
             <h3 className="text-xs base:text-2xl font-semibold mb-2 base:mb-6">{t("noprogram-title")}</h3>
             <p className="text-xs base:text-2xl">{t("noprogram-text")}</p>
           </div>
-        </div>
+        </div> */}
 
-        <h2 className="text-lg font-bold leading-6 base:leading-9 base:text-[32px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
+        {/* <h2 className="text-lg font-bold leading-6 base:leading-9 base:text-[32px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
           {t("how-download-phone-title")}
         </h2>
 
@@ -290,7 +306,7 @@ export default async function Instagram({ params }: { params: Params }) {
             <p className="text-xs base:text-2xl mb-3 base:mb-0">{t("how-download-ios-text2")}</p>
           </div>
           
-        </div>
+        </div> */}
 
       </div>
     </div>

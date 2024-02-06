@@ -2,7 +2,8 @@
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import ButtonThreeState from "../Button/ButtonThreeState";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import PacDlServices from "@/services/PacDlServices";
 
 const TopVideo = ({
   day,
@@ -16,7 +17,40 @@ const TopVideo = ({
   catalogue: string;
 }) => {
   const [active, setActive] = useState(day);
-  const getData = () => {};
+  const [dataTop, setTopData] = useState([]);
+  const { getTopVideo } = PacDlServices();
+
+  useEffect(() => {
+    if (active === day) {
+      getTopData('day');
+    } else if (active === week) {
+      getTopData('week');
+    } else {
+      getTopData('month');
+    }
+
+    
+    console.log(dataTop);
+  }, [active]);
+
+  const getTopData = async (active: string) => {
+    const screenWidth = window.screen.width;
+    if (screenWidth > 1000) {
+      try {
+        const getTop = await getTopVideo(active, 8, 1);
+        setTopData(await getTop);
+      } catch (e) {
+        console.error(e);
+      }
+    } else {
+      try {
+        const getTop = await getTopVideo(active, 4, 1);
+        setTopData(await getTop);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+  };
 
   return (
     <div className="">
