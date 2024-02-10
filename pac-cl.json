@@ -30,6 +30,124 @@
         }
     ],
     "paths": {
+        "/audio-down/": {
+            "get": {
+                "operationId": "audio-down_list",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "A page number within the paginated result set.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "page_size",
+                        "in": "query",
+                        "description": "Number of results to return per page.",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "required": [
+                                "count",
+                                "results"
+                            ],
+                            "type": "object",
+                            "properties": {
+                                "count": {
+                                    "type": "integer"
+                                },
+                                "next": {
+                                    "type": "string",
+                                    "format": "uri",
+                                    "x-nullable": true
+                                },
+                                "previous": {
+                                    "type": "string",
+                                    "format": "uri",
+                                    "x-nullable": true
+                                },
+                                "results": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/VideoUrl"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "audio-down"
+                ]
+            },
+            "parameters": []
+        },
+        "/audio-info/": {
+            "get": {
+                "operationId": "audio-info_list",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "A page number within the paginated result set.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "page_size",
+                        "in": "query",
+                        "description": "Number of results to return per page.",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "required": [
+                                "count",
+                                "results"
+                            ],
+                            "type": "object",
+                            "properties": {
+                                "count": {
+                                    "type": "integer"
+                                },
+                                "next": {
+                                    "type": "string",
+                                    "format": "uri",
+                                    "x-nullable": true
+                                },
+                                "previous": {
+                                    "type": "string",
+                                    "format": "uri",
+                                    "x-nullable": true
+                                },
+                                "results": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Video"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "audio-info"
+                ]
+            },
+            "parameters": []
+        },
         "/down/": {
             "post": {
                 "operationId": "down_create",
@@ -347,9 +465,57 @@
                 }
             }
         },
+        "Format": {
+            "required": [
+                "name"
+            ],
+            "type": "object",
+            "properties": {
+                "id": {
+                    "title": "Id",
+                    "type": "string",
+                    "format": "uuid",
+                    "readOnly": true
+                },
+                "name": {
+                    "title": "Name",
+                    "type": "string",
+                    "maxLength": 20,
+                    "minLength": 1
+                },
+                "created": {
+                    "title": "Created",
+                    "type": "string",
+                    "format": "date-time",
+                    "readOnly": true
+                }
+            }
+        },
+        "Ext": {
+            "required": [
+                "name"
+            ],
+            "type": "object",
+            "properties": {
+                "id": {
+                    "title": "Id",
+                    "type": "string",
+                    "format": "uuid",
+                    "readOnly": true
+                },
+                "name": {
+                    "title": "Name",
+                    "type": "string",
+                    "maxLength": 15,
+                    "minLength": 1
+                }
+            }
+        },
         "Video": {
             "required": [
                 "tag",
+                "resolutions",
+                "ext",
                 "video_url"
             ],
             "type": "object",
@@ -366,6 +532,18 @@
                         "$ref": "#/definitions/Tag"
                     }
                 },
+                "resolutions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Format"
+                    }
+                },
+                "ext": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Ext"
+                    }
+                },
                 "title": {
                     "title": "Title",
                     "type": "string",
@@ -378,6 +556,19 @@
                     "format": "uri",
                     "maxLength": 200,
                     "minLength": 1
+                },
+                "video_format": {
+                    "title": "Video format",
+                    "type": "string",
+                    "maxLength": 15,
+                    "x-nullable": true
+                },
+                "preview_url": {
+                    "title": "Preview url",
+                    "type": "string",
+                    "format": "uri",
+                    "maxLength": 200,
+                    "x-nullable": true
                 },
                 "description": {
                     "title": "Description",

@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import initTranslations from "@/app/i18n";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
@@ -29,19 +28,17 @@ import Accordion from "@/components/Accordion/Accordion";
 import TranslationsProvider from "@/components/TranslationProvider/TranslationProvider";
 import WraperForClientContentOnMainPage from "@/components/WraperForClientContentOnMainPage/WraperForClientContentOnMainPage";
 
-
 const ukraineMetaData = {
-  title: 'Завантажити музику',
-}
+  title: "Завантажити музику",
+};
 
 const englishMetaData = {
-  title: 'Download музику',
-}
+  title: "Download музику",
+};
 
-export async function generateMetadata({ params }: {params: Params}) {
+export async function generateMetadata({ params }: { params: Params }) {
   return params.locale === "en" ? englishMetaData : ukraineMetaData;
 }
-
 
 export default async function Music({ params }: { params: Params }) {
   const { t, resources } = await initTranslations(params?.locale, [
@@ -124,7 +121,6 @@ export default async function Music({ params }: { params: Params }) {
 
   return (
     <div className="relative pt-20 base:pt-48 ">
-
       <Image src={lineRight} alt="line right" className="absolute hidden base:block z-10 top-[4%] right-0"/>
       <Image src={lineRight} alt="line right" className="absolute hidden base:block z-10 top-[30%] right-0"/>
       <Image src={pacLeft} alt="line right" className="absolute hidden base:block z-10 top-[10%] left-0"/>
@@ -132,24 +128,30 @@ export default async function Music({ params }: { params: Params }) {
       <Image src={pacRight} alt="line right" className="absolute hidden base:block z-10 bottom-[10%] right-0"/>
 
       <div className="z-20 relative base:max-w-lg mx-auto px-4">
-        <h1 className="text-lg font-bold leading-6 base:leading-9 base:text-[40px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
+        {/* <h1 className="text-lg font-bold leading-6 base:leading-9 base:text-[40px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
           {t("title")}
-        </h1>
+        </h1> */}
 
         <TranslationsProvider
-           locale={params.locale}
-           namespaces={["instagram", "music", "shorts", "soundcloud", "tiktok", "twitter", "youtube"]}
-           resources={resources}
+          locale={params.locale}
+          namespaces={[
+            "instagram",
+            "music",
+            "shorts",
+            "soundcloud",
+            "tiktok",
+            "twitter",
+            "youtube",
+          ]}
+          resources={resources}
         >
           <WraperForClientContentOnMainPage
-            // t={t}
             sosialNetworks={sosialNetworks}
-            dataFaq={dataFaq}
-            namespaces={'music'}
+            namespaces={"music"}
           />
         </TranslationsProvider>
 
-        {/* <div className="mb-7 base:mb-24">
+      {/* <div className="mb-7 base:mb-24">
           <Input
             buttonRounded={t("elements:buttonRounded")}
             buttonNormal={t("elements:buttonNormal")}
@@ -162,7 +164,7 @@ export default async function Music({ params }: { params: Params }) {
           {t("resources")}
         </h2> */}
 
-        {/* <div className="mb-7 base:mb-24">
+      {/* <div className="mb-7 base:mb-24">
           <Resources data={sosialNetworks} text={t("elements:showAll")} />
         </div>
 
@@ -178,7 +180,7 @@ export default async function Music({ params }: { params: Params }) {
             catalogue={t("elements:allCatalogue")}
           />
         </div> */}
-{/* 
+      
         <h2 className="text-lg font-bold leading-6 base:leading-9 base:text-[32px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
           {t("faq")}
         </h2>
@@ -188,8 +190,8 @@ export default async function Music({ params }: { params: Params }) {
 
         <h2 className="text-lg font-bold leading-6 base:leading-9 base:text-[32px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
           {t("how-download")}
-        </h2> */}
-        {/* <div className="mb-7 base:mb:24">
+        </h2>
+      <div className="mb-7 base:mb:24">
           <p className="text-[13px] base:text-2xl mb-3 base:mb-[66px]">
             {t("how-download-text")}
           </p>
@@ -226,9 +228,9 @@ export default async function Music({ params }: { params: Params }) {
 
         <h2 className="text-lg font-bold leading-6 base:leading-9 base:text-[32px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
           {t("how-fast-download")}
-        </h2> */}
+        </h2>
 
-        {/* <div className="mb-7 base:mb:24">
+        <div className="mb-7 base:mb:24">
           <div className="">
             <div className="flex flex-col base:flex-row base:justify-between items-center mb-3 base:mb-6">
               <p className="max-w-[644px] mb-3 base:mb-0 text-xs base:text-2xl">{t("how-fast-download-text1")}</p>
@@ -240,36 +242,36 @@ export default async function Music({ params }: { params: Params }) {
             </div>
             <p className="text-xs base:text-2xl">{t("how-fast-download-text3")}</p>
           </div>
-        </div> */}
+        </div>
 
-        {/* <div className="flex flex-wrap flex-col base:flex-row base:justify-between items-center base:items-start"> */}
-          {/* h-full max-h-[196px] base:max-h-[397px] */}
-          {/* <div className="max-w-[168px] base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
+        <div className="flex flex-wrap flex-col base:flex-row base:justify-between items-center base:items-start">
+      {/* h-full max-h-[196px] base:max-h-[397px] */}
+          <div className="max-w-[168px] base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
             <Image src={video} alt="video" className="w-[68px] h-[68px] base:w-[164px] base:h-[164px] mb-3 base:mb-6"/>
             <h3 className="text-xs base:text-2xl font-semibold mb-2 base:mb-6">{t("video-title")}</h3>
             <p className="text-xs base:text-2xl">{t("video-text")}</p>
-          </div> */}
-          {/* h-full max-h-[196px] base:max-h-[397px] */}
-          {/* <div className="max-w-[168px] base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
+          </div>
+      {/* h-full max-h-[196px] base:max-h-[397px] */}
+          <div className="max-w-[168px] base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
             <Image src={audio} alt="audio" className="w-[68px] h-[68px] base:w-[164px] base:h-[164px] mb-3 base:mb-6"/>
             <h3 className="text-xs base:text-2xl font-semibold mb-2 base:mb-6">{t("audio-title")}</h3>
             <p className="text-xs base:text-2xl">{t("audio-text")}</p>
-          </div> */}
-          {/* h-full max-h-[196px] base:max-h-[397px] */}
-          {/* <div className="max-w-[168px] base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
+          </div>
+      {/* h-full max-h-[196px] base:max-h-[397px] */}
+          <div className="max-w-[168px] base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
             <Image src={free} alt="free" className="w-[68px] h-[68px] base:w-[164px] base:h-[164px] mb-3 base:mb-6"/>
             <h3 className="text-xs base:text-2xl font-semibold mb-2 base:mb-6">{t("free-title")}</h3>
             <p className="text-xs base:text-2xl">{t("free-text")}</p>
-          </div> */}
-          {/* */}
-          {/* <div className="max-w-[168px] base:max-w-[496px] w-full  h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
+          </div>
+      {/* */}
+          <div className="max-w-[168px] base:max-w-[496px] w-full  h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
             <Image src={noprogram} alt="noprogram" className="w-[68px] h-[68px] base:w-[164px] base:h-[164px] mb-3 base:mb-6"/>
             <h3 className="text-xs base:text-2xl font-semibold mb-2 base:mb-6">{t("noprogram-title")}</h3>
             <p className="text-xs base:text-2xl">{t("noprogram-text")}</p>
           </div>
-        </div> */}
+        </div>
 
-        {/* <h2 className="text-lg font-bold leading-6 base:leading-9 base:text-[32px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
+        <h2 className="text-lg font-bold leading-6 base:leading-9 base:text-[32px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
           {t("how-download-phone-title")}
         </h2>
 
@@ -306,7 +308,7 @@ export default async function Music({ params }: { params: Params }) {
             <p className="text-xs base:text-2xl mb-3 base:mb-0">{t("how-download-ios-text2")}</p>
           </div>
           
-        </div> */}
+        </div>
 
       </div>
     </div>

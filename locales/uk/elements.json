@@ -7,6 +7,23 @@
   "top-week": "Топ за тиждень",
   "top-month": "Топ за мiсяць",
   "allCatalogue": "Весь каталог",
-  "loading": "Триває завантаження"
-  
+  "loading": "Триває завантаження",
+  "download": "Завантажити",
+  "media": "Медіафайл доступний у форматах",
+  "popular": "Популярнi",
+  "hd": "HD вiдео",
+  "audio": "Лише звук",
+  "all-formats": "Усi формати",
+  "more-formats": "Бiльше форматiв",
+  "less-formats": "Менше форматiв",
+  "highlightAll": "Видiлити все",
+  "copy": "Копiювати",
+  "tags-video": "Теги вiдео",
+  "description": "Опис аудіо",
+  "description-none": "Опис відсутній",
+  "more-description": "Бiльше",
+  "less-description": "Менше",
+  "similar-video": "Схожi ролики з нашого каталогу"
+
 }
+

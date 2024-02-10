@@ -4,8 +4,9 @@ import arrowIcon from "../../assets/image/icons/ask.webp";
 import { useState } from "react";
 
 const Accordion = ({ data }: { data: { title: string; answer: string }[] }) => {
-  const [openAnswer, setOpenAnswer] = useState(false);
+  
   return data.map((item, i) => {
+    const [openAnswer, setOpenAnswer] = useState(false);
     const { title, answer } = item;
     
 
@@ -25,7 +26,12 @@ const Accordion = ({ data }: { data: { title: string; answer: string }[] }) => {
           <Image
             src={arrowIcon}
             alt="alt"
-            onClick={() => setOpenAnswer((state) => !state)}
+            onClick={(e) =>{
+              console.log(e);
+              
+               setOpenAnswer((state) => !state)
+              
+              }}
             className="w-7 h-7 base:w-[51px] base:h-[51px] cursor-pointer transition-all duration-500"
             style={
               openAnswer

@@ -3,9 +3,12 @@ const useHttp = () => {
     url: string,
     method?: string,
     body?: BodyInit,
-    headers?: Headers
+    headers?: HeadersInit
   ) => {
     try {
+
+
+
       const res = await fetch(url, { method, body, headers });
 
       if (!res.ok) {

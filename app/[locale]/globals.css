@@ -52,3 +52,10 @@ body {
   animation-timing-function: linear;
   animation-fill-mode: forwards;
 }
+
+
+.openDescription {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}

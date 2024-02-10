@@ -132,9 +132,9 @@ export default async function SoundCloud({ params }: { params: Params }) {
       <Image src={pacRight} alt="line right" className="absolute hidden base:block z-10 bottom-[10%] right-0"/>
 
       <div className="z-20 relative base:max-w-lg mx-auto px-4">
-        <h1 className="text-lg font-bold leading-6 base:leading-9 base:text-[40px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
+        {/* <h1 className="text-lg font-bold leading-6 base:leading-9 base:text-[40px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
           {t("title")}
-        </h1>
+        </h1> */}
 
         <TranslationsProvider
            locale={params.locale}
@@ -142,49 +142,19 @@ export default async function SoundCloud({ params }: { params: Params }) {
            resources={resources}
         >
           <WraperForClientContentOnMainPage
-            // t={t}
+
             sosialNetworks={sosialNetworks}
-            dataFaq={dataFaq}
             namespaces={'soundcloud'}
           />
-        </TranslationsProvider>
-        {/* <div className="mb-7 base:mb-24">
-          <Input
-            buttonRounded={t("elements:buttonRounded")}
-            buttonNormal={t("elements:buttonNormal")}
-            placeholder={t("elements:mainInputPlaceholder")}
-            icon={clipIcon}
-          />
-        </div>
+        </TranslationsProvider> 
 
         <h2 className="text-lg font-bold leading-6 base:leading-9 base:text-[32px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
-          {t("resources")}
-        </h2> */}
-
-        {/* <div className="mb-7 base:mb-24">
-          <Resources data={sosialNetworks} text={t("elements:showAll")} />
-        </div>
-
-        <h2 className="text-lg font-bold leading-6 base:leading-9 base:text-[32px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
-          {t("top-video")}
-        </h2>
-
-        <div className="mb-7 base:mb-24">
-          <TopVideo
-            day={t("elements:top-day")}
-            week={t("elements:top-week")}
-            month={t("elements:top-month")}
-            catalogue={t("elements:allCatalogue")}
-          />
-        </div> */}
-
-        {/* <h2 className="text-lg font-bold leading-6 base:leading-9 base:text-[32px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
           {t("faq")}
         </h2>
         <div className="mb-7 base:mb:24">
           <Accordion data={dataFaq} />
-        </div> */}
-{/* 
+        </div>
+
         <h2 className="text-lg font-bold leading-6 base:leading-9 base:text-[32px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
           {t("how-download")}
         </h2>
@@ -221,9 +191,9 @@ export default async function SoundCloud({ params }: { params: Params }) {
               </p>
             </li>
           </ul>
-        </div> */}
+        </div>
 
-        {/* <h2 className="text-lg font-bold leading-6 base:leading-9 base:text-[32px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
+        <h2 className="text-lg font-bold leading-6 base:leading-9 base:text-[32px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
           {t("how-fast-download")}
         </h2>
 
@@ -239,36 +209,36 @@ export default async function SoundCloud({ params }: { params: Params }) {
             </div>
             <p className="text-xs base:text-2xl">{t("how-fast-download-text3")}</p>
           </div>
-        </div> */}
+        </div>
 
-        {/* <div className="flex flex-wrap flex-col base:flex-row base:justify-between items-center base:items-start"> */}
+        <div className="flex flex-wrap flex-col base:flex-row base:justify-between items-center base:items-start">
           {/* h-full max-h-[196px] base:max-h-[397px] */}
-          {/* <div className="max-w-[168px] base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
+          <div className="max-w-[168px] base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
             <Image src={video} alt="video" className="w-[68px] h-[68px] base:w-[164px] base:h-[164px] mb-3 base:mb-6"/>
             <h3 className="text-xs base:text-2xl font-semibold mb-2 base:mb-6">{t("video-title")}</h3>
             <p className="text-xs base:text-2xl">{t("video-text")}</p>
-          </div> */}
+          </div>
           {/* h-full max-h-[196px] base:max-h-[397px] */}
-          {/* <div className="max-w-[168px] base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
+          <div className="max-w-[168px] base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
             <Image src={audio} alt="audio" className="w-[68px] h-[68px] base:w-[164px] base:h-[164px] mb-3 base:mb-6"/>
             <h3 className="text-xs base:text-2xl font-semibold mb-2 base:mb-6">{t("audio-title")}</h3>
             <p className="text-xs base:text-2xl">{t("audio-text")}</p>
-          </div> */}
+          </div>
           {/* h-full max-h-[196px] base:max-h-[397px] */}
-          {/* <div className="max-w-[168px] base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
+          <div className="max-w-[168px] base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
             <Image src={free} alt="free" className="w-[68px] h-[68px] base:w-[164px] base:h-[164px] mb-3 base:mb-6"/>
             <h3 className="text-xs base:text-2xl font-semibold mb-2 base:mb-6">{t("free-title")}</h3>
             <p className="text-xs base:text-2xl">{t("free-text")}</p>
-          </div> */}
+          </div>
           {/* */}
-          {/* <div className="max-w-[168px] base:max-w-[496px] w-full  h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
+          <div className="max-w-[168px] base:max-w-[496px] w-full  h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
             <Image src={noprogram} alt="noprogram" className="w-[68px] h-[68px] base:w-[164px] base:h-[164px] mb-3 base:mb-6"/>
             <h3 className="text-xs base:text-2xl font-semibold mb-2 base:mb-6">{t("noprogram-title")}</h3>
             <p className="text-xs base:text-2xl">{t("noprogram-text")}</p>
           </div>
-        </div> */}
+        </div>
 
-        {/* <h2 className="text-lg font-bold leading-6 base:leading-9 base:text-[32px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
+        <h2 className="text-lg font-bold leading-6 base:leading-9 base:text-[32px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
           {t("how-download-phone-title")}
         </h2>
 
@@ -287,9 +257,9 @@ export default async function SoundCloud({ params }: { params: Params }) {
           <svg className="w-[254px] h-[518px] base:w-[209px] base:h-[456px]" xmlns="http://www.w3.org/2000/svg" width="209" height="426" viewBox="0 0 209 426" fill="none">
             <path fillRule="evenodd" clipRule="evenodd" d="M161 10H48C39.4342 10 33.6113 10.0078 29.1104 10.3755C24.7262 10.7337 22.4842 11.383 20.9202 12.1799C17.1569 14.0973 14.0973 17.1569 12.1799 20.9202C11.383 22.4842 10.7337 24.7262 10.3755 29.1104C10.0078 33.6113 10 39.4342 10 48V378C10 386.566 10.0078 392.389 10.3755 396.89C10.7337 401.274 11.383 403.516 12.1799 405.08C14.0973 408.843 17.1569 411.903 20.9202 413.82C22.4842 414.617 24.7262 415.266 29.1104 415.624C33.6113 415.992 39.4342 416 48 416H161C169.566 416 175.389 415.992 179.89 415.624C184.274 415.266 186.516 414.617 188.08 413.82C191.843 411.903 194.903 408.843 196.82 405.08C197.617 403.516 198.266 401.274 198.624 396.89C198.992 392.389 199 386.566 199 378V48C199 39.4342 198.992 33.6113 198.624 29.1104C198.266 24.7262 197.617 22.4842 196.82 20.9202C194.903 17.1569 191.843 14.0973 188.08 12.1799C186.516 11.383 184.274 10.7337 179.89 10.3755C175.389 10.0078 169.566 10 161 10ZM3.2698 16.3803C0 22.7976 0 31.1984 0 48V378C0 394.802 0 403.202 3.2698 409.62C6.14601 415.265 10.7354 419.854 16.3803 422.73C22.7976 426 31.1984 426 48 426H161C177.802 426 186.202 426 192.62 422.73C198.265 419.854 202.854 415.265 205.73 409.62C209 403.202 209 394.802 209 378V48C209 31.1984 209 22.7976 205.73 16.3803C202.854 10.7354 198.265 6.14601 192.62 3.2698C186.202 0 177.802 0 161 0H48C31.1984 0 22.7976 0 16.3803 3.2698C10.7354 6.14601 6.14601 10.7354 3.2698 16.3803Z" fill="#EDE9FE"/>
           </svg>
-        </div> */}
+        </div>
 
-        {/* <div className="flex base:justify-between flex-col-reverse items-center base:flex-row base:items-start mb-7 base:mb-14">
+        <div className="flex base:justify-between flex-col-reverse items-center base:flex-row base:items-start mb-7 base:mb-14">
           
           <svg className="w-[254px] h-[518px] base:w-[209px] base:h-[456px]" xmlns="http://www.w3.org/2000/svg" width="209" height="426" viewBox="0 0 209 426" fill="none">
             <path fillRule="evenodd" clipRule="evenodd" d="M161 10H48C39.4342 10 33.6113 10.0078 29.1104 10.3755C24.7262 10.7337 22.4842 11.383 20.9202 12.1799C17.1569 14.0973 14.0973 17.1569 12.1799 20.9202C11.383 22.4842 10.7337 24.7262 10.3755 29.1104C10.0078 33.6113 10 39.4342 10 48V378C10 386.566 10.0078 392.389 10.3755 396.89C10.7337 401.274 11.383 403.516 12.1799 405.08C14.0973 408.843 17.1569 411.903 20.9202 413.82C22.4842 414.617 24.7262 415.266 29.1104 415.624C33.6113 415.992 39.4342 416 48 416H161C169.566 416 175.389 415.992 179.89 415.624C184.274 415.266 186.516 414.617 188.08 413.82C191.843 411.903 194.903 408.843 196.82 405.08C197.617 403.516 198.266 401.274 198.624 396.89C198.992 392.389 199 386.566 199 378V48C199 39.4342 198.992 33.6113 198.624 29.1104C198.266 24.7262 197.617 22.4842 196.82 20.9202C194.903 17.1569 191.843 14.0973 188.08 12.1799C186.516 11.383 184.274 10.7337 179.89 10.3755C175.389 10.0078 169.566 10 161 10ZM3.2698 16.3803C0 22.7976 0 31.1984 0 48V378C0 394.802 0 403.202 3.2698 409.62C6.14601 415.265 10.7354 419.854 16.3803 422.73C22.7976 426 31.1984 426 48 426H161C177.802 426 186.202 426 192.62 422.73C198.265 419.854 202.854 415.265 205.73 409.62C209 403.202 209 394.802 209 378V48C209 31.1984 209 22.7976 205.73 16.3803C202.854 10.7354 198.265 6.14601 192.62 3.2698C186.202 0 177.802 0 161 0H48C31.1984 0 22.7976 0 16.3803 3.2698C10.7354 6.14601 6.14601 10.7354 3.2698 16.3803Z" fill="#EDE9FE"/>
@@ -305,7 +275,7 @@ export default async function SoundCloud({ params }: { params: Params }) {
             <p className="text-xs base:text-2xl mb-3 base:mb-0">{t("how-download-ios-text2")}</p>
           </div>
           
-        </div> */}
+        </div>
 
       </div>
     </div>

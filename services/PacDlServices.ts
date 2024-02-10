@@ -7,9 +7,12 @@ const PacDlServices = () => {
   const _dockerUrl = 'http://localhost:8000/video/';
   const {request} = useHttp();
 
-  const postUrl = async (body: BodyInit, ) => {
+  const downloadVideos = async (body: BodyInit, ) => {
+    const header = {"Content-Type": "application/json"}
+    console.log(body);
+    
     try {
-      const req = await request(`${_baseUrl}down/`, "POST")
+      const req = await request(`${_baseUrl}down/`, "POST", body, header)
 
       return req.json();
     } catch (e) {
@@ -42,7 +45,7 @@ const PacDlServices = () => {
 
 
   return {
-    postUrl,
+    downloadVideos,
     getVideoInfo,
     getTopVideo
   }

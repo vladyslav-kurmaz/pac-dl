@@ -7,5 +7,22 @@
   "top-week": "Top for the week",
   "top-month": "Top for the month",
   "allCatalogue": "All catalogue",
-  "loading": "Loading in progress"
+  "loading": "Loading in progress",
+  "download": "Download",
+  "media": "The media file is available in formats",
+  "popular": "Popular",
+  "hd": "HD video",
+  "audio": "Only audio",
+  "all-formats": "All formats",
+  "more-formats": "More formats",
+  "less-formats": "Less formats",
+  "highlightAll": "Highlight all",
+  "copy": "Copy",
+  "tags-video": "Video tags",
+  "description": "Description",
+  "description-none": "There is no description",
+  "more-description": "More",
+  "less-description": "Less",
+  "similar-video": "Similar videos from our catalog"
+
 }
