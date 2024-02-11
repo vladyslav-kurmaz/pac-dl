@@ -19,11 +19,15 @@
   "highlightAll": "Видiлити все",
   "copy": "Копiювати",
   "tags-video": "Теги вiдео",
+  "tags-not-found": "Тегів до цього відео нема",
   "description": "Опис аудіо",
   "description-none": "Опис відсутній",
   "more-description": "Бiльше",
   "less-description": "Менше",
-  "similar-video": "Схожi ролики з нашого каталогу"
+  "similar-video": "Схожi ролики з нашого каталогу",
+  "video-not-found": "Відео для скачування не знайдено",
+  "audio-not-found": "Аудіо для скачування не знайдено",
+  "formars-not-found": "Форматів для скачування не знайдено"
 
 }
 

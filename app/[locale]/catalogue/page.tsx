@@ -1,5 +1,7 @@
 import initTranslations from "@/app/i18n";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
+import CatalogWrapper from "@/components/CatalogWrapper/CatalogWrapper";
+import TranslationsProvider from "@/components/TranslationProvider/TranslationProvider";
 
 const ukraineMetaData = {
   title: "Каталог завантажень",
@@ -24,6 +26,13 @@ export default async function Catalogue({params}: {params: Params}) {
         {t("title")}
       </h2>
 
+      <TranslationsProvider 
+        locale={params.locale}
+        namespaces={"catalogue"}
+        resources={resources}
+      >
+        <CatalogWrapper/>
+      </TranslationsProvider>
       
 
 

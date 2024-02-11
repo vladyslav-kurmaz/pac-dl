@@ -114,13 +114,24 @@ const WrapperForDownload = () => {
     setLoading(true);
     try {
       const postRequest = await getVideoInfo(url);
+      // console.log(postRequest);
+
+      if (!postRequest.ok && postRequest.ok !== undefined) {
+        // console.log(postRequest.status);
+
+        postRequest.status === 500
+          ? localStorage.setItem("error500", "true")
+          : null;
+        router.push(`/`);
+        return;
+      }
 
       setVideoData(postRequest.video_info);
 
       setLoading(false);
     } catch (e) {
-      router.push(`/`);
       setLoading(false);
+      router.push(`/`);
       console.log(await e);
     }
   };

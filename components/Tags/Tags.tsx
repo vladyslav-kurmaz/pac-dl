@@ -9,17 +9,14 @@ const RenderTags = ({
   hightlightAll: string[];
   setHightLightAll: Dispatch<SetStateAction<string[]>>;
 }) => {
-  // return tag.map((item, i) => {
   const [active, setActive] = useState(false);
-
-  useEffect(() => {
-    hightlightAll.includes(tag) ? setActive(true) : setActive(false);
-  }, [hightlightAll]);
 
   const selectTags = (tag: string) => {
     if (hightlightAll.includes(tag)) {
-      setHightLightAll(hightlightAll.filter((tag) => tag !== tag));
+      setActive(false);
+      setHightLightAll((state) => state.filter((tagItem) => tagItem !== tag));
     } else {
+      setActive(true);
       setHightLightAll((state) => state && [...state, tag]);
     }
   };
@@ -31,7 +28,6 @@ const RenderTags = ({
         active ? "bg-grayCastom2" : ""
       }`}
       onClick={() => {
-        setHightLightAll((state) => state && [...state, tag]);
         selectTags(tag);
       }}
     >

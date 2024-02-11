@@ -16,7 +16,7 @@ const Input = ({
   setLoading,
   loading,
   data,
-  setVideoData
+  setVideoData,
 }: {
   buttonRounded: string;
   buttonNormal: string;
@@ -30,6 +30,7 @@ const Input = ({
 }) => {
   const [inputValue, setInputValue] = useState("");
   const [inputError, setInputError] = useState(false);
+  const [error500, setError500] = useState(false);
 
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -41,15 +42,20 @@ const Input = ({
   }, [inputValue]);
 
   useEffect(() => {
-    console.log(url);
-    // && data === null
-    if (typeof url === "string" ) {
-      setVideoData(null)
+    if (typeof window !== "undefined" && localStorage.getItem("error500")) {
+      setError500(true);
+    } else {
+      setError500(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof url === "string") {
+      setVideoData(null);
       getVideo(url);
       setInputValue(url);
     } else {
-
-      router.push(`/`);
+      // router.push(`/`);
     }
   }, [url]);
 
@@ -88,14 +94,20 @@ const Input = ({
         type="text"
         className="w-full max-h-full pl-6 pr-2 base:pl-16 rounded-2xl placeholder:text-xs text-xs base:placeholder:text-xl base:text-xl border-none outline-none"
         value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
+        onChange={(e) => {
+          setError500(false);
+          localStorage.removeItem("error500");
+          setInputValue(e.target.value);
+        }}
       />
       <div className="hidden base:block">
         <ButtonRounded
           disabled={loading || inputError}
-          onClick={async () =>
-            setInputValue(await navigator.clipboard.readText())
-          }
+          onClick={async () => {
+            setError500(false);
+            localStorage.removeItem("error500");
+            setInputValue(await navigator.clipboard.readText());
+          }}
           text={buttonRounded}
         />
       </div>
@@ -107,9 +119,15 @@ const Input = ({
         />
       </div>
 
+      {error500 && (
+        <div className="absolute base:-bottom-9 -bottom-7 text-rose-600 text-xs base:text-base left-0">
+          Сталася технічна проблема спробуйте пізніше
+        </div>
+      )}
+
       {inputError && (
         <div className="absolute base:-bottom-9 -bottom-7 text-rose-600 text-xs base:text-base left-0">
-          Наш сервіс не може обробити це посилання.
+          Наш сервіс не може обробити ці дані.
         </div>
       )}
     </label>

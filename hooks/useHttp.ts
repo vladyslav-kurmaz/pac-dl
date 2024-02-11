@@ -12,7 +12,7 @@ const useHttp = () => {
       const res = await fetch(url, { method, body, headers });
 
       if (!res.ok) {
-        return Promise.reject(res);
+        return await Promise.reject(res);
       }
 
       return await Promise.resolve(res);

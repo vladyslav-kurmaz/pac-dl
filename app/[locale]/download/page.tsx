@@ -7,6 +7,40 @@ import Image from "next/image";
 import lineRight from "@/assets/image/youtube/line-right.webp";
 import pacRight from "@/assets/image/youtube/pack-right.webp";
 
+const ukraineMetaData = (params: {
+  [key: string]: string | string[] | undefined;
+}) => {
+  const key = params.url;
+  return {
+    title: `Завантажити відео з ${key}`,
+  };
+};
+
+const englishMetaData = (params: {
+  [key: string]: string | string[] | undefined;
+}) => {
+  const key = params.url;
+  return {
+    title: `Download video from ${key}`,
+  };
+};
+
+type Props = {
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export async function generateMetadata({
+  params,
+  searchParams,
+}: {
+  params: Params;
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
+  return params.locale === "en"
+    ? englishMetaData(searchParams)
+    : ukraineMetaData(searchParams);
+}
+
 export default async function Download({ params }: { params: Params }) {
   const { t, resources } = await initTranslations(params?.locale, [
     "youtube",
