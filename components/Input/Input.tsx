@@ -16,9 +16,8 @@ const Input = ({
   setLoading,
   loading,
   data,
-  setVideoData,
-}: // submit,
-{
+  setVideoData
+}: {
   buttonRounded: string;
   buttonNormal: string;
   placeholder?: string;
@@ -28,11 +27,10 @@ const Input = ({
   loading?: boolean;
   data: DataVideo | null;
   setVideoData: Dispatch<SetStateAction<DataVideo | null>>;
-  // submit?: (value: string) => void;
 }) => {
   const [inputValue, setInputValue] = useState("");
   const [inputError, setInputError] = useState(false);
-  // const { getVideoInfo } = PacDlServices();
+
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -43,10 +41,14 @@ const Input = ({
   }, [inputValue]);
 
   useEffect(() => {
-    if (typeof url === "string" && data === null) {
+    console.log(url);
+    // && data === null
+    if (typeof url === "string" ) {
+      setVideoData(null)
       getVideo(url);
       setInputValue(url);
     } else {
+
       router.push(`/`);
     }
   }, [url]);

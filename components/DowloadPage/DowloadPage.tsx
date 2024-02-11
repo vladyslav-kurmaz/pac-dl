@@ -1,8 +1,6 @@
 "use client";
-import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
-import Input from "../Input/Input";
-import clipIcon from "@/assets/image/icons/clip.webp";
+
 import { DataVideo, DowloadFormat, SimilarVideo } from "@/types/types";
 import ButtonCategories from "../Button/ButtonCategories";
 import { useEffect, useState } from "react";
@@ -10,19 +8,21 @@ import Image from "next/image";
 import ButtonRounded from "../Button/ButtonRounded";
 import PacDlServices from "@/services/PacDlServices";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const DowloadPage = ({
   dataVideo,
   similarVideo,
 }: {
   dataVideo: DataVideo;
-  similarVideo: SimilarVideo[] | null;
+  similarVideo: SimilarVideo[];
 }) => {
   const [videoFormat, setVideoFormat] = useState("popular");
   const [moreDescription, setMoreDescription] = useState(false);
   const [moreFormats, setMoreFormats] = useState(false);
   const { t } = useTranslation("elements");
   const [hightlightAll, setHightlightAll] = useState<string[]>([]);
+  const router = useRouter();
 
   const {
     title,
@@ -38,7 +38,7 @@ const DowloadPage = ({
   const [formatData, setFormatData] = useState<DowloadFormat[] | null>(null);
 
   useEffect(() => {
-    console.log(videoFormat);
+    // console.log(videoFormat);
 
     switch (videoFormat) {
       case "popular": {
@@ -65,41 +65,12 @@ const DowloadPage = ({
     }
   }, [videoFormat]);
 
-  // const format = (data: DowloadFormat[]) => {
-  //   return (
-  //     <div
-  //       className="flex justify-between items-center mb-6 base:mb-[54px]"
-  //       // key={i}
-  //     >
-  //       <div>
-  //         {/* mp4 - {dataVideo.formats_note[i]} ({item}) */}
-  //       </div>
-  //       <button
-  //         // onClick={() => dowloadsVideo(uploader_url, item)}
-  //         className="px-4 text-[9px] py-3 bg-violet2 disabled:text-violet-200 disabled:hover:bg-violet2 transition-all duration-500 hover:transition-all hover:duration-500 hover:bg-violet1 rounded-[30px] base:rounded-[30px] base:px-14 base:py-7 base:text-base box-border"
-  //       >
-  //         {t("download")}
-  //       </button>
-  //     </div>
-  //   );
-  // };
-
-  // https://rr12---sn-n8v7znze.googlevideo.com/videoplayback?expire=1707579750&ei=BkXHZZjFG9bhv_IP1oq3sAQ&ip=2a0e%3Acd41%3A9dcb%3A591c%3Aca3a%3A35ff%3Afeb5%3Ad686&id=o-AEHJBnBXRo5Pu0YGzPpmgd13joc06EH1XoDsBqBzhVXB&itag=22&source=youtube&requiressl=yes&xpc=EgVo2aDSNQ%3D%3D&mh=Tb&mm=31%2C29&mn=sn-n8v7znze%2Csn-n8v7kn76&ms=au%2Crdu&mv=u&mvi=12&pl=40&vprv=1&svpuc=1&mime=video%2Fmp4&cnr=14&ratebypass=yes&dur=137.787&lmt=1705600548496393&mt=1707557636&fvip=2&fexp=24007246&c=ANDROID&txp=5308224&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cxpc%2Cvprv%2Csvpuc%2Cmime%2Ccnr%2Cratebypass%2Cdur%2Clmt&sig=AJfQdSswRQIgB9qzH2y5KSKwCR15Nz84NaeUWY74A2cLEJ8Auww-CRcCIQDGEiKL8aNZoxzk8tesA4jOlugiHdxjr6sya72WNeQTLQ%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl&lsig=AAO5W4owRQIgbg8SH5GWObZ01tGtW5_2qMciOlWAbta41VD7eJJHYNMCIQC7ji6WuRler1IfgdhoDBQ2NQBYNI47GkkwFwAITZqJAg%3D%3D&title=Cinematic+FPV+_+Showreel+2023"
-
-  // &title=Cinematic+FPV+_+Showreel+2023 downloader
-
-  // Cinematic%2BFPV%2B%2B%2BShowreel%2B2023
-  // &title=Cinematic%20FPV%20%7C%20Showreel%202023 our
-
-  // https://rr2---sn-oxu5nnpnu-px8l.googlevideo.com/videoplayback?expire=1707580186&ei=ukbHZfTnA7KN6dsPnYnF0QE&ip=109.236.63.196&id=o-ANP4XkIzLsc6laIQxijooBY1MvXKHtblUzMNjnBbV-VL&itag=18&source=youtube&requiressl=yes&xpc=EgVo2aDSNQ%3D%3D&vprv=1&svpuc=1&mime=video%2Fmp4&gir=yes&clen=9293752&ratebypass=yes&dur=137.787&lmt=1705600257501363&fexp=24007246&c=ANDROID&txp=5319224&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cxpc%2Cvprv%2Csvpuc%2Cmime%2Cgir%2Cclen%2Cratebypass%2Cdur%2Clmt&sig=AJfQdSswRQIhAPIMWzJj53GFk75QHGz-kGst9r0FqHOa686V6P7d5O9VAiA0fsAYaaVxmEm8cFev91a4TvoAnJ8Eikr9xN6tm6Hu3A%3D%3D&title=Cinematic%2BFPV%2B%2B%2BShowreel%2B2023&redirect_counter=1&rm=sn-5hnezs7e&req_id=77cbc0f39703a3ee&cms_redirect=yes&cmsv=e&ipbypass=yes&mh=Tb&mip=94.45.103.106&mm=31&mn=sn-oxu5nnpnu-px8l&ms=au&mt=1707558284&mv=m&mvi=2&pl=20&lsparams=ipbypass,mh,mip,mm,mn,ms,mv,mvi,pl&lsig=AAO5W4owRQIhAIqtclT6TCxZnMI23eYatigcpmU3lRc2t3zyeyx1vxQQAiAeEpfyIOJuDzIDrQThulzn39dD8clSeSbCE-dzvxt5mw%3D%3D
-
   const renderFormats = () => {
     return formatData?.map((item, i) => {
       const { download_url, ext, format_note, resolution } = item;
       const downloadUrl = `${download_url}&title=${encodeURIComponent(
         title.replace(/[ |]/g, "+")
       )}`;
-      console.log(encodeURIComponent(title.replace(/[ |]/g, "+")));
 
       const renderItem = (
         <div className="flex justify-between items-center mb-3 lg:mb-6" key={i}>
@@ -161,6 +132,37 @@ const DowloadPage = ({
   const copyAll = () => {
     navigator.clipboard.writeText(hightlightAll.join(", "));
   };
+  const searchParams = useSearchParams();
+
+  const renderSimilarVideo = () => {
+    return similarVideo?.map((item) => {
+      const { title, video_url, preview_url, id } = item;
+      // console.log(video_url);
+
+      return (
+        <div
+          // href={`/download?url=${video_url}`}
+          onClick={() => {
+            // router.push(`/`);
+            // searchParams.delete()
+
+            router.push(`/download?url=${video_url}`);
+          }}
+          className="flex flex-col items-center mb-[30px] "
+          key={id}
+        >
+          <Image
+            src={preview_url}
+            width={1000}
+            height={1000}
+            alt={title}
+            className="w-[166px] h-[92px] lg:w-[269px] lg:h-[150px] mb-2 rounded-[16px] md:mb-0"
+          />
+          <div className="text-[9px] md:text-[16px]">{title}</div>
+        </div>
+      );
+    });
+  };
 
   return (
     <>
@@ -174,11 +176,6 @@ const DowloadPage = ({
               width={1000}
               height={1000}
             />
-
-            {/* <video
-              src={video[0].download_url}
-              className="w-full h-full max-w-[347px] mb-3 md:mb-0 max-h-[192px] base:max-w-[603px] base:max-h-[345px] rounded-[15px] base:rounded-[20px]"
-            ></video> */}
           </div>
 
           <div className=" w-full base:w-[457px] md:w-[307px] mt-3 md:mt-0">
@@ -314,14 +311,15 @@ const DowloadPage = ({
           ) : null}
         </div>
 
-        {similarVideo !== null ? (
+        {similarVideo?.length > 0 ? (
           <div className="flex justify-start relative z-20 w-full flex-col items-start">
             <div className="mr-2 md:mr-6 mb-4 md:mb-[26px] text-[16px] font-semibold base:text-[24px]">
               {t("similar-video")}
             </div>
 
             <div className="w-full flex flex-wrap justify-between small:flex-col sm:flex-row">
-              <div className="flex flex-col items-center mr-1">
+              {similarVideo?.length > 0 ? renderSimilarVideo() : null}
+              {/* <div className="flex flex-col items-center mr-1">
                 <div className="relative w-[166px] h-[93px] mb-1 base:mb-2  lg:w-[269px] lg:h-[149px] rounded-[15px] base:rounded-[20px]"></div>
                 <div className="w-[70%] h-[8px] mb-3 base:mb-6  base:h-[22px] "></div>
               </div>
@@ -339,7 +337,7 @@ const DowloadPage = ({
               <div className="flex flex-col items-center">
                 <div className="relative w-[166px] h-[93px] mb-1 base:mb-2 lg:w-[269px] lg:h-[149px] rounded-[15px] base:rounded-[20px]"></div>
                 <div className="w-[70%] h-[8px] mb-3 base:mb-6  base:h-[22px] "></div>
-              </div>
+              </div> */}
             </div>
           </div>
         ) : null}
