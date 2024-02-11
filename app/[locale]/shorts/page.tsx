@@ -148,10 +148,6 @@ export default async function Shorts({ params }: { params: Params }) {
       />
 
       <div className="base:max-w-lg z-20 relative mx-auto px-4">
-        {/* <h1 className="text-lg font-bold leading-6 base:leading-9 base:text-[40px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
-          {t("title")}
-        </h1> */}
-
         <TranslationsProvider
           locale={params.locale}
           namespaces={[
@@ -175,7 +171,11 @@ export default async function Shorts({ params }: { params: Params }) {
           {t("faq")}
         </h2>
         <div className="mb-7 base:mb:24">
-          <Accordion data={dataFaq} />
+          {
+            dataFaq.map((item, i) => {
+              return <Accordion data={item} key={i}/>
+            })
+          }
         </div>
 
         <h2 className="text-lg font-bold leading-6 base:leading-9 base:text-[32px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">

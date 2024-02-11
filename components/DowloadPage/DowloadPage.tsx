@@ -3,12 +3,14 @@ import { useTranslation } from "react-i18next";
 
 import { DataVideo, DowloadFormat, SimilarVideo } from "@/types/types";
 import ButtonCategories from "../Button/ButtonCategories";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Image from "next/image";
 import ButtonRounded from "../Button/ButtonRounded";
 import PacDlServices from "@/services/PacDlServices";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
+
+import RenderTags from "../Tags/Tags";
 
 const DowloadPage = ({
   dataVideo,
@@ -92,38 +94,6 @@ const DowloadPage = ({
     });
   };
 
-  const renderTags = () => {
-    return tag.map((item, i) => {
-      const [active, setActive] = useState(false);
-
-      useEffect(() => {
-        hightlightAll.includes(item) ? setActive(true) : setActive(false);
-      }, [hightlightAll]);
-
-      const selectTags = (tag: string) => {
-        if (hightlightAll.includes(tag)) {
-          setHightlightAll(hightlightAll.filter((tag) => tag !== item));
-        } else {
-          setHightlightAll((state) => state && [...state, item]);
-        }
-      };
-
-      return (
-        <div
-          key={i}
-          className={`border-[1px] px-2 py-[7px] md:px-[30px] md:py-[15px] m-2 md:mb-3 md:mt-3 cursor-pointer border-grayCastom2 rounded-[30px] text-[9px] md:text-base ${
-            active ? "bg-grayCastom2" : ""
-          }`}
-          onClick={() => {
-            setHightlightAll((state) => state && [...state, item]);
-            selectTags(item);
-          }}
-        >
-          {item}
-        </div>
-      );
-    });
-  };
 
   const onHightlightAll = () => {
     setHightlightAll(tag);
@@ -217,7 +187,7 @@ const DowloadPage = ({
             <div
               className={`mb-[29px] base:mb-23 ${
                 moreFormats
-                  ? "max-h-[2000px] transition-all duration-700 ease-linear"
+                  ? "max-h-[10000px] transition-all duration-700 ease-linear"
                   : "lg:max-h-[213px] max-h-[110px] transition-all duration-300  overflow-hidden"
               }`}
             >
@@ -263,7 +233,11 @@ const DowloadPage = ({
             </div>
           </div>
 
-          {renderTags()}
+          <div className="">
+            {tag.map((item, i) => {
+              return <RenderTags key={i} tag={item} hightlightAll={hightlightAll} setHightLightAll={setHightlightAll}/>
+            })}
+          </div>
         </div>
 
         <div className="w-full mb-8 relative z-20 md:mb-24 transition-all duration-500 ">

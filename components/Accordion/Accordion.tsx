@@ -3,17 +3,14 @@ import Image from "next/image";
 import arrowIcon from "../../assets/image/icons/ask.webp";
 import { useState } from "react";
 
-const Accordion = ({ data }: { data: { title: string; answer: string }[] }) => {
-  
-  return data.map((item, i) => {
-    const [openAnswer, setOpenAnswer] = useState(false);
-    const { title, answer } = item;
-    
+const Accordion = ({ data }: { data: { title: string; answer: string } }) => {
+  const [openAnswer, setOpenAnswer] = useState(false);
+  const { title, answer } = data;
 
     return (
       <div
         className={` bg-slate-50 rounded-[6px] base:rounded-[15px] transition-all duration-500 mb-3 base:mb-6 py-3 px-4 base:py-6 base:px-9 `}
-        key={i}
+        key={title}
         style={
           openAnswer
             ? { maxHeight: "100%", transition: "all .5s" }
@@ -26,12 +23,7 @@ const Accordion = ({ data }: { data: { title: string; answer: string }[] }) => {
           <Image
             src={arrowIcon}
             alt="alt"
-            onClick={(e) =>{
-              console.log(e);
-              
-               setOpenAnswer((state) => !state)
-              
-              }}
+            onClick={(e) => setOpenAnswer((state) => !state)}
             className="w-7 h-7 base:w-[51px] base:h-[51px] cursor-pointer transition-all duration-500"
             style={
               openAnswer
@@ -62,7 +54,6 @@ const Accordion = ({ data }: { data: { title: string; answer: string }[] }) => {
         </p>
       </div>
     );
-  });
 };
 
 export default Accordion;

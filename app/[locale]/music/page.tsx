@@ -128,9 +128,6 @@ export default async function Music({ params }: { params: Params }) {
       <Image src={pacRight} alt="line right" className="absolute hidden base:block z-10 bottom-[10%] right-0"/>
 
       <div className="z-20 relative base:max-w-lg mx-auto px-4">
-        {/* <h1 className="text-lg font-bold leading-6 base:leading-9 base:text-[40px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
-          {t("title")}
-        </h1> */}
 
         <TranslationsProvider
           locale={params.locale}
@@ -150,42 +147,16 @@ export default async function Music({ params }: { params: Params }) {
             namespaces={"music"}
           />
         </TranslationsProvider>
-
-      {/* <div className="mb-7 base:mb-24">
-          <Input
-            buttonRounded={t("elements:buttonRounded")}
-            buttonNormal={t("elements:buttonNormal")}
-            placeholder={t("elements:mainInputPlaceholder")}
-            icon={clipIcon}
-          />
-        </div>
-
-        <h2 className="text-lg font-bold leading-6 base:leading-9 base:text-[32px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
-          {t("resources")}
-        </h2> */}
-
-      {/* <div className="mb-7 base:mb-24">
-          <Resources data={sosialNetworks} text={t("elements:showAll")} />
-        </div>
-
-        <h2 className="text-lg font-bold leading-6 base:leading-9 base:text-[32px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
-          {t("top-video")}
-        </h2>
-
-        <div className="mb-7 base:mb-24">
-          <TopVideo
-            day={t("elements:top-day")}
-            week={t("elements:top-week")}
-            month={t("elements:top-month")}
-            catalogue={t("elements:allCatalogue")}
-          />
-        </div> */}
       
         <h2 className="text-lg font-bold leading-6 base:leading-9 base:text-[32px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
           {t("faq")}
         </h2>
         <div className="mb-7 base:mb:24">
-          <Accordion data={dataFaq} />
+          {
+            dataFaq.map((item, i) => {
+              return <Accordion data={item} key={i}/>
+            })
+          }
         </div>
 
         <h2 className="text-lg font-bold leading-6 base:leading-9 base:text-[32px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
