@@ -4,57 +4,114 @@ import { useTranslation } from "react-i18next";
 import ButtonThreeState from "../Button/ButtonThreeState";
 import { useState, useEffect } from "react";
 import PacDlServices from "@/services/PacDlServices";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+import Spinner from "@/components/spiner/spiner";
+
+import notFound from "@/assets/image/error/image_not_found.webp";
+import { SimilarVideo } from "@/types/types";
 
 const TopVideo = ({
   day,
   week,
   month,
   catalogue,
+  topError,
 }: {
   day: string;
   week: string;
   month: string;
   catalogue: string;
+  topError: string;
 }) => {
   const [active, setActive] = useState(day);
-  const [dataTop, setTopData] = useState([]);
+  const [dataTop, setTopData] = useState<SimilarVideo[] | null>(null);
+  const [loading, setLoading] = useState(true);
   const { getTopVideo } = PacDlServices();
+  const router = useRouter();
 
   useEffect(() => {
     if (active === day) {
-      getTopData('day');
+      getTopData("day");
     } else if (active === week) {
-      getTopData('week');
+      getTopData("week");
     } else {
-      getTopData('month');
+      getTopData("month");
     }
-
-    
-    console.log(dataTop);
   }, [active]);
 
   const getTopData = async (active: string) => {
+    setLoading(true);
     const screenWidth = window.screen.width;
-    if (screenWidth > 1000) {
+    setTopData(null)
+    if (screenWidth > 1200) {
       try {
         const getTop = await getTopVideo(active, 8, 1);
-        setTopData(await getTop);
+        setTopData(await getTop.results);
+        setLoading(false);
       } catch (e) {
         console.error(e);
+        setLoading(false);
       }
     } else {
       try {
         const getTop = await getTopVideo(active, 4, 1);
-        setTopData(await getTop);
+        setTopData(await getTop.results);
+        setLoading(false);
       } catch (e) {
         console.error(e);
+        setLoading(false);
       }
     }
   };
 
+  const renderTopVideo = (dataTop: SimilarVideo[]) => {
+    return dataTop.length > 0 ? (
+      dataTop.map((item, i) => {
+        const { title, preview_url, video_url } = item;
+
+        return (
+          <div
+            onClick={() => {
+              localStorage.removeItem("error500");
+              router.push(`/download?url=${video_url}`);
+            }}
+            className="flex flex-col items-center mb-[30px] cursor-pointer"
+            key={i}
+          >
+            {preview_url ? (
+              <Image
+                src={preview_url}
+                width={1000}
+                height={1000}
+                alt={title}
+                className="w-[166px] h-[92px] base:w-[269px] base:h-[150px] mb-2 rounded-[16px] md:mb-2"
+              />
+            ) : (
+              <Image
+                src={notFound}
+                alt={"image not found"}
+                className="w-[166px] h-[92px] base:w-[269px] base:h-[150px] mb-2 rounded-[16px] md:mb-0 "
+                width={1000}
+                height={1000}
+              />
+            )}
+            <div className="text-[9px] md:text-[16px] lg:max-w-[265px] max-w-[265px] text-center">
+              {title}
+            </div>
+          </div>
+        );
+      })
+    ) : (
+      <div className="text-[9px] md:text-[24px] base:h-[240px] h-[200px] w-full lg:max-w-[505px] max-w-[265px] mb-3 flex items-center justify-center text-center">
+        {topError}
+      </div>
+    );
+  };
+
   return (
     <div className="">
-      <div className="flex jus">
+      <div className="flex mb-3 base:mb-6">
         <div className="mr-2 base:mr-6">
           <ButtonThreeState
             text={day}
@@ -78,7 +135,18 @@ const TopVideo = ({
         </div>
       </div>
 
-      <div className=""></div>
+      <div
+        className={`flex flex-wrap ${
+          dataTop && dataTop?.length > 0 ? "justify-between" : "justify-center"
+        }`}
+      >
+        {loading && (
+          <div className="base:h-[440px] w-full h-[340px] flex justify-center items-center">
+            <Spinner />
+          </div>
+        )}
+        {dataTop !== null && renderTopVideo(dataTop)}
+      </div>
 
       <Link
         href={"/catalogue"}

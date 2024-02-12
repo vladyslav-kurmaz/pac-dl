@@ -46,10 +46,48 @@ const PacDlServices = () => {
     }
   };
 
+  const getPopuliarTags = async (offcet?: number, page?: number) => {
+    const offsetUrl = offcet ? `&page_size=${offcet}` : null;
+    const pageUrl = offcet ? `&page=${page}` : null;
+
+    try {
+      const req = await request(
+        `${_baseUrl}popular-tags/${
+          offsetUrl !== null || pageUrl !== null
+            ? `?${offsetUrl}${pageUrl}`
+            : ""
+        }`
+      );
+      return req.json();
+    } catch (e) {
+      return e;
+    }
+  };
+
+  const getAllVideo = async (offcet?: number, page?: number) => {
+    const offsetUrl = offcet ? `&page_size=${offcet}` : null;
+    const pageUrl = offcet ? `&page=${page}` : null;
+
+    try {
+      const req = await request(
+        `${_baseUrl}videos/${
+          offsetUrl !== null || pageUrl !== null
+            ? `?${offsetUrl}${pageUrl}`
+            : ""
+        }`
+      );
+      return req.json();
+    } catch (e) {
+      return e;
+    }
+  };
+
   return {
     downloadVideos,
     getVideoInfo,
     getTopVideo,
+    getPopuliarTags,
+    getAllVideo,
   };
 };
 

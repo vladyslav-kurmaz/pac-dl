@@ -62,7 +62,7 @@ const WraperForClientContentOnMainPage = ({
         </h2>
 
         <div className="mb-7 base:mb-24">
-          <Resources data={sosialNetworks} text={t("elements:showAll")} />
+          <Resources data={sosialNetworks} text={t("elements:showAll")}/>
         </div>
 
         <h2 className="text-lg font-bold leading-6 base:leading-9 base:text-[32px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
@@ -75,7 +75,7 @@ const WraperForClientContentOnMainPage = ({
             week={t("elements:top-week")}
             month={t("elements:top-month")}
             catalogue={t("elements:allCatalogue")}
-          />
+            topError={t(`${namespaces}:top-not-found`)}          />
         </div>
 
         {/* {loadingData}

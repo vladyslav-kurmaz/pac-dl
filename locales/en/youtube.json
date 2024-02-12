@@ -2,6 +2,7 @@
   "title": "Download videos from YouTube and other services for free",
   "resources": "Support for all popular resources",
   "top-video": "Top video downloads",
+  "top-not-found": "Top downloads for this category have not been generated yet",
   "faq": "Answers to the most frequently asked questions",
   "how-download": "How to download from YouTube via a link?",
   "how-download-text": "Нерідко виникає ситуація, коли потрібно скачати YouTube відео без встановлення програм. Наприклад, якщо під рукою лише смартфон, а відеофайл потрібно терміново. Або немає бажання встановлювати софт на комп'ютер. Причин може бути багато. Сервіс pac-dl створений, щоб завантаження відео з YouTube відбувалося онлайн, безкоштовно та швидко.",

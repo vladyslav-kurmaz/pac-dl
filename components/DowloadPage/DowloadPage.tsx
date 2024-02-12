@@ -160,7 +160,7 @@ const DowloadPage = ({
               <Image
                 src={dataVideo.preview}
                 alt={dataVideo.title}
-                className="w-full h-full max-w-[347px] mb-3 md:mb-0 max-h-[192px] base:max-w-[603px] base:max-h-[345px] rounded-[15px] base:rounded-[20px]"
+                className="w-full h-full max-w-[347px] object-contain mb-3 md:mb-0 max-h-[192px] base:max-w-[603px] base:max-h-[345px] rounded-[15px] base:rounded-[20px]"
                 width={1000}
                 height={1000}
               />
@@ -214,16 +214,16 @@ const DowloadPage = ({
             <div
               className={`mb-[29px] base:mb-23 ${
                 moreFormats
-                  ? "max-h-[10000px] transition-all duration-700 ease-linear"
-                  : "lg:max-h-[213px] max-h-[110px] transition-all duration-300  overflow-hidden"
+                  ? "max-h-[10000px] transition-all duration-500 ease-in-out overflow-hidden"
+                  : "lg:max-h-[223px] max-h-[120px] transition-all duration-500 ease-in-out overflow-hidden"
               }`}
             >
               {renderFormats()}
             </div>
 
-            {Array.isArray(formatData) ? (
+            {Array.isArray(formatData) && formatData.length > 3 ? (
               <button
-                className="flex justify-between items-center"
+                className="flex justify-between items-center transition-all"
                 onClick={() => setMoreFormats((state) => !state)}
               >
                 <span className="mr-2 base:mr-5  text-[12px] base:text-[22px]">
@@ -251,7 +251,7 @@ const DowloadPage = ({
               <ButtonRounded
                 style={tag.length > 0 ? "flex" : "hidden"}
                 text={t("highlightAll")}
-                onClick={onHightlightAll}
+                onClick={() => onHightlightAll()}
               />
               <ButtonRounded
                 disabled={tag.length > 0 ? false : true}
@@ -292,8 +292,8 @@ const DowloadPage = ({
               className={`text-[13px] base:text-[24px] mb-3 base:mb-6 transition-all duration-500 
               ${
                 moreDescription
-                  ? "max-h-[1000px] transition-all duration-500 ease-linear"
-                  : "max-h-[100px] text-ellipsis overflow-hidden transition-all duration-300 openDescription"
+                  ? "max-h-[1000px] transition-all overflow-hidden duration-500"
+                  : "max-h-[120px] text-ellipsis overflow-hidden transition-all ease-in-out duration-500 openDescription"
               }
               `}
             >

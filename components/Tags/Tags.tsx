@@ -11,6 +11,10 @@ const RenderTags = ({
 }) => {
   const [active, setActive] = useState(false);
 
+  useEffect(() => {
+    hightlightAll.includes(tag) ? setActive(true) : setActive(false);
+  }, [hightlightAll]);
+
   const selectTags = (tag: string) => {
     if (hightlightAll.includes(tag)) {
       setActive(false);

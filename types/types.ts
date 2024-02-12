@@ -38,3 +38,10 @@ export type SimilarVideo = {
   preview_url: string;
   id: string;
 };
+
+export type TopTag = {
+  created: string,
+  id: string,
+  name: string
+}
+
