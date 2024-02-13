@@ -43,7 +43,7 @@ const TopVideo = ({
   const getTopData = async (active: string) => {
     setLoading(true);
     const screenWidth = window.screen.width;
-    setTopData(null)
+    setTopData(null);
     if (screenWidth > 1200) {
       try {
         const getTop = await getTopVideo(active, 8, 1);
@@ -85,19 +85,19 @@ const TopVideo = ({
                 width={1000}
                 height={1000}
                 alt={title}
-                className="w-[166px] h-[92px] base:w-[269px] base:h-[150px] mb-2 rounded-[16px] md:mb-2"
+                className="w-[166px] h-[92px] lg:w-[269px] lg:h-[150px] mb-2 rounded-[16px] md:mb-2"
               />
             ) : (
               <Image
                 src={notFound}
                 alt={"image not found"}
-                className="w-[166px] h-[92px] base:w-[269px] base:h-[150px] mb-2 rounded-[16px] md:mb-0 "
+                className="w-[166px] h-[92px] lg:w-[269px] lg:h-[150px] mb-2 rounded-[16px] md:mb-0 "
                 width={1000}
                 height={1000}
               />
             )}
-            <div className="text-[9px] md:text-[16px] lg:max-w-[265px] max-w-[265px] text-center">
-              {title}
+            <div className="text-[9px] md:text-[12px] base:text-[14px] lg:text-[16px] lg:max-w-[265px]  max-w-[165px] text-center">
+              {title.length > 49 ? `${title.slice(0, 50)}...` : title}
             </div>
           </div>
         );

@@ -42,8 +42,6 @@ const CatalogTags = ({
       );
     });
   };
-
-  console.log(tags);
   
   return (
     <div className="flex flex-wrap ">

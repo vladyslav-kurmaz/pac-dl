@@ -114,10 +114,8 @@ const WrapperForDownload = () => {
     setLoading(true);
     try {
       const postRequest = await getVideoInfo(url);
-      // console.log(postRequest);
 
       if (!postRequest.ok && postRequest.ok !== undefined) {
-        // console.log(postRequest.status);
 
         postRequest.status === 500
           ? localStorage.setItem("error500", "true")
@@ -156,7 +154,6 @@ const WrapperForDownload = () => {
             loading={loading}
             data={videoData}
             setVideoData={setVideoData}
-            // getProps={getInputProps}
           />
         </div>
 
