@@ -6,7 +6,7 @@ import Input from "@/components/Input/Input";
 import clipIcon from "@/assets/image/icons/clip.webp";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
-import LoadingPage from "../LoadingPage/LoadingPage";
+import LoadingPage from "../LoadingSkeleton/LoadingPage";
 import Image from "next/image";
 
 import lineRight from "@/assets/image/youtube/line-right.webp";
@@ -33,54 +33,52 @@ const WraperForClientContentOnMainPage = ({
   const { t, i18n } = useTranslation(["elements", namespaces]);
   const [loading, setLoading] = useState(false);
   const searchParams = useSearchParams();
-  const [videoData, setVideoData] = useState<DataVideo | null>(null)
- 
+  const [videoData, setVideoData] = useState<DataVideo | null>(null);
 
   return (
     <>
-      
-        <h1 className="text-lg font-bold leading-6 base:leading-9 base:text-[40px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
-          {t(`${namespaces}:title`)}
-        </h1>
+      <h1 className="text-lg font-bold leading-6 base:leading-9 base:text-[40px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
+        {t(`${namespaces}:title`)}
+      </h1>
 
-        <div className="mb-7 base:mb-24 relative z-30">
-          <Input
-            buttonRounded={t("elements:buttonRounded")}
-            buttonNormal={t("elements:buttonNormal")}
-            placeholder={t("elements:mainInputPlaceholder")}
-            icon={clipIcon}
-            setLoading={setLoading}
-            loading={loading}
-            data={videoData}
-            setVideoData={setVideoData}
-            // getProps={getInputProps}
-          />
-        </div>
+      <div className="mb-7 base:mb-24 relative z-30">
+        <Input
+          buttonRounded={t("elements:buttonRounded")}
+          buttonNormal={t("elements:buttonNormal")}
+          placeholder={t("elements:mainInputPlaceholder")}
+          icon={clipIcon}
+          setLoading={setLoading}
+          loading={loading}
+          data={videoData}
+          setVideoData={setVideoData}
+          // getProps={getInputProps}
+        />
+      </div>
 
-        <h2 className="text-lg font-bold leading-6 base:leading-9 base:text-[32px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
-          {t(`${namespaces}:resources`)}
-        </h2>
+      <h2 className="text-lg font-bold leading-6 base:leading-9 base:text-[32px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
+        {t(`${namespaces}:resources`)}
+      </h2>
 
-        <div className="mb-7 base:mb-24">
-          <Resources data={sosialNetworks} text={t("elements:showAll")}/>
-        </div>
+      <div className="mb-7 base:mb-24">
+        <Resources data={sosialNetworks} text={t("elements:showAll")} />
+      </div>
 
-        <h2 className="text-lg font-bold leading-6 base:leading-9 base:text-[32px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
-          {t(`${namespaces}:top-video`)}
-        </h2>
+      <h2 className="text-lg font-bold leading-6 base:leading-9 base:text-[32px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
+        {t(`${namespaces}:top-video`)}
+      </h2>
 
-        <div className="mb-7 base:mb-24">
-          <TopVideo
-            day={t("elements:top-day")}
-            week={t("elements:top-week")}
-            month={t("elements:top-month")}
-            catalogue={t("elements:allCatalogue")}
-            topError={t(`${namespaces}:top-not-found`)}          />
-        </div>
+      <div className="mb-7 base:mb-24">
+        <TopVideo
+          day={t("elements:top-day")}
+          week={t("elements:top-week")}
+          month={t("elements:top-month")}
+          catalogue={t("elements:allCatalogue")}
+          topError={t(`${namespaces}:top-not-found`)}
+        />
+      </div>
 
-        {/* {loadingData}
+      {/* {loadingData}
         {content} */}
-      
     </>
   );
 };

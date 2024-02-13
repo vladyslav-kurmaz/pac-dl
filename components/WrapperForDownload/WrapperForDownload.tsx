@@ -9,7 +9,7 @@ import clipIcon from "@/assets/image/icons/clip.webp";
 import { useTranslation } from "react-i18next";
 import PacDlServices from "@/services/PacDlServices";
 import DowloadPage from "../DowloadPage/DowloadPage";
-import LoadingPage from "../LoadingPage/LoadingPage";
+import LoadingPage from "../LoadingSkeleton/LoadingPage";
 import { useRouter } from "next/navigation";
 
 const WrapperForDownload = () => {
@@ -116,7 +116,6 @@ const WrapperForDownload = () => {
       const postRequest = await getVideoInfo(url);
 
       if (!postRequest.ok && postRequest.ok !== undefined) {
-
         postRequest.status === 500
           ? localStorage.setItem("error500", "true")
           : null;

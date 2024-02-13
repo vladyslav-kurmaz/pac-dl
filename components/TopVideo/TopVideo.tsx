@@ -76,7 +76,7 @@ const TopVideo = ({
               localStorage.removeItem("error500");
               router.push(`/download?url=${video_url}`);
             }}
-            className="flex flex-col items-center mb-[30px] cursor-pointer"
+            className="flex flex-col items-center w-[50%] md:w-[25%] mb-[30px] cursor-pointer"
             key={i}
           >
             {preview_url ? (
@@ -85,13 +85,13 @@ const TopVideo = ({
                 width={1000}
                 height={1000}
                 alt={title}
-                className="w-[166px] h-[92px] lg:w-[269px] lg:h-[150px] mb-2 rounded-[16px] md:mb-2"
+                className="w-[166px] h-[92px] base:w-[219px] base:h-[130px] lg:w-[269px] lg:h-[150px] mb-2 rounded-[16px] md:mb-2"
               />
             ) : (
               <Image
                 src={notFound}
                 alt={"image not found"}
-                className="w-[166px] h-[92px] lg:w-[269px] lg:h-[150px] mb-2 rounded-[16px] md:mb-0 "
+                className="w-[166px] h-[92px] base:w-[219px] base:h-[130px] lg:w-[269px] lg:h-[150px] mb-2 rounded-[16px] md:mb-0 "
                 width={1000}
                 height={1000}
               />

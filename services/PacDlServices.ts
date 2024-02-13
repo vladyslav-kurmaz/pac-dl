@@ -82,12 +82,36 @@ const PacDlServices = () => {
     }
   };
 
+  const getFilterVideo = async (
+    tag: string,
+    offcet?: number,
+    page?: number
+  ) => {
+    const offsetUrl = offcet ? `&page_size=${offcet}` : null;
+    const pageUrl = offcet ? `&page=${page}` : null;
+    const tagSearch = tag ? `&tag=${tag}` : null;
+
+    try {
+      const req = await request(
+        `${_baseUrl}videos/${
+          offsetUrl !== null || pageUrl !== null || tagSearch !== null
+            ? `?${offsetUrl}${pageUrl}${tagSearch}`
+            : ""
+        }`
+      );
+      return req.json();
+    } catch (e) {
+      return e;
+    }
+  };
+
   return {
     downloadVideos,
     getVideoInfo,
     getTopVideo,
     getPopuliarTags,
     getAllVideo,
+    getFilterVideo,
   };
 };
 
