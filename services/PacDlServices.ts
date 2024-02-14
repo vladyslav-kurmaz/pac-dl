@@ -93,7 +93,7 @@ const PacDlServices = () => {
 
     try {
       const req = await request(
-        `${_baseUrl}videos/${
+        `${_baseUrl}videos-filter/${
           offsetUrl !== null || pageUrl !== null || tagSearch !== null
             ? `?${offsetUrl}${pageUrl}${tagSearch}`
             : ""

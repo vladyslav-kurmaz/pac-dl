@@ -1,5 +1,6 @@
 {
   "title": "Catalog of videos for download",
   "allVideo": "All video",
-  "not-video": "Catalogue don't has videos" 
+  "not-video": "Catalogue don't has videos",
+  "not-tags": "Catalogue don't has tags"   
 }

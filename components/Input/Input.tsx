@@ -18,7 +18,7 @@ const Input = ({
   loading,
   data,
   setVideoData,
-  errors
+  errors,
 }: {
   buttonRounded: string;
   buttonNormal: string;
@@ -29,28 +29,57 @@ const Input = ({
   loading?: boolean;
   data: DataVideo | null;
   setVideoData: Dispatch<SetStateAction<DataVideo | null>>;
-  errors: string[]
+  errors: string[];
 }) => {
-
   const [inputValue, setInputValue] = useState("");
   const [inputError, setInputError] = useState(false);
   const [error500, setError500] = useState(false);
   const [required, setRequired] = useState(false);
+  const [errorNotFindVideo, setErrorNotFindVideo] = useState(false);
+  const [errorLongRequest, setErrorLongRequest] = useState(false);
 
   const searchParams = useSearchParams();
   const router = useRouter();
 
   const url = searchParams.get("url");
 
+  console.log();
+
   useEffect(() => {
     validateInput(inputValue);
   }, [inputValue]);
 
   useEffect(() => {
+
+    setTimeout(() => localStorage.clear(), 10000);
+
     if (typeof window !== "undefined" && localStorage.getItem("error500")) {
       setError500(true);
     } else {
       setError500(false);
+    }
+
+    console.log(localStorage.getItem("errorNotFindVideo"));
+
+    if (
+      typeof window !== "undefined" &&
+      localStorage.getItem("errorNotFindVideo")
+    ) {
+      console.log("test1");
+
+      setErrorNotFindVideo(true);
+    } else {
+      console.log("test2");
+      setErrorNotFindVideo(false);
+    }
+
+    if (
+      typeof window !== "undefined" &&
+      localStorage.getItem("errorLongRequest")
+    ) {
+      setErrorLongRequest(true);
+    } else {
+      setErrorLongRequest(false);
     }
   }, []);
 
@@ -106,7 +135,10 @@ const Input = ({
         onChange={(e) => {
           setError500(false);
           setRequired(false);
+          setErrorNotFindVideo(false);
           localStorage.removeItem("error500");
+          localStorage.removeItem("errorNotFindVideo");
+          localStorage.removeItem("errorLongRequest");
           setInputValue(e.target.value);
         }}
       />
@@ -147,6 +179,21 @@ const Input = ({
         <div className="absolute base:-bottom-9 -bottom-7 text-rose-600 text-xs base:text-base left-0">
           {/* Наш сервіс не може обробити ці дані. */}
           {errors[2]}
+        </div>
+      )}
+
+      {errorNotFindVideo && (
+        <div className="absolute base:-bottom-9 -bottom-7 text-rose-600 text-xs base:text-base left-0">
+          {/* Це поле обов'язкове для опрацювання запиту */}
+          {errors[3]}
+        </div>
+      )}
+
+      {errorLongRequest && (
+        <div className="absolute base:-bottom-9 -bottom-7 text-rose-600 text-xs base:text-base left-0">
+          {/* Це поле обов'язкове для опрацювання запиту */}
+
+          {errors[4]}
         </div>
       )}
     </label>

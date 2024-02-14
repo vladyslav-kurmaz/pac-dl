@@ -40,6 +40,8 @@ const WraperForClientContentOnMainPage = ({
     t(`required`),
     t("error500"),
     t("errorValue"),
+    t("errorNotFindVideo"),
+    t("errorLongRequest"),
   ];
 
   return (

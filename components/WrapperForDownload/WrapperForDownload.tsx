@@ -21,10 +21,12 @@ const WrapperForDownload = () => {
   const [urlSearchParams, setUrlSerchParam] = useState(url);
   const router = useRouter();
   const inputErrors = [
-    t('required'),
-    t('error500'),
-    t('errorValue')
-  ]
+    t("required"),
+    t("error500"),
+    t("errorValue"),
+    t("errorNotFindVideo"),
+    t("errorLongRequest"),
+  ];  
 
   const [similarVideo, setSimilarVideo] = useState<SimilarVideo[]>([
     // {
@@ -120,6 +122,19 @@ const WrapperForDownload = () => {
     setLoading(true);
     try {
       const postRequest = await getVideoInfo(url);
+      console.log(postRequest);
+
+      if (postRequest.message === "Timeout error for worker") {
+        localStorage.setItem("errorLongRequest", "true");
+        router.push(`/`);
+        return;
+      }
+
+      if (postRequest.message === "Can not find meta for this URL") {
+        localStorage.setItem("errorNotFindVideo", "true");
+        router.push(`/`);
+        return;
+      }
 
       if (!postRequest.ok && postRequest.ok !== undefined) {
         postRequest.status === 500
@@ -145,7 +160,9 @@ const WrapperForDownload = () => {
         <h1 className="text-lg font-bold leading-6 base:leading-9 base:text-[40px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
           {loading ? t("elements:loading") : ""}
           {videoData !== null && searchParams.get("url") !== null
-            ? videoData !== null && videoData.title
+            ? videoData !== null &&
+              videoData?.title !== undefined &&
+              videoData?.title
             : ""}
         </h1>
 

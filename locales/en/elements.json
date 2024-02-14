@@ -30,5 +30,7 @@
   "formars-not-found": "No formats found for download",
   "required": "This field is required to process the request",
   "error500": "There was a technical problem, try again later",
-  "errorValue": "Our service cannot process this data."
+  "errorValue": "Our service cannot process this data.",
+  "errorNotFindVideo": "Video not found",
+  "errorLongRequest": "Response timed out, please try again"
 }
