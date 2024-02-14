@@ -37,6 +37,7 @@ const Input = ({
   const [required, setRequired] = useState(false);
   const [errorNotFindVideo, setErrorNotFindVideo] = useState(false);
   const [errorLongRequest, setErrorLongRequest] = useState(false);
+  const [errorDontSupport, setErrorDontSupport] = useState(false);
 
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -50,7 +51,6 @@ const Input = ({
   }, [inputValue]);
 
   useEffect(() => {
-
     setTimeout(() => localStorage.clear(), 10000);
 
     if (typeof window !== "undefined" && localStorage.getItem("error500")) {
@@ -59,17 +59,12 @@ const Input = ({
       setError500(false);
     }
 
-    console.log(localStorage.getItem("errorNotFindVideo"));
-
     if (
       typeof window !== "undefined" &&
       localStorage.getItem("errorNotFindVideo")
     ) {
-      console.log("test1");
-
       setErrorNotFindVideo(true);
     } else {
-      console.log("test2");
       setErrorNotFindVideo(false);
     }
 
@@ -80,6 +75,15 @@ const Input = ({
       setErrorLongRequest(true);
     } else {
       setErrorLongRequest(false);
+    }
+
+    if (
+      typeof window !== "undefined" &&
+      localStorage.getItem("errorDontSupport")
+    ) {
+      setErrorDontSupport(true);
+    } else {
+      setErrorDontSupport(false);
     }
   }, []);
 
@@ -136,9 +140,11 @@ const Input = ({
           setError500(false);
           setRequired(false);
           setErrorNotFindVideo(false);
+          setErrorDontSupport(false);
           localStorage.removeItem("error500");
           localStorage.removeItem("errorNotFindVideo");
           localStorage.removeItem("errorLongRequest");
+          localStorage.removeItem("errorDontSupport");
           setInputValue(e.target.value);
         }}
       />
@@ -147,6 +153,13 @@ const Input = ({
           disabled={loading || inputError}
           onClick={async () => {
             setError500(false);
+            setRequired(false);
+            setErrorNotFindVideo(false);
+            setErrorDontSupport(false);
+            localStorage.removeItem("error500");
+            localStorage.removeItem("errorNotFindVideo");
+            localStorage.removeItem("errorLongRequest");
+            localStorage.removeItem("errorDontSupport");
             localStorage.removeItem("error500");
             setInputValue(await navigator.clipboard.readText());
           }}
@@ -163,37 +176,36 @@ const Input = ({
 
       {required && (
         <div className="absolute base:-bottom-9 -bottom-7 text-rose-600 text-xs base:text-base left-0">
-          {/* Це поле обов'язкове для опрацювання запиту */}
           {errors[0]}
         </div>
       )}
 
       {error500 && (
         <div className="absolute base:-bottom-9 -bottom-7 text-rose-600 text-xs base:text-base left-0">
-          {/* Сталася технічна проблема спробуйте пізніше */}
           {errors[1]}
         </div>
       )}
 
       {inputError && (
         <div className="absolute base:-bottom-9 -bottom-7 text-rose-600 text-xs base:text-base left-0">
-          {/* Наш сервіс не може обробити ці дані. */}
           {errors[2]}
         </div>
       )}
 
       {errorNotFindVideo && (
         <div className="absolute base:-bottom-9 -bottom-7 text-rose-600 text-xs base:text-base left-0">
-          {/* Це поле обов'язкове для опрацювання запиту */}
           {errors[3]}
         </div>
       )}
 
       {errorLongRequest && (
         <div className="absolute base:-bottom-9 -bottom-7 text-rose-600 text-xs base:text-base left-0">
-          {/* Це поле обов'язкове для опрацювання запиту */}
-
           {errors[4]}
+        </div>
+      )}
+      {errorDontSupport && (
+        <div className="absolute base:-bottom-9 -bottom-7 text-rose-600 text-xs base:text-base left-0">
+          {errors[5]}
         </div>
       )}
     </label>

@@ -32,5 +32,6 @@
   "error500": "There was a technical problem, try again later",
   "errorValue": "Our service cannot process this data.",
   "errorNotFindVideo": "Video not found",
-  "errorLongRequest": "Response timed out, please try again"
+  "errorLongRequest": "Response timed out, please try again",
+  "errorDontSupport": "We do not support this platform yet"
 }

@@ -26,7 +26,8 @@ const WrapperForDownload = () => {
     t("errorValue"),
     t("errorNotFindVideo"),
     t("errorLongRequest"),
-  ];  
+    t("errorDontSupport"),
+  ];
 
   const [similarVideo, setSimilarVideo] = useState<SimilarVideo[]>([
     // {
@@ -122,9 +123,16 @@ const WrapperForDownload = () => {
     setLoading(true);
     try {
       const postRequest = await getVideoInfo(url);
-      console.log(postRequest);
+      // console.log(postRequest.message);      
+
+      if (postRequest.message.includes("There is no supporting for")) {
+        localStorage.setItem("errorDontSupport", "true");
+        router.push(`/`);
+        return;
+      }
 
       if (postRequest.message === "Timeout error for worker") {
+        
         localStorage.setItem("errorLongRequest", "true");
         router.push(`/`);
         return;
