@@ -27,5 +27,8 @@
   "similar-video": "Similar videos from our catalog",
   "video-not-found": "No video found for download",
   "audio-not-found": "No audio found for download",
-  "formars-not-found": "No formats found for download"
+  "formars-not-found": "No formats found for download",
+  "required": "This field is required to process the request",
+  "error500": "There was a technical problem, try again later",
+  "errorValue": "Our service cannot process this data."
 }

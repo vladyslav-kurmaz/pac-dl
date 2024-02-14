@@ -6,6 +6,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import PacDlServices from "@/services/PacDlServices";
 import { useRouter, useSearchParams } from "next/navigation";
 import { DataVideo } from "@/types/types";
+import { useTranslation } from "react-i18next";
 
 const Input = ({
   placeholder,
@@ -17,6 +18,7 @@ const Input = ({
   loading,
   data,
   setVideoData,
+  errors
 }: {
   buttonRounded: string;
   buttonNormal: string;
@@ -27,7 +29,9 @@ const Input = ({
   loading?: boolean;
   data: DataVideo | null;
   setVideoData: Dispatch<SetStateAction<DataVideo | null>>;
+  errors: string[]
 }) => {
+
   const [inputValue, setInputValue] = useState("");
   const [inputError, setInputError] = useState(false);
   const [error500, setError500] = useState(false);
@@ -127,19 +131,22 @@ const Input = ({
 
       {required && (
         <div className="absolute base:-bottom-9 -bottom-7 text-rose-600 text-xs base:text-base left-0">
-          Це поле обов'язкове для опрацювання запиту
+          {/* Це поле обов'язкове для опрацювання запиту */}
+          {errors[0]}
         </div>
       )}
 
       {error500 && (
         <div className="absolute base:-bottom-9 -bottom-7 text-rose-600 text-xs base:text-base left-0">
-          Сталася технічна проблема спробуйте пізніше
+          {/* Сталася технічна проблема спробуйте пізніше */}
+          {errors[1]}
         </div>
       )}
 
       {inputError && (
         <div className="absolute base:-bottom-9 -bottom-7 text-rose-600 text-xs base:text-base left-0">
-          Наш сервіс не може обробити ці дані.
+          {/* Наш сервіс не може обробити ці дані. */}
+          {errors[2]}
         </div>
       )}
     </label>

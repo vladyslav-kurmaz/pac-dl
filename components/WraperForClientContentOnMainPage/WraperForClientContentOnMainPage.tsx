@@ -17,6 +17,7 @@ import DowloadPage from "../DowloadPage/DowloadPage";
 import { useSearchParams } from "next/navigation";
 import Resources from "../Resources/Resources";
 import TopVideo from "../TopVideo/TopVideo";
+import TranslationsProvider from "../TranslationProvider/TranslationProvider";
 
 const WraperForClientContentOnMainPage = ({
   sosialNetworks,
@@ -35,6 +36,12 @@ const WraperForClientContentOnMainPage = ({
   const searchParams = useSearchParams();
   const [videoData, setVideoData] = useState<DataVideo | null>(null);
 
+  const inputErrors = [
+    t(`required`),
+    t("error500"),
+    t("errorValue"),
+  ];
+
   return (
     <>
       <h1 className="text-lg font-bold leading-6 base:leading-9 base:text-[40px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
@@ -51,7 +58,7 @@ const WraperForClientContentOnMainPage = ({
           loading={loading}
           data={videoData}
           setVideoData={setVideoData}
-          // getProps={getInputProps}
+          errors={inputErrors}
         />
       </div>
       <a id="resources"></a>

@@ -43,7 +43,7 @@ export default async function Home({ params }: { params: Params }) {
   const { t, resources } = await initTranslations(params?.locale, [
     "youtube",
     "elements",
-  ]);
+  ]);  
 
   const sosialNetworks = [
     {
@@ -156,6 +156,7 @@ export default async function Home({ params }: { params: Params }) {
             "tiktok",
             "twitter",
             "youtube",
+            "input"
           ]}
           resources={resources}
         >

@@ -20,6 +20,12 @@ const WrapperForDownload = () => {
   const url = searchParams.get("url");
   const [urlSearchParams, setUrlSerchParam] = useState(url);
   const router = useRouter();
+  const inputErrors = [
+    t('required'),
+    t('error500'),
+    t('errorValue')
+  ]
+
   const [similarVideo, setSimilarVideo] = useState<SimilarVideo[]>([
     // {
     //   title: "test similar",
@@ -153,6 +159,7 @@ const WrapperForDownload = () => {
             loading={loading}
             data={videoData}
             setVideoData={setVideoData}
+            errors={inputErrors}
           />
         </div>
 
