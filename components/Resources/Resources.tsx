@@ -59,6 +59,7 @@ const Resources = ({
 
   return (
     <div className="w-full bg-grayCastom px-4 py-1 base:px-10 rounded-md base:rounded-2xl flex justify-between items-center">
+      
       <div className={`flex flex-wrap ${style} items-center `}>{renderIcons()}</div>
 
       {

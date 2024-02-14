@@ -63,3 +63,11 @@ body {
   animation-timing-function: linear;
   animation-fill-mode: forwards; */
 }
+
+.radio-input:checked ~  .radio-input-marker span {
+  background-color: #000;
+}
+
+.radio-input:not-checked ~  .radio-input-marker span {
+  background-color: rgba(226, 232, 240, 1);
+}

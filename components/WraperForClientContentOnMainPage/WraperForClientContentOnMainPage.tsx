@@ -54,7 +54,7 @@ const WraperForClientContentOnMainPage = ({
           // getProps={getInputProps}
         />
       </div>
-
+      <a id="resources"></a>
       <h2 className="text-lg font-bold leading-6 base:leading-9 base:text-[32px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
         {t(`${namespaces}:resources`)}
       </h2>
@@ -63,6 +63,7 @@ const WraperForClientContentOnMainPage = ({
         <Resources data={sosialNetworks} text={t("elements:showAll")} />
       </div>
 
+      <a id="topVideo"></a>
       <h2 className="text-lg font-bold leading-6 base:leading-9 base:text-[32px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
         {t(`${namespaces}:top-video`)}
       </h2>

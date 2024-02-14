@@ -31,6 +31,7 @@ const Input = ({
   const [inputValue, setInputValue] = useState("");
   const [inputError, setInputError] = useState(false);
   const [error500, setError500] = useState(false);
+  const [required, setRequired] = useState(false);
 
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -70,7 +71,11 @@ const Input = ({
   };
 
   const getVideo = async (value: string) => {
-    router.push(`/download?url=${value}`);
+    if (value.length === 0) {
+      setRequired(true);
+    } else {
+      router.push(`/download?url=${value}`);
+    }
   };
 
   return (
@@ -96,6 +101,7 @@ const Input = ({
         value={inputValue}
         onChange={(e) => {
           setError500(false);
+          setRequired(false);
           localStorage.removeItem("error500");
           setInputValue(e.target.value);
         }}
@@ -118,6 +124,12 @@ const Input = ({
           onClick={() => getVideo(inputValue)}
         />
       </div>
+
+      {required && (
+        <div className="absolute base:-bottom-9 -bottom-7 text-rose-600 text-xs base:text-base left-0">
+          Це поле обов'язкове для опрацювання запиту
+        </div>
+      )}
 
       {error500 && (
         <div className="absolute base:-bottom-9 -bottom-7 text-rose-600 text-xs base:text-base left-0">

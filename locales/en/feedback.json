@@ -1,0 +1,14 @@
+{
+  "title": "Feedback",
+  "name": "Name",
+  "email": "Email",
+  "type-appeal": "Type appeal",
+  "question": "Question",
+  "review": "Review",
+  "proposal": "Proposal/Wish",
+  "complaint": "Complaint",
+  "error": "Error",
+  "message": "Message",
+  "button": "Send",
+  "thanks": "The Pac Dl team thanks you for reaching out. We will contact you shortly"
+}

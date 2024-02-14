@@ -84,27 +84,27 @@ const Footer = async ({ params }: { params: Params }) => {
           <div className="flex w-full items-center flex-col base:flex-row">
             <ul className="flex flex-wrap max-w-[210px]">
               <li className="mb-2.5 w-full text-center base:text-start">
-                <Link className="link text-sm base:text-base" href="">
+                <Link className="link text-sm base:text-base" href="/twitter">
                   {t("twitter")}
                 </Link>
               </li>
               <li className="mb-2.5 w-full text-center base:text-start">
-                <Link className="link text-sm base:text-base" href="">
+                <Link className="link text-sm base:text-base" href="/tiktok">
                   {t("tiktok")}
                 </Link>
               </li>
               <li className="mb-2.5 w-full text-center base:text-start">
-                <Link className="link text-sm base:text-base" href="">
+                <Link className="link text-sm base:text-base" href="/instagram">
                   {t("instagram")}
                 </Link>
               </li>
               <li className="mb-2.5 w-full text-center base:text-start">
-                <Link className="link text-sm base:text-base" href="">
+                <Link className="link text-sm base:text-base" href="/">
                   {t("youtube")}
                 </Link>
               </li>
               <li className="mb-2.5 w-full text-center base:text-start">
-                <Link className="link text-sm base:text-base" href="">
+                <Link className="link text-sm base:text-base" href="/facebook">
                   {t("facebook")}
                 </Link>
               </li>
@@ -122,27 +122,27 @@ const Footer = async ({ params }: { params: Params }) => {
               <li>{t("youtube")}</li>
               <li>{t("facebook")}</li> */}
               <li className="mb-2.5 w-full text-center base:text-start">
-                <Link className="link text-sm base:text-base" href="">
+                <Link className="link text-sm base:text-base" href="/shorts">
                   {t("shorts")}
                 </Link>
               </li>
               <li className="mb-2.5 w-full text-center base:text-start">
-                <Link className="link text-sm base:text-base" href="">
+                <Link className="link text-sm base:text-base" href="/tiktok">
                   {t("tiktok-music")}
                 </Link>
               </li>
               <li className="mb-2.5 w-full text-center base:text-start">
-                <Link className="link text-sm base:text-base" href="">
+                <Link className="link text-sm base:text-base" href="/instagram">
                   {t("instagram-music")}
                 </Link>
               </li>
               <li className="mb-2.5 w-full text-center base:text-start">
-                <Link className="link text-sm base:text-base" href="">
+                <Link className="link text-sm base:text-base" href="/music">
                   {t("youtube-music")}
                 </Link>
               </li>
               <li className="mb-2.5 w-full text-center base:text-start">
-                <Link className="link text-sm base:text-base" href="">
+                <Link className="link text-sm base:text-base" href="/soundcloud">
                   {t("soundcloud")}
                 </Link>
               </li>
@@ -156,12 +156,12 @@ const Footer = async ({ params }: { params: Params }) => {
           </p>
           <ul>
             <li className="mb-2.5 text-center base:text-start">
-              <Link className="link text-sm base:text-base" href="">
+              <Link className="link text-sm base:text-base" href="/catalogue">
                 {t("popular-video")}
               </Link>
             </li>
             <li className="mb-2.5 text-center base:text-start">
-              <Link className="link text-sm base:text-base" href="">
+              <Link className="link text-sm base:text-base" href="/#topVideo">
                 {t("top-download-video")}
               </Link>
             </li>
@@ -171,12 +171,12 @@ const Footer = async ({ params }: { params: Params }) => {
               </Link>
             </li>
             <li className="mb-2.5 text-center base:text-start">
-              <Link className="link text-sm base:text-base" href="">
+              <Link className="link text-sm base:text-base" href="/#resources">
                 {t("suppliy")}
               </Link>
             </li>
             <li className="mb-2.5 text-center base:text-start">
-              <Link className="link text-sm base:text-base" href="">
+              <Link className="link text-sm base:text-base" href="feedback">
                 {t("feedback")}
               </Link>
             </li>
