@@ -38,6 +38,7 @@ const Input = ({
   const [errorNotFindVideo, setErrorNotFindVideo] = useState(false);
   const [errorLongRequest, setErrorLongRequest] = useState(false);
   const [errorDontSupport, setErrorDontSupport] = useState(false);
+  const [errorExtractor, setErrorExtractor] = useState(false);
 
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -57,6 +58,12 @@ const Input = ({
       setError500(true);
     } else {
       setError500(false);
+    }
+
+    if (typeof window !== "undefined" && localStorage.getItem("errorExtractor")) {
+      setErrorExtractor(true);
+    } else {
+      setErrorExtractor(false);
     }
 
     if (
@@ -141,10 +148,12 @@ const Input = ({
           setRequired(false);
           setErrorNotFindVideo(false);
           setErrorDontSupport(false);
+          setErrorExtractor(false);
           localStorage.removeItem("error500");
           localStorage.removeItem("errorNotFindVideo");
           localStorage.removeItem("errorLongRequest");
           localStorage.removeItem("errorDontSupport");
+          localStorage.removeItem("errorExtractor")
           setInputValue(e.target.value);
         }}
       />
@@ -156,11 +165,12 @@ const Input = ({
             setRequired(false);
             setErrorNotFindVideo(false);
             setErrorDontSupport(false);
+            setErrorExtractor(false);
             localStorage.removeItem("error500");
             localStorage.removeItem("errorNotFindVideo");
             localStorage.removeItem("errorLongRequest");
             localStorage.removeItem("errorDontSupport");
-            localStorage.removeItem("error500");
+            localStorage.removeItem("errorExtractor")
             setInputValue(await navigator.clipboard.readText());
           }}
           text={buttonRounded}
@@ -206,6 +216,11 @@ const Input = ({
       {errorDontSupport && (
         <div className="absolute base:-bottom-9 -bottom-7 text-rose-600 text-xs base:text-base left-0">
           {errors[5]}
+        </div>
+      )}
+       {errorExtractor && (
+        <div className="absolute base:-bottom-9 -bottom-7 text-rose-600 text-xs base:text-base left-0">
+          {errors[6]}
         </div>
       )}
     </label>

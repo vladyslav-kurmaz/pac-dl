@@ -33,5 +33,6 @@
   "errorValue": "Our service cannot process this data.",
   "errorNotFindVideo": "Video not found",
   "errorLongRequest": "Response timed out, please try again",
-  "errorDontSupport": "We do not support this platform yet"
+  "errorDontSupport": "We do not support this platform yet",
+  "errorExtractor": "No download links found for this material"
 }

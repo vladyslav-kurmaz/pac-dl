@@ -43,6 +43,7 @@ const WraperForClientContentOnMainPage = ({
     t("errorNotFindVideo"),
     t("errorLongRequest"),
     t("errorDontSupport"),
+    t("errorExtractor"),
   ];
 
   return (

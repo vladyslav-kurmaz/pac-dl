@@ -27,6 +27,7 @@ const WrapperForDownload = () => {
     t("errorNotFindVideo"),
     t("errorLongRequest"),
     t("errorDontSupport"),
+    t("errorExtractor"),
   ];
 
   const [similarVideo, setSimilarVideo] = useState<SimilarVideo[]>([
@@ -123,18 +124,26 @@ const WrapperForDownload = () => {
     setLoading(true);
     try {
       const postRequest = await getVideoInfo(url);
-      // console.log(postRequest.message);      
+      // console.log(postRequest.message);
 
-      if (postRequest.message && postRequest?.message.includes("There is no supporting for")) {
-        console.log('test');
-        
+      if (postRequest?.message === "Can not find extractor for this URL") {
+        localStorage.setItem("errorExtractor", "true");
+        router.push(`/`);
+        return;
+      }
+
+      if (
+        postRequest.message &&
+        postRequest?.message.includes("There is no supporting for")
+      ) {
+        console.log("test");
+
         localStorage.setItem("errorDontSupport", "true");
         router.push(`/`);
         return;
       }
 
       if (postRequest?.message === "Timeout error for worker") {
-        
         localStorage.setItem("errorLongRequest", "true");
         router.push(`/`);
         return;
@@ -155,7 +164,7 @@ const WrapperForDownload = () => {
       }
 
       setVideoData(postRequest.video_info);
-      setSimilarVideo(postRequest?.similar_video)
+      setSimilarVideo(postRequest?.similar_video);
       setLoading(false);
     } catch (e) {
       setLoading(false);
