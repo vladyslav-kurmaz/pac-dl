@@ -71,6 +71,7 @@ export default async function Home({ params }: { params: Params }) {
       <Image
         src={lineRight}
         alt="line right"
+        priority={true}
         className="absolute hidden base:block z-10 top-[4%] right-0"
       />
       <Image
@@ -81,6 +82,7 @@ export default async function Home({ params }: { params: Params }) {
       <Image
         src={pacLeft}
         alt="line right"
+        priority={true}
         className="absolute hidden base:block z-10 top-[10%] left-0"
       />
       <Image

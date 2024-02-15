@@ -91,8 +91,6 @@ const WraperForClientContentOnMainPage = ({
         />
       </div>
 
-      {/* {loadingData}
-        {content} */}
     </>
   );
 };

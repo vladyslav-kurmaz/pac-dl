@@ -125,9 +125,9 @@ export default async function SoundCloud({ params }: { params: Params }) {
   return (
     <div className="relative pt-20 base:pt-48 ">
 
-      <Image src={lineRight} alt="line right" className="absolute hidden base:block z-10 top-[4%] right-0"/>
+      <Image src={lineRight} priority={true} alt="line right" className="absolute hidden base:block z-10 top-[4%] right-0"/>
       <Image src={lineRight} alt="line right" className="absolute hidden base:block z-10 top-[30%] right-0"/>
-      <Image src={pacLeft} alt="line right" className="absolute hidden base:block z-10 top-[10%] left-0"/>
+      <Image src={pacLeft} priority={true} alt="line right" className="absolute hidden base:block z-10 top-[10%] left-0"/>
       <Image src={lineLeft} alt="line right" className="absolute hidden base:block z-10 top-[60%] left-0"/>
       <Image src={pacRight} alt="line right" className="absolute hidden base:block z-10 bottom-[10%] right-0"/>
 

@@ -83,9 +83,10 @@ const Resources = ({
             href={`/${link}`}
             className={`w-6 h-6 base:w-9 base:h-9 my-4 mr-4  base:mr-7 `}
             key={link}
+            
           >
             {/* ${seeMore && 'mb-3 base:mb-4'} */}
-            <Image src={icon} alt={link} className="w-full " />
+            <Image src={icon} priority={true} alt={link} className="w-full " />
           </Link>
         );
       } else if (i === 9) {
