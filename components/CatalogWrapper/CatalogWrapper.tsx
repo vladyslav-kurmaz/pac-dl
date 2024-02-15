@@ -172,7 +172,7 @@ const CatalogWrapper = () => {
       </div>
 
       <div className="">
-        {videoData?.length === 0 || videoData === null ? null : (
+        {videoData?.length === 0 || videoData === null || videoData === undefined ? null : (
           <div className="ml-auto flex base:w-[240px] w-[150px] justify-between items-center base:mb-[57px] mb-7">
             <svg
               xmlns="http://www.w3.org/2000/svg"

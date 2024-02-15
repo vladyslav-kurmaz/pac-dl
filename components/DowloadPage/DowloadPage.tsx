@@ -27,6 +27,8 @@ const DowloadPage = ({
   const [hightlightAll, setHightlightAll] = useState<string[]>([]);
   const router = useRouter();
 
+  console.log(similarVideo);
+
   const {
     title,
     description,
@@ -125,7 +127,7 @@ const DowloadPage = ({
           onClick={() => {
             router.push(`/download?url=${video_url}`);
           }}
-          className="flex flex-col items-center mb-[30px] "
+          className="flex flex-col items-center mb-[30px] w-[166px] lg:w-[269px] "
           key={id}
         >
           {preview_url ? (
@@ -333,7 +335,10 @@ const DowloadPage = ({
               {t("similar-video")}
             </div>
 
-            <div className="w-full flex flex-wrap justify-between small:flex-col sm:flex-row">
+            <div
+              className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4  lg:grid-cols-4 gap-x-4 justify-items-center"
+              // className="w-full flex flex-wrap justify-between small:flex-col sm:flex-row"
+            >
               {similarVideo?.length > 0 ? renderSimilarVideo() : null}
               {/* <div className="flex flex-col items-center mr-1">
                 <div className="relative w-[166px] h-[93px] mb-1 base:mb-2  lg:w-[269px] lg:h-[149px] rounded-[15px] base:rounded-[20px]"></div>
