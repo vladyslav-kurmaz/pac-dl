@@ -76,7 +76,7 @@ const TopVideo = ({
               localStorage.removeItem("error500");
               router.push(`/download?url=${video_url}`);
             }}
-            className="flex flex-col items-center w-[50%] md:w-[25%] mb-[30px] cursor-pointer"
+            className="flex flex-col items-center  cursor-pointer"
             key={i}
           >
             {preview_url ? (
@@ -111,7 +111,6 @@ const TopVideo = ({
 
   return (
     <div className="">
-      
       <div className="flex mb-3 base:mb-6">
         <div className="mr-2 base:mr-6">
           <ButtonThreeState
@@ -137,8 +136,10 @@ const TopVideo = ({
       </div>
 
       <div
-        className={`flex flex-wrap ${
-          dataTop && dataTop?.length > 0 ? "justify-between" : "justify-center"
+        className={` ${
+          dataTop && dataTop?.length > 0
+            ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 sml:grid-cols-3 lg:grid-cols-4 gap-4 justify-items-center"
+            : "flex flex-wrap justify-center"
         }`}
       >
         {loading && (
@@ -151,7 +152,7 @@ const TopVideo = ({
 
       <Link
         href={"/catalogue"}
-        className="flex items-center justify-end text-xs base:text-[22px]"
+        className="mt-3 flex items-center justify-end text-xs base:text-[22px]"
       >
         {catalogue}
         <svg

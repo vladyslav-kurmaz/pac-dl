@@ -10,11 +10,11 @@ const config: Config = {
     extend: {
       keyframes: {
         openDescriptionAnimation: {
-          '0% ': { maxHeight: '120px' },
-          '100%': { maxHeight: '2000px' },
-        }
+          "0% ": { maxHeight: "120px" },
+          "100%": { maxHeight: "2000px" },
+        },
       },
-      
+
       backgroundColor: {
         violet1: "#EDE9FE",
         violet2: "#DDD6FE",
@@ -32,6 +32,7 @@ const config: Config = {
       screens: {
         small: "300px",
         sm: "375px",
+        sml: "600px",
         md: "768px",
         base: "1000px",
         lg: "1140px",

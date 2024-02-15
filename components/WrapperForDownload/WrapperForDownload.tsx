@@ -119,11 +119,6 @@ const WrapperForDownload = () => {
     }
   }, [url]);
 
-  type ErrorT = {
-    message: string,
-    status: number
-  }
-
   const getVideo = async (url: string) => {
     setLoading(true);
     try {
@@ -160,7 +155,7 @@ const WrapperForDownload = () => {
       }
 
       setVideoData(postRequest.video_info);
-
+      setSimilarVideo(postRequest?.similar_video)
       setLoading(false);
     } catch (e) {
       setLoading(false);

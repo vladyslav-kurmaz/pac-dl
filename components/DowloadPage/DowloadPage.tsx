@@ -156,10 +156,10 @@ const DowloadPage = ({
       <div className="mb-7 base:mb-32 w-full max-w-[347px] md:max-w-lg relative left-1/2 -translate-x-1/2 flex flex-col items-center">
         <div className="flex flex-col w-full items-center relative mb-7 base:mb-12 z-20 md:items-start md:flex-row md:justify-around base:justify-between">
           <div className="relative w-full max-w-[347px]  max-h-[192px]  md:mr-2 mr-0 base:mb-24 base:max-w-[633px] base:max-h-[365px] rounded-[15px] base:rounded-[20px]">
-            {dataVideo.preview.length > 0 ? (
+            {preview.length > 0 ? (
               <Image
-                src={dataVideo.preview}
-                alt={dataVideo.title}
+                src={preview}
+                alt={title}
                 className="w-full h-full max-w-[347px] object-contain mb-3 md:mb-0 max-h-[192px] base:max-w-[603px] base:max-h-[345px] rounded-[15px] base:rounded-[20px]"
                 width={1000}
                 height={1000}

@@ -159,7 +159,9 @@ const CatalogWrapper = () => {
       </div>
 
       <div
-        className={`flex flex-wrap justify-between mb-[27px] base:mb-[54px] small:justify-center sm:justify-between`}
+        // className={`flex flex-wrap justify-start mb-[27px] base:mb-[54px] small:justify-center sm:justify-start`}
+        // className="grid grid-rows-{n} grid-cols-4  auto-rows-auto gap-x-2.5 grid-flow-dense"
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 sml:grid-cols-3 lg:grid-cols-4 gap-x-4 justify-items-center"
       >
         {/* {videoData && videoData !== null ? (
           <CatalogVideo videoData={videoData} />

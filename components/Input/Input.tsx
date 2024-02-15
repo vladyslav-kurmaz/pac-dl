@@ -118,7 +118,7 @@ const Input = ({
   return (
     <label
       htmlFor="mainInput"
-      className="flex items-center outline-none border-[6px] base:border-[10px] border-violet1 h-12 base:h-24 relative rounded-[30px]"
+      className="flex items-center outline-none border-[6px] base:border-[10px] border-violet1 h-12 base:h-24 relative rounded-[12px] base:rounded-[30px]"
     >
       {icon && (
         <Image

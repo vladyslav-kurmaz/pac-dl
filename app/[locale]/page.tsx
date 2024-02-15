@@ -3,12 +3,12 @@ import initTranslations from "@/app/i18n";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import Input from "@/components/Input/Input";
 
-import facebookIcon from "@/assets/image/social/facebook.webp";
-import youtubeIcon from "@/assets/image/social/youtube.webp";
-import tictokIcon from "@/assets/image/social/tictok.webp";
-import twitterIcon from "@/assets/image/social/twitter.webp";
-import instagramIcon from "@/assets/image/social/instagram.webp";
-import soundcloudIcon from "@/assets/image/social/soundcloud.webp";
+// import facebookIcon from "@/assets/image/social/facebook.webp";
+// import youtubeIcon from "@/assets/image/social/youtube.webp";
+// import tictokIcon from "@/assets/image/social/tictok.webp";
+// import twitterIcon from "@/assets/image/social/twitter.webp";
+// import instagramIcon from "@/assets/image/social/instagram.webp";
+// import soundcloudIcon from "@/assets/image/social/soundcloud.webp";
 import urlOne from "@/assets/image/youtube/youtubeOne.webp";
 import urlTwo from "@/assets/image/youtube/youtubeTwo.webp";
 import video from "@/assets/image/youtube/video.webp";
@@ -43,59 +43,7 @@ export default async function Home({ params }: { params: Params }) {
   const { t, resources } = await initTranslations(params?.locale, [
     "youtube",
     "elements",
-  ]);  
-
-  const sosialNetworks = [
-    {
-      icon: facebookIcon,
-      link: "facebook",
-    },
-    {
-      icon: youtubeIcon,
-      link: "",
-    },
-    {
-      icon: tictokIcon,
-      link: "tiktok",
-    },
-    {
-      icon: twitterIcon,
-      link: "twitter",
-    },
-    {
-      icon: instagramIcon,
-      link: "instagram",
-    },
-    {
-      icon: soundcloudIcon,
-      link: "soundcloud",
-    },
-
-    // {
-    //   icon: facebookIcon,
-    //   link: 'facebook'
-    // },
-    // {
-    //   icon: youtubeIcon,
-    //   link: 'youtube'
-    // },
-    // {
-    //   icon: tictokIcon,
-    //   link: 'tictok'
-    // },
-    // {
-    //   icon: twitterIcon,
-    //   link: 'twitter'
-    // },
-    // {
-    //   icon: instagramIcon,
-    //   link: 'instagram'
-    // },
-    // {
-    //   icon: soundcloudIcon,
-    //   link: 'soundcloud'
-    // }
-  ];
+  ]);
 
   const dataFaq = [
     {
@@ -120,31 +68,31 @@ export default async function Home({ params }: { params: Params }) {
 
   return (
     <div className="relative pt-20 base:pt-48 ">
-       <Image
-          src={lineRight}
-          alt="line right"
-          className="absolute hidden base:block z-10 top-[4%] right-0"
-        />
-        <Image
-          src={lineRight}
-          alt="line right"
-          className="absolute hidden base:block z-10 top-[30%] right-0"
-        />
-        <Image
-          src={pacLeft}
-          alt="line right"
-          className="absolute hidden base:block z-10 top-[10%] left-0"
-        />
-        <Image
-          src={lineLeft}
-          alt="line right"
-          className="absolute hidden base:block z-10 top-[60%] left-0"
-        />
-        <Image
-          src={pacRight}
-          alt="line right"
-          className="absolute hidden base:block z-10 bottom-[10%] right-0"
-        />
+      <Image
+        src={lineRight}
+        alt="line right"
+        className="absolute hidden base:block z-10 top-[4%] right-0"
+      />
+      <Image
+        src={lineRight}
+        alt="line right"
+        className="absolute hidden base:block z-10 top-[30%] right-0"
+      />
+      <Image
+        src={pacLeft}
+        alt="line right"
+        className="absolute hidden base:block z-10 top-[10%] left-0"
+      />
+      <Image
+        src={lineLeft}
+        alt="line right"
+        className="absolute hidden base:block z-10 top-[60%] left-0"
+      />
+      <Image
+        src={pacRight}
+        alt="line right"
+        className="absolute hidden base:block z-10 bottom-[10%] right-0"
+      />
       <div className="base:max-w-lg mx-auto px-4 relative z-20">
         <TranslationsProvider
           locale={params.locale}
@@ -156,12 +104,12 @@ export default async function Home({ params }: { params: Params }) {
             "tiktok",
             "twitter",
             "youtube",
-            "input"
+            "input",
           ]}
           resources={resources}
         >
           <WraperForClientContentOnMainPage
-            sosialNetworks={sosialNetworks}
+            // sosialNetworks={sosialNetworks}
             namespaces={"youtube"}
           />
         </TranslationsProvider>
@@ -170,12 +118,9 @@ export default async function Home({ params }: { params: Params }) {
           {t("faq")}
         </h2>
         <div className="mb-7 base:mb:24">
-          {
-            dataFaq.map((item, i) => {
-              return <Accordion data={item} key={i}/>
-            })
-          }
-          
+          {dataFaq.map((item, i) => {
+            return <Accordion data={item} key={i} />;
+          })}
         </div>
 
         <h2 className="text-lg font-bold leading-6 base:leading-9 base:text-[32px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
@@ -240,7 +185,7 @@ export default async function Home({ params }: { params: Params }) {
                 {t("how-fast-download-text2")}
               </p>
             </div>
-            <p className="text-xs base:text-2xl">
+            <p className="text-xs max-w-[644px] base:max-w-full mx-auto base:text-2xl">
               {t("how-fast-download-text3")}
             </p>
           </div>
@@ -248,7 +193,7 @@ export default async function Home({ params }: { params: Params }) {
 
         <div className="flex flex-wrap flex-col base:flex-row base:justify-between items-center base:items-start">
           {/* h-full max-h-[196px] base:max-h-[397px] */}
-          <div className="max-w-[168px] base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
+          <div className="max-w-[368px] flex flex-col items-center base:items-start base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
             <Image
               src={video}
               alt="video"
@@ -257,10 +202,12 @@ export default async function Home({ params }: { params: Params }) {
             <h3 className="text-xs base:text-2xl font-semibold mb-2 base:mb-6">
               {t("video-title")}
             </h3>
-            <p className="text-xs base:text-2xl">{t("video-text")}</p>
+            <p className="text-xs base:text-2xl text-center base:text-start">
+              {t("video-text")}
+            </p>
           </div>
           {/* h-full max-h-[196px] base:max-h-[397px] */}
-          <div className="max-w-[168px] base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
+          <div className="max-w-[368px] flex flex-col items-center base:items-start base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
             <Image
               src={audio}
               alt="audio"
@@ -269,10 +216,12 @@ export default async function Home({ params }: { params: Params }) {
             <h3 className="text-xs base:text-2xl font-semibold mb-2 base:mb-6">
               {t("audio-title")}
             </h3>
-            <p className="text-xs base:text-2xl">{t("audio-text")}</p>
+            <p className="text-xs base:text-2xl text-center base:text-start">
+              {t("audio-text")}
+            </p>
           </div>
           {/* h-full max-h-[196px] base:max-h-[397px] */}
-          <div className="max-w-[168px] base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
+          <div className="max-w-[368px] flex flex-col items-center base:items-start base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
             <Image
               src={free}
               alt="free"
@@ -281,16 +230,18 @@ export default async function Home({ params }: { params: Params }) {
             <h3 className="text-xs base:text-2xl font-semibold mb-2 base:mb-6">
               {t("free-title")}
             </h3>
-            <p className="text-xs base:text-2xl">{t("free-text")}</p>
+            <p className="text-xs base:text-2xl text-center base:text-start">
+              {t("free-text")}
+            </p>
           </div>
           {/* */}
-          <div className="max-w-[168px] base:max-w-[496px] w-full  h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
+          <div className="max-w-[368px] flex flex-col items-center base:items-start base:max-w-[496px] w-full  h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
             <Image
               src={noprogram}
               alt="noprogram"
               className="w-[68px] h-[68px] base:w-[164px] base:h-[164px] mb-3 base:mb-6"
             />
-            <h3 className="text-xs base:text-2xl font-semibold mb-2 base:mb-6">
+            <h3 className="text-xs base:text-2xl text-center base:text-start font-semibold mb-2 base:mb-6">
               {t("noprogram-title")}
             </h3>
             <p className="text-xs base:text-2xl">{t("noprogram-text")}</p>
@@ -359,7 +310,9 @@ export default async function Home({ params }: { params: Params }) {
             <h3 className="text-[13px] base:text-2xl font-bold text">
               {t("how-download-ios-title")}
             </h3>
-            <p className="text-xs base:text-2xl">{t("how-download-ios-text1")}</p>
+            <p className="text-xs base:text-2xl">
+              {t("how-download-ios-text1")}
+            </p>
             <ul className="list-disc pl-5 base:mb-6 mb-3 ">
               <li className="text-xs base:text-2xl">
                 {t("how-download-ios-item1")}
@@ -374,7 +327,6 @@ export default async function Home({ params }: { params: Params }) {
           </div>
         </div>
       </div>
-        
     </div>
   );
 }

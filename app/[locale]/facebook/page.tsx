@@ -138,7 +138,6 @@ export default async function Instagram({ params }: { params: Params }) {
           resources={resources}
         >
           <WraperForClientContentOnMainPage
-            sosialNetworks={sosialNetworks}
             namespaces={"facebook"}
           />
         </TranslationsProvider>
@@ -214,7 +213,7 @@ export default async function Instagram({ params }: { params: Params }) {
                 {t("how-fast-download-text2")}
               </p>
             </div>
-            <p className="text-xs base:text-2xl">
+            <p className="text-xs base:max-w-full max-w-[644px] mx-auto base:text-2xl">
               {t("how-fast-download-text3")}
             </p>
           </div>
@@ -222,7 +221,7 @@ export default async function Instagram({ params }: { params: Params }) {
 
         <div className="flex flex-wrap flex-col base:flex-row base:justify-between items-center base:items-start">
           {/* h-full max-h-[196px] base:max-h-[397px] */}
-          <div className="max-w-[168px] base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
+          <div className="max-w-[368px] flex flex-col items-center base:items-start base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
             <Image
               src={video}
               alt="video"
@@ -234,7 +233,7 @@ export default async function Instagram({ params }: { params: Params }) {
             <p className="text-xs base:text-2xl">{t("video-text")}</p>
           </div>
           {/* h-full max-h-[196px] base:max-h-[397px] */}
-          <div className="max-w-[168px] base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
+          <div className="max-w-[368px] flex flex-col items-center base:items-start base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
             <Image
               src={audio}
               alt="audio"
@@ -246,7 +245,7 @@ export default async function Instagram({ params }: { params: Params }) {
             <p className="text-xs base:text-2xl">{t("audio-text")}</p>
           </div>
           {/* h-full max-h-[196px] base:max-h-[397px] */}
-          <div className="max-w-[168px] base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
+          <div className="max-w-[368px] flex flex-col items-center base:items-start base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
             <Image
               src={free}
               alt="free"
@@ -258,7 +257,7 @@ export default async function Instagram({ params }: { params: Params }) {
             <p className="text-xs base:text-2xl">{t("free-text")}</p>
           </div>
           {/* */}
-          <div className="max-w-[168px] base:max-w-[496px] w-full  h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
+          <div className="max-w-[368px] flex flex-col items-center base:items-start base:max-w-[496px] w-full  h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
             <Image
               src={noprogram}
               alt="noprogram"

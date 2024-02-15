@@ -143,7 +143,6 @@ export default async function Music({ params }: { params: Params }) {
           resources={resources}
         >
           <WraperForClientContentOnMainPage
-            sosialNetworks={sosialNetworks}
             namespaces={"music"}
           />
         </TranslationsProvider>
@@ -211,31 +210,31 @@ export default async function Music({ params }: { params: Params }) {
               <Image src={urlTwo} alt="url2" className="w-full mb-3 base:mb-0 h-[94px] base:h-[127px] max-w-[323px] base:max-w-[430px]"/>
               <p className="max-w-[644px] mb-3 base:mb-0 text-xs base:text-2xl">{t("how-fast-download-text2")}</p>
             </div>
-            <p className="text-xs base:text-2xl">{t("how-fast-download-text3")}</p>
+            <p className="text-xs base:max-w-full max-w-[644px] mx-auto base:text-2xl">{t("how-fast-download-text3")}</p>
           </div>
         </div>
 
         <div className="flex flex-wrap flex-col base:flex-row base:justify-between items-center base:items-start">
       {/* h-full max-h-[196px] base:max-h-[397px] */}
-          <div className="max-w-[168px] base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
+          <div className="max-w-[368px] flex flex-col items-center base:items-start base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
             <Image src={video} alt="video" className="w-[68px] h-[68px] base:w-[164px] base:h-[164px] mb-3 base:mb-6"/>
             <h3 className="text-xs base:text-2xl font-semibold mb-2 base:mb-6">{t("video-title")}</h3>
             <p className="text-xs base:text-2xl">{t("video-text")}</p>
           </div>
       {/* h-full max-h-[196px] base:max-h-[397px] */}
-          <div className="max-w-[168px] base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
+          <div className="max-w-[368px] flex flex-col items-center base:items-start base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
             <Image src={audio} alt="audio" className="w-[68px] h-[68px] base:w-[164px] base:h-[164px] mb-3 base:mb-6"/>
             <h3 className="text-xs base:text-2xl font-semibold mb-2 base:mb-6">{t("audio-title")}</h3>
             <p className="text-xs base:text-2xl">{t("audio-text")}</p>
           </div>
       {/* h-full max-h-[196px] base:max-h-[397px] */}
-          <div className="max-w-[168px] base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
+          <div className="max-w-[368px] flex flex-col items-center base:items-start base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
             <Image src={free} alt="free" className="w-[68px] h-[68px] base:w-[164px] base:h-[164px] mb-3 base:mb-6"/>
             <h3 className="text-xs base:text-2xl font-semibold mb-2 base:mb-6">{t("free-title")}</h3>
             <p className="text-xs base:text-2xl">{t("free-text")}</p>
           </div>
       {/* */}
-          <div className="max-w-[168px] base:max-w-[496px] w-full  h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
+          <div className="max-w-[368px] flex flex-col items-center base:items-start base:max-w-[496px] w-full  h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
             <Image src={noprogram} alt="noprogram" className="w-[68px] h-[68px] base:w-[164px] base:h-[164px] mb-3 base:mb-6"/>
             <h3 className="text-xs base:text-2xl font-semibold mb-2 base:mb-6">{t("noprogram-title")}</h3>
             <p className="text-xs base:text-2xl">{t("noprogram-text")}</p>

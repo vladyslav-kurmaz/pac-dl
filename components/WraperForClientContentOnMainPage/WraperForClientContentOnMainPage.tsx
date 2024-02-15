@@ -20,11 +20,11 @@ import TopVideo from "../TopVideo/TopVideo";
 import TranslationsProvider from "../TranslationProvider/TranslationProvider";
 
 const WraperForClientContentOnMainPage = ({
-  sosialNetworks,
+  // sosialNetworks,
   // dataFaq,
   namespaces,
 }: {
-  sosialNetworks: dataSocialNetwork[];
+  // sosialNetworks: dataSocialNetwork[];
   // dataFaq: {
   //   title: string;
   //   answer: string;
@@ -70,7 +70,9 @@ const WraperForClientContentOnMainPage = ({
       </h2>
 
       <div className="mb-7 base:mb-24">
-        <Resources data={sosialNetworks} text={t("elements:showAll")} />
+        <Resources
+        //  data={sosialNetworks} 
+         text={t("elements:showAll")} />
       </div>
 
       <a id="topVideo"></a>

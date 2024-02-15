@@ -17,7 +17,7 @@ const CatalogVideo = ({ videoData }: { videoData: SimilarVideo[] }) => {
           localStorage.removeItem("error500");
           router.push(`/download?url=${video_url}`);
         }}
-        className={`flex flex-col items-center mb-[30px] cursor-pointer w-[166px] base:w-[269px]`}
+        className={` flex flex-col items-center mb-[30px] cursor-pointer w-[166px] base:w-[209px] lg:w-[269px]`}
         key={id}
       >
         {preview_url ? (

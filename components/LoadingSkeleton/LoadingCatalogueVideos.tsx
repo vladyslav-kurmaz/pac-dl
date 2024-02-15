@@ -11,8 +11,7 @@ const LoadingCatalogueVideos = ({ count }: { count: number }) => {
 
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            // width="104"
-            // height="164"
+
             className="base:w-[56px] base:h-[36px] w-[20px] h-[40px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
             viewBox="0 0 104 164"
             fill="none"
@@ -47,9 +46,7 @@ const LoadingCatalogueVideos = ({ count }: { count: number }) => {
   }
 
   return (
-    <div className="flex flex-wrap justify-between">
-      {elements.map((item, i) => item)}
-    </div>
+    <>{elements.map((item, i) => item)}</>
   );
 };
 
