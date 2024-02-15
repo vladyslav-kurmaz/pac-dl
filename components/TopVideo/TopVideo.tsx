@@ -66,8 +66,8 @@ const TopVideo = ({
   };
 
   const renderTopVideo = (dataTop: SimilarVideo[]) => {
-    return dataTop.length > 0 ? (
-      dataTop.map((item, i) => {
+    return dataTop?.length > 0 ? (
+      dataTop?.map((item, i) => {
         const { title, preview_url, video_url } = item;
 
         return (
