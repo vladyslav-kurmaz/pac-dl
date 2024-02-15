@@ -127,7 +127,7 @@ const DowloadPage = ({
           onClick={() => {
             router.push(`/download?url=${video_url}`);
           }}
-          className="flex flex-col items-center mb-[30px] w-[166px] lg:w-[269px] "
+          className="flex flex-col items-center mb-[30px] w-[166px] lg:w-[269px] cursor-pointer"
           key={id}
         >
           {preview_url ? (
