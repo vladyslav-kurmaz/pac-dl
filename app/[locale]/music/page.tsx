@@ -46,58 +46,6 @@ export default async function Music({ params }: { params: Params }) {
     "elements",
   ]);
 
-  const sosialNetworks = [
-    {
-      icon: facebookIcon,
-      link: "facebook",
-    },
-    {
-      icon: youtubeIcon,
-      link: "",
-    },
-    {
-      icon: tictokIcon,
-      link: "tiktok",
-    },
-    {
-      icon: twitterIcon,
-      link: "twitter",
-    },
-    {
-      icon: instagramIcon,
-      link: "instagram",
-    },
-    {
-      icon: soundcloudIcon,
-      link: "soundcloud",
-    },
-
-    // {
-    //   icon: facebookIcon,
-    //   link: 'facebook'
-    // },
-    // {
-    //   icon: youtubeIcon,
-    //   link: 'youtube'
-    // },
-    // {
-    //   icon: tictokIcon,
-    //   link: 'tictok'
-    // },
-    // {
-    //   icon: twitterIcon,
-    //   link: 'twitter'
-    // },
-    // {
-    //   icon: instagramIcon,
-    //   link: 'instagram'
-    // },
-    // {
-    //   icon: soundcloudIcon,
-    //   link: 'soundcloud'
-    // }
-  ];
-
   const dataFaq = [
     {
       title:
