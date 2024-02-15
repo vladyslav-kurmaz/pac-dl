@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 
 import notFound from "@/assets/image/error/image_not_found.webp";
 import { SimilarVideo } from "@/types/types";
+import Link from "next/link";
 
 const CatalogVideo = ({ videoData }: { videoData: SimilarVideo[] }) => {
   const router = useRouter();
@@ -17,10 +18,11 @@ const CatalogVideo = ({ videoData }: { videoData: SimilarVideo[] }) => {
       const { title, preview_url, video_url, id } = item;
 
       return (
-        <div
+        <Link 
+          href={`/download?url=${video_url}`}
           onClick={() => {
             localStorage.removeItem("error500");
-            router.push(`/download?url=${video_url}`);
+            // router.push(`/download?url=${video_url}`);
           }}
           className={` flex flex-col items-center mb-[30px] cursor-pointer w-[166px] base:w-[209px] lg:w-[269px]`}
           key={id}
@@ -45,7 +47,7 @@ const CatalogVideo = ({ videoData }: { videoData: SimilarVideo[] }) => {
           <div className="text-[9px] md:text-[12px] base:text-[14px] lg:text-[16px] lg:max-w-[265px]  max-w-[165px] text-center">
             {title.length > 49 ? `${title.slice(0, 50)}...` : title}
           </div>
-        </div>
+        </Link>
       );
     })
   );

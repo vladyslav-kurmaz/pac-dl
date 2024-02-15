@@ -123,7 +123,8 @@ const DowloadPage = ({
       const { title, video_url, preview_url, id } = item;
 
       return (
-        <div
+        <Link
+          href={`/download?url=${video_url}`}
           onClick={() => {
             router.push(`/download?url=${video_url}`);
           }}
@@ -147,8 +148,8 @@ const DowloadPage = ({
               height={1000}
             />
           )}
-          <div className="text-[9px] md:text-[16px]">{title}</div>
-        </div>
+          <div className="text-[9px] md:text-[16px] text-center">{title.length > 50 ? `${title.slice(0, 50)}...` : title}</div>
+        </Link>
       );
     });
   };
