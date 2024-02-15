@@ -135,7 +135,7 @@ export default async function Home({ params }: { params: Params }) {
 
           <ul className="flex flex-col  ">
             <li className="flex justify-between items-center mb-7 ">
-              <span className="w-full max-w-[53px] base:w-[97px] h-[52px] base:max-w-[97px] base:h-[97px]  text-xl base:text-3xl flex justify-center items-center bg-slate-50 rounded-full">
+              <span className="w-full mr-2 max-w-[53px] base:w-[97px] h-[52px] base:max-w-[97px] base:h-[97px]  text-xl base:text-3xl flex justify-center items-center bg-slate-50 rounded-full">
                 1
               </span>
               <p className="base:w-4/5 w-11/12 base:max-w-[900px] text-xs base:text-2xl">
@@ -143,7 +143,7 @@ export default async function Home({ params }: { params: Params }) {
               </p>
             </li>
             <li className="flex justify-between items-center mb-7 ">
-              <span className="w-full max-w-[53px] base:w-[97px] h-[52px] base:max-w-[97px] base:h-[97px] text-xl base:text-3xl flex justify-center items-center bg-slate-50 rounded-full">
+              <span className="w-full mr-2 max-w-[53px] base:w-[97px] h-[52px] base:max-w-[97px] base:h-[97px] text-xl base:text-3xl flex justify-center items-center bg-slate-50 rounded-full">
                 2
               </span>
               <p className="base:w-4/5 w-11/12 base:max-w-[900px] text-xs base:text-2xl">
@@ -151,7 +151,7 @@ export default async function Home({ params }: { params: Params }) {
               </p>
             </li>
             <li className="flex justify-between items-center mb-7 ">
-              <span className="w-full max-w-[53px] base:w-[97px] h-[52px] base:max-w-[97px] base:h-[97px] text-xl base:text-3xl flex justify-center items-center bg-slate-50 rounded-full">
+              <span className="w-full mr-2 max-w-[53px] base:w-[97px] h-[52px] base:max-w-[97px] base:h-[97px] text-xl base:text-3xl flex justify-center items-center bg-slate-50 rounded-full">
                 3
               </span>
               <p className="base:w-4/5 w-11/12 base:max-w-[900px] text-xs base:text-2xl">
