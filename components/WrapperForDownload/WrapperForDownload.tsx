@@ -180,7 +180,7 @@ const WrapperForDownload = () => {
           {loading ? t("elements:loading") : ""}
           {videoData !== null && searchParams.get("url") !== null
             ? 
-              videoData?.title.length > 0 ? videoData?.title : videoData.description.slice(0, 51)
+              videoData?.title.length > 0 ? videoData?.title?.length > 50 ? videoData.title.slice(0, 50) : videoData?.title :  videoData?.description.slice(0, 51) 
             : null}
         </h1>
 

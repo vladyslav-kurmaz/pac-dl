@@ -37,7 +37,9 @@ export type SimilarVideo = {
   video_url: string;
   preview_url: string;
   id: string;
+  description?: string  
 };
+
 
 export type TopTag = {
   created: string,

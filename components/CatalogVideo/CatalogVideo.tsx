@@ -45,7 +45,7 @@ const CatalogVideo = ({ videoData }: { videoData: SimilarVideo[] }) => {
             />
           )}
           <div className="text-[9px] md:text-[12px] base:text-[14px] lg:text-[16px] lg:max-w-[265px]  max-w-[165px] text-center">
-            {title.length > 49 ? `${title.slice(0, 50)}...` : title}
+            {title?.length > 49 ? `${title.slice(0, 50)}...` : title}
           </div>
         </Link>
       );

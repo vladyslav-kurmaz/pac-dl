@@ -88,7 +88,8 @@ const DowloadPage = ({
             key={i}
           >
             <div>
-              {ext ? `${ext} - ` : ''} {format_note} ({resolution})
+              {ext ? `${ext} - ` : "mp4 - "} {format_note ? format_note : "story"}{" "}
+              {resolution ? `(${resolution})` : ""}
             </div>
             <Link
               href={downloadUrl}

@@ -68,7 +68,8 @@ const TopVideo = ({
   const renderTopVideo = (dataTop: SimilarVideo[]) => {
     return dataTop?.length > 0 ? (
       dataTop?.map((item, i) => {
-        const { title, preview_url, video_url } = item;
+        const { title, preview_url, video_url, description } = item;
+        const titlePrev = title.length > 0 ? title.length > 49 ? `${title.slice(0, 50)}...` : title : description?.slice(0, 51);
 
         return (
           <Link
@@ -98,7 +99,7 @@ const TopVideo = ({
               />
             )}
             <div className="text-[9px] md:text-[12px] base:text-[14px] lg:text-[16px] lg:max-w-[265px]  max-w-[165px] text-center">
-              {title.length > 49 ? `${title.slice(0, 50)}...` : title}
+              {titlePrev}
             </div>
           </Link>
         );
