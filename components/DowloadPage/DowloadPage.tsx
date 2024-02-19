@@ -86,7 +86,7 @@ const DowloadPage = ({
 
         const renderItem = (
           <div
-            className="flex justify-between items-center mb-3 lg:mb-6"
+            className="flex justify-between items-center mb-3 lg:mb-3"
             key={i}
           >
             <div>
@@ -148,7 +148,9 @@ const DowloadPage = ({
               height={1000}
             />
           )}
-          <div className="text-[9px] md:text-[16px] text-center">{title.length > 50 ? `${title.slice(0, 50)}...` : title}</div>
+          <div className="text-[9px] md:text-[16px] text-center">
+            {title.length > 50 ? `${title.slice(0, 50)}...` : title}
+          </div>
         </Link>
       );
     });
@@ -215,10 +217,10 @@ const DowloadPage = ({
             </div>
 
             <div
-              className={`mb-[29px] base:mb-23 ${
+              className={`mb-2 base:mb-[20px] ${
                 moreFormats
                   ? "max-h-[10000px] transition-all duration-500 ease-in-out overflow-hidden"
-                  : "lg:max-h-[223px] max-h-[120px] transition-all duration-500 ease-in-out overflow-hidden"
+                  : "lg:max-h-[195px] max-h-[115px] transition-all duration-500 ease-in-out overflow-hidden"
               }`}
             >
               {renderFormats()}
@@ -246,7 +248,7 @@ const DowloadPage = ({
         </div>
 
         <div className="flex w-full flex-wrap justify-start relative z-20 base:max-w-[1118px] mb-8 base:mb-24">
-          <div className="flex justify-between w-full items-center mb-0 md:mb-3">
+          <div className="flex justify-between w-full items-center mb-2 md:mb-3">
             <div className="text-[16px] font-semibold base:text-[24px]">
               {t("tags-video")}
             </div>

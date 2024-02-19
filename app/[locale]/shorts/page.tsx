@@ -163,20 +163,16 @@ export default async function Shorts({ params }: { params: Params }) {
           ]}
           resources={resources}
         >
-          <WraperForClientContentOnMainPage
-            namespaces={"shorts"}
-          />
+          <WraperForClientContentOnMainPage namespaces={"shorts"} />
         </TranslationsProvider>
 
         <h2 className="text-lg font-bold leading-6 base:leading-9 base:text-[32px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
           {t("faq")}
         </h2>
         <div className="mb-7 base:mb:24">
-          {
-            dataFaq.map((item, i) => {
-              return <Accordion data={item} key={i}/>
-            })
-          }
+          {dataFaq.map((item, i) => {
+            return <Accordion data={item} key={i} />;
+          })}
         </div>
 
         <h2 className="text-lg font-bold leading-6 base:leading-9 base:text-[32px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
@@ -187,7 +183,7 @@ export default async function Shorts({ params }: { params: Params }) {
             {t("how-download-text")}
           </p>
 
-          <ul className="flex flex-col  ">
+          <ul className="flex flex-col base:pl-14 md:pl-7 ">
             <li className="flex justify-between items-center mb-7 ">
               <span className="w-full mr-2 max-w-[53px] base:w-[97px] h-[52px] base:max-w-[97px] base:h-[97px]  text-xl base:text-3xl flex justify-center items-center bg-slate-50 rounded-full">
                 1
@@ -249,19 +245,19 @@ export default async function Shorts({ params }: { params: Params }) {
 
         <div className="flex flex-wrap flex-col base:flex-row base:justify-between items-center base:items-start">
           {/* h-full max-h-[196px] base:max-h-[397px] */}
-          <div className="max-w-[368px] flex flex-col items-center base:items-start base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
+          <div className="max-w-[368px] sm:max-w-[45%] px-2 flex flex-col items-center base:items-start base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
             <Image
               src={video}
               alt="video"
               className="w-[68px] h-[68px] base:w-[164px] base:h-[164px] mb-3 base:mb-6"
             />
-            <h3 className="text-xs base:text-2xl font-semibold mb-2 base:mb-6">
+            <h3 className="text-xs base:text-2xl  font-semibold mb-2 base:mb-6">
               {t("video-title")}
             </h3>
-            <p className="text-xs base:text-2xl">{t("video-text")}</p>
+            <p className="text-xs text-center sm:text-start base:text-2xl">{t("video-text")}</p>
           </div>
           {/* h-full max-h-[196px] base:max-h-[397px] */}
-          <div className="max-w-[368px] flex flex-col items-center base:items-start base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
+          <div className="max-w-[368px] sm:max-w-[45%] px-2 flex flex-col items-center base:items-start base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
             <Image
               src={audio}
               alt="audio"
@@ -270,10 +266,10 @@ export default async function Shorts({ params }: { params: Params }) {
             <h3 className="text-xs base:text-2xl font-semibold mb-2 base:mb-6">
               {t("audio-title")}
             </h3>
-            <p className="text-xs base:text-2xl">{t("audio-text")}</p>
+            <p className="text-xs text-center sm:text-start base:text-2xl">{t("audio-text")}</p>
           </div>
           {/* h-full max-h-[196px] base:max-h-[397px] */}
-          <div className="max-w-[368px] flex flex-col items-center base:items-start base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
+          <div className="max-w-[368px] sm:max-w-[45%] px-2 flex flex-col items-center base:items-start base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
             <Image
               src={free}
               alt="free"
@@ -282,10 +278,10 @@ export default async function Shorts({ params }: { params: Params }) {
             <h3 className="text-xs base:text-2xl font-semibold mb-2 base:mb-6">
               {t("free-title")}
             </h3>
-            <p className="text-xs base:text-2xl">{t("free-text")}</p>
+            <p className="text-xs text-center sm:text-start base:text-2xl">{t("free-text")}</p>
           </div>
           {/* */}
-          <div className="max-w-[368px] flex flex-col items-center base:items-start base:max-w-[496px] w-full  h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
+          <div className="max-w-[368px] sm:max-w-[45%] px-2 flex flex-col items-center base:items-start base:max-w-[496px] w-full  h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
             <Image
               src={noprogram}
               alt="noprogram"
@@ -294,7 +290,7 @@ export default async function Shorts({ params }: { params: Params }) {
             <h3 className="text-xs base:text-2xl font-semibold mb-2 base:mb-6">
               {t("noprogram-title")}
             </h3>
-            <p className="text-xs base:text-2xl">{t("noprogram-text")}</p>
+            <p className="text-xs text-center sm:text-start base:text-2xl">{t("noprogram-text")}</p>
           </div>
         </div>
 

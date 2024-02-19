@@ -159,10 +159,13 @@ const FeedbackForm = () => {
           </div>
         </div>
       ) : (
-        <form onSubmit={sendForm} className="w-full flex flex-wrap justify-between mb-8 md:mb-12">
+        <form
+          onSubmit={sendForm}
+          className="w-full flex flex-wrap justify-between mb-8 md:mb-12"
+        >
           <label
             htmlFor="name"
-            className="relative w-full md:w-[45%] md:mb-10 mb-6"
+            className="relative w-full md:w-[49%] md:mb-10 mb-6"
           >
             <input
               value={name}
@@ -181,7 +184,7 @@ const FeedbackForm = () => {
           </label>
           <label
             htmlFor="email"
-            className="w-full md:w-[45%] md:mb-10 mb-6 relative"
+            className="w-full md:w-[49%] md:mb-10 mb-6 relative"
           >
             <input
               value={email}
@@ -198,7 +201,7 @@ const FeedbackForm = () => {
               </div>
             ) : null}
           </label>
-          <div className="md:mb-0 mb-6 rounded-[6px] md:rounded-[15px] md:w-[45%] w-full border border-slate-200 py-[9px] px-[16px] md:py-7 md:px-[38px]">
+          <div className="md:mb-0 mb-6 rounded-[6px] md:rounded-[15px] md:w-[49%] w-full border border-slate-200 py-[9px] px-[16px] md:py-7 md:px-[38px]">
             <h4 className="mb-7 md:mb-[30px] text-[14px] md:text-base">
               {t("type-appeal")}
             </h4>
@@ -207,7 +210,7 @@ const FeedbackForm = () => {
 
           <label
             htmlFor=""
-            className={`relative label-feedback hover:border-black transition-all min-h-[331px] duration-500 hover:transition-all hover:duration-500 focus:border-black w-full rounded-[6px] md:rounded-[15px] md:w-[45%]  border border-slate-200 py-[9px] px-[16px] md:py-7 md:px-[38px] ${
+            className={`relative label-feedback hover:border-black transition-all base:min-h-[331px] min-h-[231px] duration-500 hover:transition-all hover:duration-500 focus:border-black w-full rounded-[6px] md:rounded-[15px] md:w-[49%]  border border-slate-200 py-[9px] px-[16px] md:py-7 md:px-[38px] ${
               focusTextArea ? "border-black" : ""
             }`}
           >
@@ -229,7 +232,7 @@ const FeedbackForm = () => {
 
           <button
             disabled={disableButton}
-            className={`mt-8 md:mt-12 md:ml-auto md:mr-0 mx-auto px-4 text-[9px] py-3 bg-violet2  disabled:opacity-50 disabled:hover:bg-violet2 transition-all duration-500 hover:transition-all hover:duration-500 hover:bg-violet1 rounded-md md:rounded-2xl md:px-14 md:py-7 md:text-base box-border`}
+            className={`mt-8 md:mt-12 md:ml-auto md:mr-0 mx-auto px-6 text-[13px] py-4 bg-violet2  disabled:opacity-50 disabled:hover:bg-violet2 transition-all duration-500 hover:transition-all hover:duration-500 hover:bg-violet1 rounded-md md:rounded-2xl md:px-14 md:py-7 md:text-base box-border`}
             onClick={() => {}}
           >
             {t("button")}

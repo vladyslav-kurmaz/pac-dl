@@ -28,7 +28,7 @@ const RenderTags = ({
   return (
     <div
       key={tag}
-      className={`border-[1px] px-2 py-[7px] md:px-[30px] md:py-[15px] m-2 md:mb-3 md:mt-3 cursor-pointer border-grayCastom2 rounded-[30px] text-[9px] md:text-base ${
+      className={`border-[1px] px-2 py-[7px] md:px-[30px] md:py-[15px] m-1 md:mb-3 md:mt-3 cursor-pointer border-grayCastom2 rounded-[30px] text-[9px] md:text-base ${
         active ? "bg-grayCastom2" : ""
       }`}
       onClick={() => {

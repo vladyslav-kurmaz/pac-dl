@@ -77,12 +77,12 @@ const Footer = async ({ params }: { params: Params }) => {
           </ul>
         </div>
 
-        <div className="mb-7 base:mb-0 max-w-[520px] base:pr-4 box-border">
+        <div className="mb-7 base:mb-0  box-border max-w-[401px] w-full">
           <p className="mb-4 font-semibold text-center base:text-start">
             {t("how-download")}
           </p>
-          <div className="flex w-full items-center flex-col base:flex-row">
-            <ul className="flex flex-wrap max-w-[210px]">
+          <div className="flex items-center w-full flex-col justify-between base:flex-row">
+            <ul className="flex flex-wrap justify-center max-w-[165px]">
               <li className="mb-2.5 w-full text-center base:text-start">
                 <Link className="link text-sm base:text-base" href="/twitter">
                   {t("twitter")}
@@ -115,7 +115,7 @@ const Footer = async ({ params }: { params: Params }) => {
               <li>{t("soundcloud")}</li> */}
             </ul>
 
-            <ul className="flex flex-wrap max-w-[210px]">
+            <ul className="flex flex-wrap max-w-[165px]">
               {/* <li>{t("twitter")}</li>
               <li>{t("tiktok")}</li>
               <li>{t("instagram")}</li>
@@ -142,7 +142,10 @@ const Footer = async ({ params }: { params: Params }) => {
                 </Link>
               </li>
               <li className="mb-2.5 w-full text-center base:text-start">
-                <Link className="link text-sm base:text-base" href="/soundcloud">
+                <Link
+                  className="link text-sm base:text-base"
+                  href="/soundcloud"
+                >
                   {t("soundcloud")}
                 </Link>
               </li>
