@@ -152,7 +152,7 @@ const TopVideo = ({
       </div>
 
       <Link
-        href={"/catalogue"}
+        href={"/catalogue?tag=All+video&page=1"}
         className="mt-3 flex items-center justify-end text-xs base:text-[22px]"
       >
         {catalogue}

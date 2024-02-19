@@ -8,9 +8,10 @@ import { SimilarVideo, TopTag } from "@/types/types";
 import { useTranslation } from "react-i18next";
 import CatalogVideo from "../CatalogVideo/CatalogVideo";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import LoadingCatalogueVideos from "../LoadingSkeleton/LoadingCatalogueVideos";
 import LoadingCatalogueTags from "../LoadingSkeleton/LoadingCatalogueTags";
+import Link from "next/link";
 
 const CatalogWrapper = () => {
   const { t } = useTranslation("catalogue");
@@ -24,6 +25,10 @@ const CatalogWrapper = () => {
   const [loadingTags, setLoadingTags] = useState(true);
   const [loadingVideos, setLoadingVideos] = useState(true);
 
+  const searchParams = useSearchParams();
+  const tagParams = searchParams.get("tag");
+  const page = searchParams.get("page");
+
   useEffect(() => {
     getTags();
   }, []);
@@ -36,6 +41,16 @@ const CatalogWrapper = () => {
       setActiveVideoOffset(10);
     }
   }, []);
+
+  useEffect(() => {
+    tagParams && setActiveTag(tagParams);
+  }, [tagParams]);
+
+  useEffect(() => {
+    page && setCurrentPage(+page);
+  }, [page]);
+
+  useEffect(() => {}, [currentPage]);
 
   // useEffect(() => {
   //   console.log(videoData);
@@ -69,8 +84,11 @@ const CatalogWrapper = () => {
   ) => {
     setLoadingVideos(true);
     try {
+      console.log(t("allVideo"));
+      console.log(activeTag);
+
       const popularVideo =
-        activeTag === t("allVideo")
+        activeTag === "Всі відео" || activeTag === "All video"
           ? await getAllVideo(offset, currentPage)
           : await getFilterVideo(activeTag, offset, currentPage);
       setVideoData(await popularVideo.results);
@@ -90,29 +108,35 @@ const CatalogWrapper = () => {
   const renderPagination = () => {
     return (
       <div className="flex w-full  items-center justify-around ">
-        <div
+        <Link
+          href={`/catalogue?tag=${activeTag}&page=${currentPage}`}
           className="base:text-base text-[9px] cursor-pointer"
-          onClick={() => setCurrentPage(currentPage)}
+
+          // onClick={() => setCurrentPage(currentPage)}
         >
           {currentPage}
-        </div>
-        <div
+        </Link>
+        <Link
+          href={`/catalogue?tag=${activeTag}&page=${
+            currentPage === allPages ? allPages : currentPage + 1
+          }`}
           className="base:text-base text-[9px] cursor-pointer"
-          onClick={() =>
-            setCurrentPage(
-              currentPage === allPages ? allPages : currentPage + 1
-            )
-          }
+          // onClick={() =>
+          // setCurrentPage(
+          //   currentPage === allPages ? allPages : currentPage + 1
+          // )
+          // }
         >
           {currentPage === allPages ? "" : currentPage + 1}
-        </div>
+        </Link>
         <div className="base:text-base text-[9px]">...</div>
-        <div
+        <Link
+          href={`/catalogue?tag=${activeTag}&page=${allPages}`}
           className="base:text-base text-[9px] cursor-pointer"
           onClick={() => setCurrentPage(allPages)}
         >
           {allPages}
-        </div>
+        </Link>
       </div>
     );
   };
@@ -172,62 +196,74 @@ const CatalogWrapper = () => {
       </div>
 
       <div className="">
-        {videoData?.length === 0 || videoData === null || videoData === undefined ? null : (
+        {videoData?.length === 0 ||
+        videoData === null ||
+        videoData === undefined ? null : (
           <div className="ml-auto flex base:w-[240px] w-[150px] justify-between items-center base:mb-[57px] mb-7">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              onClick={() => {
-                setCurrentPage(currentPage === 1 ? 1 : currentPage - 1);
-              }}
-              className={`base:w-10 base:h-10 w-7 h-7 ${
-                currentPage === 1
-                  ? "opacity-50 hover:bg:bg-slate-200"
-                  : "cursor-pointer"
-              }`}
-              viewBox="0 0 40 40"
-              fill="none"
-            >
-              <circle
-                cx="20"
-                cy="20"
-                className="hover:fill-violet-200 transition-all duration-500 hover:transition-all hover:duration-500"
-                r="20"
-                transform="rotate(180 20 20)"
-                fill="#E2E8F0"
-              />
-              <path
-                d="M25.0912 14.0912L13.7775 25.4049M13.7775 25.4049L13.7775 15.2225M13.7775 25.4049L23.9598 25.4049"
-                stroke="#1C1917"
-              />
-            </svg>
+            <Link href={`/catalogue?tag=${activeTag}&page=${currentPage === 1 ? 1 : currentPage - 1}`}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                onClick={() => {
+                  // setCurrentPage(currentPage === 1 ? 1 : currentPage - 1);
+                }}
+                className={`base:w-10 base:h-10 w-7 h-7 ${
+                  currentPage === 1
+                    ? "opacity-50 hover:bg:bg-slate-200"
+                    : "cursor-pointer"
+                }`}
+                viewBox="0 0 40 40"
+                fill="none"
+              >
+                <circle
+                  cx="20"
+                  cy="20"
+                  className="hover:fill-violet-200 transition-all duration-500 hover:transition-all hover:duration-500"
+                  r="20"
+                  transform="rotate(180 20 20)"
+                  fill="#E2E8F0"
+                />
+                <path
+                  d="M25.0912 14.0912L13.7775 25.4049M13.7775 25.4049L13.7775 15.2225M13.7775 25.4049L23.9598 25.4049"
+                  stroke="#1C1917"
+                />
+              </svg>
+
+            </Link>
+            
+            {/* {allPages > 1 ? renderPagination() : } */}
             {renderPagination()}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className={`base:w-10 base:h-10 w-7 h-7 ${
-                currentPage === allPages
-                  ? "opacity-50 hover:bg:bg-slate-200"
-                  : "cursor-pointer"
-              }`}
-              onClick={() => {
-                setCurrentPage(
-                  currentPage === allPages ? allPages : currentPage + 1
-                );
-              }}
-              viewBox="0 0 40 40"
-              fill="none"
-            >
-              <circle
-                cx="20"
-                className="hover:fill-violet-200 transition-all duration-500 hover:transition-all hover:duration-500"
-                cy="20"
-                r="20"
-                fill="#E2E8F0"
-              />
-              <path
-                d="M14.9088 25.9088L26.2225 14.5951M26.2225 14.5951L26.2225 24.7775M26.2225 14.5951L16.0402 14.5951"
-                stroke="#1C1917"
-              />
-            </svg>
+            <Link href={`/catalogue?tag=${activeTag}&page=${
+              currentPage === allPages ? allPages : currentPage + 1
+            }`}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className={`base:w-10 base:h-10 w-7 h-7 ${
+                  currentPage === allPages
+                    ? "opacity-50 hover:bg:bg-slate-200"
+                    : "cursor-pointer"
+                }`}
+                onClick={() => {
+                  setCurrentPage(
+                    currentPage === allPages ? allPages : currentPage + 1
+                  );
+                }}
+                viewBox="0 0 40 40"
+                fill="none"
+              >
+                <circle
+                  cx="20"
+                  className="hover:fill-violet-200 transition-all duration-500 hover:transition-all hover:duration-500"
+                  cy="20"
+                  r="20"
+                  fill="#E2E8F0"
+                />
+                <path
+                  d="M14.9088 25.9088L26.2225 14.5951M26.2225 14.5951L26.2225 24.7775M26.2225 14.5951L16.0402 14.5951"
+                  stroke="#1C1917"
+                />
+              </svg>
+            </Link>
+            
           </div>
         )}
       </div>

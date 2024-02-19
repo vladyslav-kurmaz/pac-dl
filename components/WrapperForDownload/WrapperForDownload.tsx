@@ -179,10 +179,9 @@ const WrapperForDownload = () => {
         <h1 className="text-lg font-bold leading-6 base:leading-9 base:text-[40px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
           {loading ? t("elements:loading") : ""}
           {videoData !== null && searchParams.get("url") !== null
-            ? videoData !== null &&
-              videoData?.title !== undefined &&
-              videoData?.title
-            : ""}
+            ? 
+              videoData?.title.length > 0 ? videoData?.title : videoData.description.slice(0, 51)
+            : null}
         </h1>
 
         <div className="mb-7 base:mb-24 relative z-30">

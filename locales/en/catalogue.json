@@ -1,6 +1,8 @@
 {
-  "title": "Catalog of videos for download",
+  "title-all": "Top downloaded videos",
+  "title-tag": "Top videos from category",
   "allVideo": "All video",
   "not-video": "Catalogue don't has videos",
-  "not-tags": "Catalogue don't has tags"   
+  "not-tags": "Catalogue don't has tags",
+  "page": "page"   
 }

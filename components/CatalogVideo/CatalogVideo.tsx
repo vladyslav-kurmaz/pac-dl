@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const CatalogVideo = ({ videoData }: { videoData: SimilarVideo[] }) => {
   const router = useRouter();
-  console.log(videoData);
+  // console.log(videoData);
 
   return videoData === undefined ? (
     <div className="text-[9px] md:text-[12px] py-20 base:text-[14px] lg:text-[16px] lg:max-w-[265px]  max-w-[165px] text-center">

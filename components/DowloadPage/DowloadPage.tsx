@@ -27,8 +27,6 @@ const DowloadPage = ({
   const [hightlightAll, setHightlightAll] = useState<string[]>([]);
   const router = useRouter();
 
-  console.log(similarVideo);
-
   const {
     title,
     description,
@@ -90,7 +88,7 @@ const DowloadPage = ({
             key={i}
           >
             <div>
-              {ext} - {format_note} ({resolution})
+              {ext ? `${ext} - ` : ''} {format_note} ({resolution})
             </div>
             <Link
               href={downloadUrl}
@@ -188,28 +186,28 @@ const DowloadPage = ({
             <div className="flex justify-between items-center mb-5 base:mb-10">
               <ButtonCategories
                 text={t("popular")}
-                onClick={() => {}}
+                onClick={() => setMoreFormats(false)}
                 name="popular"
                 active={videoFormat}
                 setActive={setVideoFormat}
               />
               <ButtonCategories
                 text={t("hd")}
-                onClick={() => {}}
+                onClick={() => setMoreFormats(false)}
                 name="hd"
                 active={videoFormat}
                 setActive={setVideoFormat}
               />
               <ButtonCategories
                 text={t("audio")}
-                onClick={() => {}}
+                onClick={() => setMoreFormats(false)}
                 name="audio"
                 active={videoFormat}
                 setActive={setVideoFormat}
               />
               <ButtonCategories
                 text={t("all-formats")}
-                onClick={() => {}}
+                onClick={() => setMoreFormats(false)}
                 name="all-formats"
                 active={videoFormat}
                 setActive={setVideoFormat}

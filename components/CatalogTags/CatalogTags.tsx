@@ -1,4 +1,5 @@
 import { TopTag } from "@/types/types";
+import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
 
 const CatalogTags = ({
@@ -14,7 +15,8 @@ const CatalogTags = ({
 }) => {
   const allTags = () => {
     return (
-      <div
+      <Link
+        href={`/catalogue?tag=${allVideo}`}
         key={0}
         onClick={() => setActiveTag(allVideo)}
         className={`border-[1px] px-2 py-[7px] md:px-[30px] md:py-[15px] m-2 md:mb-3 md:mt-3 cursor-pointer border-grayCastom2 rounded-[30px] text-[9px] md:text-base ${
@@ -22,7 +24,7 @@ const CatalogTags = ({
         }`}
       >
         {allVideo}
-      </div>
+      </Link>
     );
   };
 
@@ -30,7 +32,8 @@ const CatalogTags = ({
     return tags.map((item) => {
       const { id, name } = item;
       return (
-        <div
+        <Link
+          href={`/catalogue?tag=${name}`}
           key={id}
           onClick={() => setActiveTag(name)}
           className={`border-[1px] px-2 py-[7px] md:px-[30px] md:py-[15px] m-2 md:mb-3 md:mt-3 cursor-pointer border-grayCastom2 rounded-[30px] text-[9px] md:text-base ${
@@ -38,7 +41,7 @@ const CatalogTags = ({
           }`}
         >
           {name}
-        </div>
+        </Link>
       );
     });
   };

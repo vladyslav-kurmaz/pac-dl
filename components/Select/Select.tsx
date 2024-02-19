@@ -6,7 +6,7 @@ import { StaticImageData } from "next/image";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import LanguageChanger from "@/utils/LanguageChanger";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { usePathname } from "next/navigation";
 
 const Select = ({
@@ -25,11 +25,19 @@ const Select = ({
   const [currentLanguge, setCurrentLanguage] = useState(i18n.language);
   const router = useRouter();
   const currentPathname = usePathname();
-
+  const searchParams = useSearchParams();
+  const searchTags = searchParams.get('tag');
+  const searchPage = searchParams.get('page');
+  // console.log(serchTags, serchPage);
   const changeLanguage = (value: string) => {
-    LanguageChanger(router, currentPathname, value, currentLanguge)
-    setOpenList(false)
-  }
+    const tags = searchTags !== null ? `?tag=${searchTags}` : '';
+    const page = searchPage !== null ? `&page=${searchPage}` : '';
+
+    const currentPathnameWithParams = `${currentPathname}${tags}${page}`;
+
+    LanguageChanger(router, currentPathnameWithParams, value, currentLanguge);
+    setOpenList(false);
+  };
 
   const renderItem = (data: dataSelect[]) => {
     return data.map((item, i) => {
@@ -71,7 +79,10 @@ const Select = ({
   };
 
   return (
-    <div className={`relative flex justify-between items-center ${classes}`} style={style}>
+    <div
+      className={`relative flex justify-between items-center ${classes}`}
+      style={style}
+    >
       <div className=" " onClick={() => setOpenList((state) => !state)}>
         {curentItem(data)}
       </div>

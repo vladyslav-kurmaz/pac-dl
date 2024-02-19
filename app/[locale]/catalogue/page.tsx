@@ -6,22 +6,77 @@ import Image from "next/image";
 
 import lineRight from "@/assets/image/youtube/line-right.webp";
 
-const ukraineMetaData = {
-  title: "Каталог завантажень",
+const ukraineMetaData = (params: {
+  [key: string]: string | string[] | undefined;
+}) => {
+  // console.log(params.page);
+  const tag =
+    params.tag === "Всі відео"
+      ? "Топ завантажуваних відео"
+      : `Найкращі відео з категорії ${params.tag}`;
+  // const allVideo = tag === "allVideo" ? ''
+  // console.log(params.tag === "Всі відео");
+  // console.log(params.tag === "Всі відео"
+  // ? "Топ завантажуваних відео"
+  // : `Найкращі відео з категорії ${params.tag}`);
+  const page = params.page && +params.page > 1 ? `page ${params.page}` : "";
+  return {
+    title: `${tag} ${page}`,
+  };
 };
 
-const englishMetaData = {
-  title: "Catalogue",
+// const englishMetaData = {
+//   title: "Catalogue",
+// };
+
+const englishMetaData = (params: {
+  [key: string]: string | string[] | undefined;
+}) => {
+  const tag =
+    params.tag === "Всі відео" || params.tag === "All video"
+      ? "Top downloaded videos"
+      : `Top videos from category ${params.tag}`;
+
+  const page = params.page && +params.page > 1 ? `page ${params.page}` : "";
+  return {
+    title: `${tag} ${page}`,
+  };
 };
 
-export async function generateMetadata({ params }: { params: Params }) {
-  return params.locale === "en" ? englishMetaData : ukraineMetaData;
+// export async function generateMetadata({ params }: { params: Params }) {
+//   return params.locale === "en" ? englishMetaData : ukraineMetaData(params);
+// }
+
+export async function generateMetadata({
+  params,
+  searchParams,
+}: {
+  params: Params;
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
+  return params.locale === "en"
+    ? englishMetaData(searchParams)
+    : ukraineMetaData(searchParams);
 }
 
-export default async function Catalogue({ params }: { params: Params }) {
+export default async function Catalogue({
+  params,
+  searchParams,
+}: {
+  params: Params;
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
   const { t, resources } = await initTranslations(params?.locale, [
     "catalogue",
   ]);
+
+  const tag =
+    searchParams.tag === "Всі відео" || searchParams.tag === "All video"
+      ? t("title-all")
+      : `${t("title-tag")} ${searchParams.tag}`;
+
+  const page =
+    searchParams.page && +searchParams.page > 1 ? `${t("page")} ${searchParams.page}` : "";
 
   return (
     <div className="relative pt-20 base:pt-48 ">
@@ -33,7 +88,7 @@ export default async function Catalogue({ params }: { params: Params }) {
 
       <div className="base:max-w-lg mx-auto px-4 relative z-20">
         <h2 className="text-lg font-bold leading-6 base:leading-9 base:text-[40px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
-          {t("title")}
+          {`${tag} ${page}`}
         </h2>
 
         <TranslationsProvider
