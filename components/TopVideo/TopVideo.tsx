@@ -69,7 +69,12 @@ const TopVideo = ({
     return dataTop?.length > 0 ? (
       dataTop?.map((item, i) => {
         const { title, preview_url, video_url, description } = item;
-        const titlePrev = title.length > 0 ? title.length > 49 ? `${title.slice(0, 50)}...` : title : description?.slice(0, 51);
+        const titlePrev =
+          title.length > 0
+            ? title.length > 49
+              ? `${title.slice(0, 50)}...`
+              : title
+            : description?.slice(0, 51);
 
         return (
           <Link
@@ -87,13 +92,13 @@ const TopVideo = ({
                 width={1000}
                 height={1000}
                 alt={title}
-                className="w-[166px] h-[92px] base:w-[219px] base:h-[130px] lg:w-[269px] lg:h-[150px] mb-2 rounded-[16px] md:mb-2"
+                className="w-[166px] object-contain h-[92px] base:w-[219px] base:h-[130px] lg:w-[269px] lg:h-[150px] mb-2 rounded-[16px] md:mb-2"
               />
             ) : (
               <Image
                 src={notFound}
                 alt={"image not found"}
-                className="w-[166px] h-[92px] base:w-[219px] base:h-[130px] lg:w-[269px] lg:h-[150px] mb-2 rounded-[16px] md:mb-0 "
+                className="w-[166px] h-[92px] object-contain base:w-[219px] base:h-[130px] lg:w-[269px] lg:h-[150px] mb-2 rounded-[16px] md:mb-0 "
                 width={1000}
                 height={1000}
               />

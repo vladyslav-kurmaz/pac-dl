@@ -28,6 +28,7 @@ const WrapperForDownload = () => {
     t("errorLongRequest"),
     t("errorDontSupport"),
     t("errorExtractor"),
+    t("mediaTypeNotFound"),
   ];
 
   const [similarVideo, setSimilarVideo] = useState<SimilarVideo[]>([
@@ -124,7 +125,13 @@ const WrapperForDownload = () => {
     setLoading(true);
     try {
       const postRequest = await getVideoInfo(url);
-      // console.log(postRequest.message);
+      console.log(await postRequest.message);
+
+      if (postRequest?.message === "Media not found or unavailable") {
+        localStorage.setItem("mediaTypeNotFound", "true");
+        router.push(`/`);
+        return;
+      }
 
       if (postRequest?.message === "Can not find extractor for this URL") {
         localStorage.setItem("errorExtractor", "true");

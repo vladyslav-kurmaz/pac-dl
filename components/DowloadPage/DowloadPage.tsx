@@ -52,8 +52,9 @@ const DowloadPage = ({
         video.length > 0
           ? setFormatData(
               video.filter(
-                (item) =>
-                  +item.format_note.slice(0, item.format_note.length - 1) >= 720
+                (item) => item.format_note !== undefined ?
+                  +item.format_note?.slice(0, item.format_note.length - 1) >= 720 :
+                  t("video-not-found")
               )
             )
           : setFormatData(t("video-not-found"));
@@ -77,7 +78,7 @@ const DowloadPage = ({
   const renderFormats = () => {
     return typeof formatData !== "string" ? (
       formatData?.map((item, i) => {
-        const { download_url, ext, format_note, resolution } = item;
+        const { download_url, ext, format_note, resolution, product_type } = item;
         const downloadUrl = `${download_url}&title=${encodeURIComponent(
           title.replace(/[ |]/g, "+")
         )}`;
@@ -88,7 +89,7 @@ const DowloadPage = ({
             key={i}
           >
             <div>
-              {ext ? `${ext} - ` : "mp4 - "} {format_note ? format_note : "story"}{" "}
+              {ext ? `${ext} - ` : "mp4 - "} {format_note ? format_note : product_type}{" "}
               {resolution ? `(${resolution})` : ""}
             </div>
             <Link

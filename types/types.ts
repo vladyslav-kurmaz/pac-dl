@@ -29,7 +29,8 @@ export type DowloadFormat = {
   download_url: string,
   ext: string,
   format_note: string,
-  resolution: string
+  resolution: string,
+  product_type?: string
 }
 
 export type SimilarVideo = {

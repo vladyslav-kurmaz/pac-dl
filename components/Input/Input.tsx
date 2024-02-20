@@ -39,13 +39,12 @@ const Input = ({
   const [errorLongRequest, setErrorLongRequest] = useState(false);
   const [errorDontSupport, setErrorDontSupport] = useState(false);
   const [errorExtractor, setErrorExtractor] = useState(false);
+  const [mediaTypeNotFound, setMediaTypeNotFound] = useState(false);
 
   const searchParams = useSearchParams();
   const router = useRouter();
 
   const url = searchParams.get("url");
-
-  console.log();
 
   useEffect(() => {
     validateInput(inputValue);
@@ -54,13 +53,22 @@ const Input = ({
   useEffect(() => {
     setTimeout(() => localStorage.clear(), 10000);
 
+    if (typeof window !== "undefined" && localStorage.getItem("mediaTypeNotFound")) {
+      setMediaTypeNotFound(true);
+    } else {
+      setMediaTypeNotFound(false);
+    }
+
     if (typeof window !== "undefined" && localStorage.getItem("error500")) {
       setError500(true);
     } else {
       setError500(false);
     }
 
-    if (typeof window !== "undefined" && localStorage.getItem("errorExtractor")) {
+    if (
+      typeof window !== "undefined" &&
+      localStorage.getItem("errorExtractor")
+    ) {
       setErrorExtractor(true);
     } else {
       setErrorExtractor(false);
@@ -149,11 +157,12 @@ const Input = ({
           setErrorNotFindVideo(false);
           setErrorDontSupport(false);
           setErrorExtractor(false);
+          setMediaTypeNotFound(false)
           localStorage.removeItem("error500");
           localStorage.removeItem("errorNotFindVideo");
           localStorage.removeItem("errorLongRequest");
           localStorage.removeItem("errorDontSupport");
-          localStorage.removeItem("errorExtractor")
+          localStorage.removeItem("errorExtractor");
           setInputValue(e.target.value);
         }}
       />
@@ -166,11 +175,15 @@ const Input = ({
             setErrorNotFindVideo(false);
             setErrorDontSupport(false);
             setErrorExtractor(false);
+            setErrorExtractor(false);
+            setMediaTypeNotFound(false)
             localStorage.removeItem("error500");
             localStorage.removeItem("errorNotFindVideo");
             localStorage.removeItem("errorLongRequest");
             localStorage.removeItem("errorDontSupport");
-            localStorage.removeItem("errorExtractor")
+            localStorage.removeItem("errorExtractor");
+            localStorage.removeItem("mediaTypeNotFound");
+
             setInputValue(await navigator.clipboard.readText());
           }}
           text={buttonRounded}
@@ -218,9 +231,17 @@ const Input = ({
           {errors[5]}
         </div>
       )}
-       {errorExtractor && (
+      {errorExtractor && (
         <div className="absolute base:-bottom-9 -bottom-7 text-rose-600 text-xs base:text-base left-0">
           {errors[6]}
+        </div>
+      )}
+
+
+
+      {mediaTypeNotFound && (
+        <div className="absolute base:-bottom-9 -bottom-7 text-rose-600 text-xs base:text-base left-0">
+          {errors[7]}
         </div>
       )}
     </label>

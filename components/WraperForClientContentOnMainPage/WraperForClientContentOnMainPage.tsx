@@ -44,6 +44,7 @@ const WraperForClientContentOnMainPage = ({
     t("errorLongRequest"),
     t("errorDontSupport"),
     t("errorExtractor"),
+    t("mediaTypeNotFound"),
   ];
 
   return (

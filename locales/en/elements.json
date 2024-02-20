@@ -34,5 +34,6 @@
   "errorNotFindVideo": "Video not found",
   "errorLongRequest": "Response timed out, please try again",
   "errorDontSupport": "We do not support this platform yet",
-  "errorExtractor": "No download links found for this material"
+  "errorExtractor": "No download links found for this material",
+  "mediaTypeNotFound": "Media not found or unavailable"
 }
