@@ -152,10 +152,12 @@ const CatalogWrapper = () => {
     ) : null;
 
   const renderLoaderTags = loadingTags ? <LoadingCatalogueTags /> : null;
+  console.log(popularTag);
 
   const renderMessageTags =
-    !loadingTags && popularTag && popularTag?.length === 0 ? (
-      <div className="text-[13px] base:text-2xl h-[200px] base:h-[400px] flex items-center justify-center">
+    (!loadingTags && popularTag && popularTag?.length === 0) ||
+    (!loadingVideos && popularTag === null) ? (
+      <div className=" text-[13px] base:text-2xl text-center">
         {t("not-tags")}
       </div>
     ) : null;
@@ -169,9 +171,12 @@ const CatalogWrapper = () => {
       <CatalogVideo videoData={videoData} />
     ) : null;
 
+  console.log(videoData);
+
   const renderVideoMessage =
-    !loadingVideos && videoData !== null && videoData?.length === 0 ? (
-      <div className="text-[13px] base:text-2xl h-[200px] base:h-[400px] flex items-center justify-center">
+    (!loadingVideos && videoData?.length === 0) ||
+    (!loadingVideos && videoData === null) ? (
+      <div className="text-[13px] text-center md:mb-12 mb-7 base:text-2xl w-full col-span-4 ">
         {t("not-video")}
       </div>
     ) : null;
@@ -200,7 +205,11 @@ const CatalogWrapper = () => {
         videoData === null ||
         videoData === undefined ? null : (
           <div className="ml-auto flex base:w-[240px] w-[150px] justify-between items-center base:mb-[57px] mb-7">
-            <Link href={`/catalogue?tag=${activeTag}&page=${currentPage === 1 ? 1 : currentPage - 1}`}>
+            <Link
+              href={`/catalogue?tag=${activeTag}&page=${
+                currentPage === 1 ? 1 : currentPage - 1
+              }`}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 onClick={() => {
@@ -227,14 +236,15 @@ const CatalogWrapper = () => {
                   stroke="#1C1917"
                 />
               </svg>
-
             </Link>
-            
+
             {/* {allPages > 1 ? renderPagination() : } */}
             {renderPagination()}
-            <Link href={`/catalogue?tag=${activeTag}&page=${
-              currentPage === allPages ? allPages : currentPage + 1
-            }`}>
+            <Link
+              href={`/catalogue?tag=${activeTag}&page=${
+                currentPage === allPages ? allPages : currentPage + 1
+              }`}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className={`base:w-10 base:h-10 w-7 h-7 ${
@@ -263,7 +273,6 @@ const CatalogWrapper = () => {
                 />
               </svg>
             </Link>
-            
           </div>
         )}
       </div>

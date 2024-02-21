@@ -43,31 +43,34 @@ const DowloadPage = ({
   useEffect(() => {
     switch (videoFormat) {
       case "popular": {
-        video.length > 0
+        video?.length > 0
           ? setFormatData([...video])
           : setFormatData(t("video-not-found"));
         break;
       }
       case "hd": {
-        video.length > 0
+        video?.length > 0
           ? setFormatData(
-              video.filter(
-                (item) => item.format_note !== undefined ?
-                  +item.format_note?.slice(0, item.format_note.length - 1) >= 720 :
-                  t("video-not-found")
+              video.filter((item) =>
+                item?.format_note !== undefined
+                  ? +item?.format_note?.slice(
+                      0,
+                      item?.format_note?.length - 1
+                    ) >= 720
+                  : t("video-not-found")
               )
             )
           : setFormatData(t("video-not-found"));
         break;
       }
       case "audio": {
-        audio_only.length > 0
+        audio_only?.length > 0
           ? setFormatData([...audio_only])
           : setFormatData(t("audio-not-found"));
         break;
       }
       case "all-formats": {
-        video.length > 0 || audio_only.length > 0 || video_only.length > 0
+        video?.length > 0 || audio_only?.length > 0 || video_only?.length > 0
           ? setFormatData([...video, ...audio_only, ...video_only])
           : setFormatData(t("formars-not-found"));
         break;
@@ -78,9 +81,10 @@ const DowloadPage = ({
   const renderFormats = () => {
     return typeof formatData !== "string" ? (
       formatData?.map((item, i) => {
-        const { download_url, ext, format_note, resolution, product_type } = item;
+        const { download_url, ext, format_note, resolution, product_type } =
+          item;
         const downloadUrl = `${download_url}&title=${encodeURIComponent(
-          title.replace(/[ |]/g, "+")
+          title?.replace(/[ |]/g, "+")
         )}`;
 
         const renderItem = (
@@ -89,7 +93,8 @@ const DowloadPage = ({
             key={i}
           >
             <div>
-              {ext ? `${ext} - ` : "mp4 - "} {format_note ? format_note : product_type}{" "}
+              {ext ? `${ext} - ` : "mp4 - "}{" "}
+              {format_note ? format_note : product_type}{" "}
               {resolution ? `(${resolution})` : ""}
             </div>
             <Link
@@ -115,7 +120,7 @@ const DowloadPage = ({
   };
 
   const copyAll = () => {
-    navigator.clipboard.writeText(hightlightAll.join(", "));
+    navigator.clipboard.writeText(hightlightAll?.join(", "));
   };
 
   const renderSimilarVideo = () => {
@@ -149,7 +154,7 @@ const DowloadPage = ({
             />
           )}
           <div className="text-[9px] md:text-[16px] text-center">
-            {title.length > 50 ? `${title.slice(0, 50)}...` : title}
+            {title?.length > 50 ? `${title?.slice(0, 50)}...` : title}
           </div>
         </Link>
       );
@@ -161,7 +166,7 @@ const DowloadPage = ({
       <div className="mb-7 base:mb-32 w-full max-w-[347px] md:max-w-lg relative left-1/2 -translate-x-1/2 flex flex-col items-center">
         <div className="flex flex-col w-full items-center relative mb-7 base:mb-12 z-20 md:items-start md:flex-row md:justify-around base:justify-between">
           <div className="relative w-full max-w-[347px]  max-h-[192px]  md:mr-2 mr-0 base:mb-24 base:max-w-[633px] base:max-h-[365px] rounded-[15px] base:rounded-[20px]">
-            {preview.length > 0 ? (
+            {preview?.length > 0 ? (
               <Image
                 src={preview}
                 alt={title}
@@ -226,7 +231,7 @@ const DowloadPage = ({
               {renderFormats()}
             </div>
 
-            {Array.isArray(formatData) && formatData.length > 3 ? (
+            {Array.isArray(formatData) && formatData?.length > 3 ? (
               <button
                 className="flex justify-between items-center transition-all"
                 onClick={() => setMoreFormats((state) => !state)}
@@ -254,22 +259,22 @@ const DowloadPage = ({
             </div>
             <div className="flex">
               <ButtonRounded
-                style={tag.length > 0 ? "flex" : "hidden"}
+                style={tag?.length > 0 ? "flex" : "hidden"}
                 text={t("highlightAll")}
                 onClick={() => onHightlightAll()}
               />
               <ButtonRounded
-                disabled={tag.length > 0 ? false : true}
+                disabled={tag?.length > 0 ? false : true}
                 text={t("copy")}
-                style={`ml-2 base:ml-6 ${tag.length > 0 ? "flex" : "hidden"}`}
+                style={`ml-2 base:ml-6 ${tag?.length > 0 ? "flex" : "hidden"}`}
                 onClick={copyAll}
               />
             </div>
           </div>
 
           <div className="flex flex-wrap">
-            {tag.length > 0 ? (
-              tag.map((item, i) => {
+            {tag?.length > 0 ? (
+              tag?.map((item, i) => {
                 return (
                   <RenderTags
                     key={i}
@@ -292,7 +297,7 @@ const DowloadPage = ({
             {t("description")}
           </div>
 
-          {description.length > 0 ? (
+          {description?.length > 0 ? (
             <div
               className={`text-[13px] base:text-[24px] mb-3 base:mb-6 transition-all duration-500 
               ${
@@ -310,7 +315,7 @@ const DowloadPage = ({
             </div>
           )}
 
-          {description.length > 250 ? (
+          {description?.length > 250 ? (
             <button
               className="flex justify-between items-center"
               onClick={() => setMoreDescription((state) => !state)}

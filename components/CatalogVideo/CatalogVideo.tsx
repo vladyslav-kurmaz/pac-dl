@@ -4,10 +4,12 @@ import { useRouter } from "next/navigation";
 import notFound from "@/assets/image/error/image_not_found.webp";
 import { SimilarVideo } from "@/types/types";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
 
 const CatalogVideo = ({ videoData }: { videoData: SimilarVideo[] }) => {
   const router = useRouter();
   // console.log(videoData);
+  const { t } = useTranslation("catalogue");
 
   return videoData === undefined ? (
     <div className="text-[9px] md:text-[12px] py-20 base:text-[14px] lg:text-[16px] lg:max-w-[265px]  max-w-[165px] text-center">
@@ -15,10 +17,10 @@ const CatalogVideo = ({ videoData }: { videoData: SimilarVideo[] }) => {
     </div>
   ) : (
     videoData?.map((item) => {
-      const { title, preview_url, video_url, id } = item;
+      const { title, preview_url, video_url, id, description } = item;
 
       return (
-        <Link 
+        <Link
           href={`/download?url=${video_url}`}
           onClick={() => {
             localStorage.removeItem("error500");
@@ -33,19 +35,25 @@ const CatalogVideo = ({ videoData }: { videoData: SimilarVideo[] }) => {
               width={1000}
               height={1000}
               alt={title}
-              className="w-[166px] h-[92px] base:w-[269px] base:h-[150px] mb-2 rounded-[16px] md:mb-2"
+              className="w-[166px] object-contain h-[92px] base:w-[269px] base:h-[150px] mb-2 rounded-[16px] md:mb-2"
             />
           ) : (
             <Image
               src={notFound}
               alt={"image not found"}
-              className="w-[166px] h-[92px] base:w-[269px] base:h-[150px] mb-2 rounded-[16px] md:mb-0 "
+              className="w-[166px] object-contain h-[92px] base:w-[269px] base:h-[150px] mb-2 rounded-[16px] md:mb-0 "
               width={1000}
               height={1000}
             />
           )}
           <div className="text-[9px] md:text-[12px] base:text-[14px] lg:text-[16px] lg:max-w-[265px]  max-w-[165px] text-center">
-            {title?.length > 49 ? `${title.slice(0, 50)}...` : title}
+            {title
+              ? title?.length > 49
+                ? `${title?.slice(0, 50)}...`
+                : title
+              : description
+              ? description.slice(0, 51)
+              : t("title-not-found")}
           </div>
         </Link>
       );

@@ -29,7 +29,7 @@ const CatalogTags = ({
   };
 
   const renderTag = () => {
-    return tags.map((item) => {
+    return tags?.map((item) => {
       const { id, name } = item;
       return (
         <Link

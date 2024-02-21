@@ -89,6 +89,7 @@ const WraperForClientContentOnMainPage = ({
           month={t("elements:top-month")}
           catalogue={t("elements:allCatalogue")}
           topError={t(`${namespaces}:top-not-found`)}
+          titleNotFound={t("title-not-found")}
         />
       </div>
 

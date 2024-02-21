@@ -17,18 +17,21 @@ const TopVideo = ({
   month,
   catalogue,
   topError,
+  titleNotFound,
 }: {
   day: string;
   week: string;
   month: string;
   catalogue: string;
   topError: string;
+  titleNotFound: string;
 }) => {
   const [active, setActive] = useState(day);
   const [dataTop, setTopData] = useState<SimilarVideo[] | null>(null);
   const [loading, setLoading] = useState(true);
   const { getTopVideo } = PacDlServices();
   const router = useRouter();
+  const { t } = useTranslation("catalogue");
 
   useEffect(() => {
     if (active === day) {
@@ -74,7 +77,9 @@ const TopVideo = ({
             ? title.length > 49
               ? `${title.slice(0, 50)}...`
               : title
-            : description?.slice(0, 51);
+            : description
+            ? description?.slice(0, 51)
+            : titleNotFound;
 
         return (
           <Link
