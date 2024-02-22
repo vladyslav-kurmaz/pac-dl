@@ -30,5 +30,5 @@ export default function LanguageChanger(
     router.push(currentPathname.replace(`/${currentLocale}`, `/${value}`));
   }
 
-  router.refresh();
+  // router.refresh();
 }

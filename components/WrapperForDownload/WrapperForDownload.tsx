@@ -125,7 +125,6 @@ const WrapperForDownload = () => {
     setLoading(true);
     try {
       const postRequest = await getVideoInfo(url);
-      console.log(await postRequest.message);
 
       if (postRequest?.message === "Media not found or unavailable") {
         localStorage.setItem("mediaTypeNotFound", "true");

@@ -84,9 +84,6 @@ const CatalogWrapper = () => {
   ) => {
     setLoadingVideos(true);
     try {
-      console.log(t("allVideo"));
-      console.log(activeTag);
-
       const popularVideo =
         activeTag === "Всі відео" || activeTag === "All video"
           ? await getAllVideo(offset, currentPage)
@@ -152,7 +149,6 @@ const CatalogWrapper = () => {
     ) : null;
 
   const renderLoaderTags = loadingTags ? <LoadingCatalogueTags /> : null;
-  console.log(popularTag);
 
   const renderMessageTags =
     (!loadingTags && popularTag && popularTag?.length === 0) ||
@@ -170,8 +166,6 @@ const CatalogWrapper = () => {
     !loadingVideos && videoData !== null && videoData?.length !== 0 ? (
       <CatalogVideo videoData={videoData} />
     ) : null;
-
-  console.log(videoData);
 
   const renderVideoMessage =
     (!loadingVideos && videoData?.length === 0) ||
