@@ -55,8 +55,12 @@ const DowloadPage = ({
                 item?.format_note !== undefined
                   ? +item?.format_note?.slice(
                       0,
-                      item?.format_note?.length - 1 
-                    ) >= 720 || item?.format_note === 'hd'
+                      item?.format_note?.length - 1
+                    ) >= 720 ||
+                    +item?.format_note >= 720 || 
+                    +item?.resolution?.split('x')[1] >= 720
+                    ||
+                    item?.format_note === "hd"
                   : t("video-not-found")
               )
             )
