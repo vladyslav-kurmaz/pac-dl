@@ -27,9 +27,9 @@ const FeedbackForm = () => {
 
   useEffect(() => {
     if (
-      name.length !== 0 &&
-      email.length !== 0 &&
-      message.length !== 0 &&
+      name?.length !== 0 &&
+      email?.length !== 0 &&
+      message?.length !== 0 &&
       !validationForm(name, "name")?.errorStatus &&
       !validationForm(email, "email")?.errorStatus &&
       !validationForm(message, "message")?.errorStatus

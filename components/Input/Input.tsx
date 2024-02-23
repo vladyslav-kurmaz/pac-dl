@@ -115,7 +115,7 @@ const Input = ({
   const validateInput = (value: string) => {
     const regExp = value.match(/^(https?|http):\/\//);
 
-    if (regExp === null && inputValue.length !== 0) {
+    if (regExp === null && inputValue?.length !== 0) {
       setInputError(true);
     } else {
       setInputError(false);
@@ -123,7 +123,7 @@ const Input = ({
   };
 
   const getVideo = async (value: string) => {
-    if (value.length === 0) {
+    if (value?.length === 0) {
       setRequired(true);
     } else {
       router.push(`/download?url=${value}`);

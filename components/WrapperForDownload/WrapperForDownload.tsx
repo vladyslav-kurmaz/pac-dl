@@ -161,6 +161,14 @@ const WrapperForDownload = () => {
         return;
       }
 
+      if (postRequest.status === 500) {
+        postRequest.status === 500
+          ? localStorage.setItem("error500", "true")
+          : null;
+        router.push(`/`);
+        return;
+      }
+
       if (!postRequest.ok && postRequest.ok !== undefined) {
         postRequest.status === 500
           ? localStorage.setItem("error500", "true")
@@ -185,9 +193,9 @@ const WrapperForDownload = () => {
         <h1 className="text-lg font-bold leading-6 base:leading-9 base:text-[40px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
           {loading ? t("elements:loading") : ""}
           {videoData !== null && searchParams.get("url") !== null
-            ? videoData?.title.length > 0
+            ? videoData?.title?.length > 0
               ? videoData?.title?.length > 50
-                ? videoData.title.slice(0, 50)
+                ? videoData?.title?.slice(0, 50)
                 : videoData?.title
               : videoData?.description ? videoData?.description.slice(0, 51) : t("title-not-found")
             : ""}

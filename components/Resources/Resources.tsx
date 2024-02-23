@@ -116,7 +116,7 @@ const Resources = ({
   };
 
   const style =
-    sosialNetworks.length > 9
+    sosialNetworks?.length > 9
       ? "justify-start w-9/12"
       : "justify-around w-full";
 
@@ -126,7 +126,7 @@ const Resources = ({
         {renderIcons()}
       </div>
 
-      {sosialNetworks.length > 9 && (
+      {sosialNetworks?.length > 9 && (
         <div
           className="base:w-[170px] w-[80px] flex flex-col base:flex-row   justify-between items-center"
           onClick={() => setSeeMore((state) => !state)}
