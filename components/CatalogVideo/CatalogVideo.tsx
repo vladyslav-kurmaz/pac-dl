@@ -52,7 +52,7 @@ const CatalogVideo = ({ videoData }: { videoData: SimilarVideo[] }) => {
                 ? `${title?.slice(0, 50)}...`
                 : title
               : description
-              ? description.slice(0, 51)
+              ? description?.slice(0, 51)
               : t("title-not-found")}
           </div>
         </Link>

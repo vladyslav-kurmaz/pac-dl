@@ -73,9 +73,9 @@ const TopVideo = ({
       dataTop?.map((item, i) => {
         const { title, preview_url, video_url, description } = item;
         const titlePrev =
-          title.length > 0
-            ? title.length > 49
-              ? `${title.slice(0, 50)}...`
+          title?.length > 0
+            ? title?.length > 49
+              ? `${title?.slice(0, 50)}...`
               : title
             : description
             ? description?.slice(0, 51)
