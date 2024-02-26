@@ -4,13 +4,14 @@ import { useTranslation } from "react-i18next";
 import ButtonThreeState from "../Button/ButtonThreeState";
 import { useState, useEffect } from "react";
 import PacDlServices from "@/services/PacDlServices";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Spinner from "@/components/spiner/spiner";
 
 import notFound from "@/assets/image/error/image_not_found.webp";
 import { SimilarVideo } from "@/types/types";
 
+
+// Відображає список топ відео за кількістю скачувань 
 const TopVideo = ({
   day,
   week,
@@ -26,13 +27,17 @@ const TopVideo = ({
   topError: string;
   titleNotFound: string;
 }) => {
+  // активний період
   const [active, setActive] = useState(day);
+  // дані зі списку топ відео
   const [dataTop, setTopData] = useState<SimilarVideo[] | null>(null);
+  // статус завантаження відео з бекенду
   const [loading, setLoading] = useState(true);
+  // функція отримання відео
   const { getTopVideo } = PacDlServices();
-  const router = useRouter();
   const { t } = useTranslation("catalogue");
 
+  // запит в залежності від антивного періоду
   useEffect(() => {
     if (active === day) {
       getTopData("day");
@@ -43,6 +48,7 @@ const TopVideo = ({
     }
   }, [active]);
 
+  // функція отримання даних з сервера в залежності від екрану
   const getTopData = async (active: string) => {
     setLoading(true);
     const screenWidth = window.screen.width;
@@ -68,6 +74,7 @@ const TopVideo = ({
     }
   };
 
+  // функція відображення відео після їх завантаження
   const renderTopVideo = (dataTop: SimilarVideo[]) => {
     return dataTop?.length > 0 ? (
       dataTop?.map((item, i) => {
@@ -86,7 +93,6 @@ const TopVideo = ({
             href={`/download?url=${video_url}`}
             onClick={() => {
               localStorage.removeItem("error500");
-              // router.push(`/download?url=${video_url}`);
             }}
             className="flex flex-col items-center  cursor-pointer"
             key={i}
@@ -121,6 +127,7 @@ const TopVideo = ({
     );
   };
 
+  // рендер верстки на сторінку
   return (
     <div className="">
       <div className="flex mb-3 base:mb-6">
@@ -162,7 +169,7 @@ const TopVideo = ({
         {dataTop !== null && renderTopVideo(dataTop)}
       </div>
 
-      <Link
+      {/* <Link
         href={"/catalogue?tag=All+video&page=1"}
         className="mt-3 flex items-center justify-end text-xs base:text-[22px]"
       >
@@ -175,7 +182,7 @@ const TopVideo = ({
         >
           <path d="M0 10H20M20 10L11 1M20 10L11 19" stroke="#1C1917" />
         </svg>
-      </Link>
+      </Link> */}
     </div>
   );
 };

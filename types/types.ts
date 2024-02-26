@@ -1,5 +1,6 @@
 import { StaticImageData } from "next/image";
 
+// типи даних що приймає Select
 export type dataSelect = {
   flag: StaticImageData;
   value: string;
@@ -11,6 +12,7 @@ export type dataSocialNetwork = {
   link: string;
 };
 
+// тип даних що приходять з бекенда
 export type DataVideo = {
   title: string;
   audio_only: DowloadFormat[];
@@ -25,6 +27,7 @@ export type DataVideo = {
   preview: string;
 };
 
+// тип форматів що скачуються з бекенду
 export type DowloadFormat = {
   download_url: string,
   ext: string,
@@ -33,6 +36,7 @@ export type DowloadFormat = {
   product_type?: string
 }
 
+// тип для схожих відео
 export type SimilarVideo = {
   title: string;
   video_url: string;
@@ -41,7 +45,7 @@ export type SimilarVideo = {
   description?: string  
 };
 
-
+// тип для топ тегів
 export type TopTag = {
   created: string,
   id: string,

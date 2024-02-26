@@ -6,6 +6,7 @@ import Image from "next/image";
 
 import lineRight from "@/assets/image/youtube/line-right.webp";
 
+// мета теги для україномовного сайту
 const ukraineMetaData = (params: {
   [key: string]: string | string[] | undefined;
 }) => {
@@ -14,21 +15,13 @@ const ukraineMetaData = (params: {
     params.tag === "Всі відео"
       ? "Топ завантажуваних відео"
       : `Найкращі відео з категорії ${params.tag}`;
-  // const allVideo = tag === "allVideo" ? ''
-  // console.log(params.tag === "Всі відео");
-  // console.log(params.tag === "Всі відео"
-  // ? "Топ завантажуваних відео"
-  // : `Найкращі відео з категорії ${params.tag}`);
   const page = params.page && +params.page > 1 ? `page ${params.page}` : "";
   return {
     title: `${tag} ${page}`,
   };
 };
 
-// const englishMetaData = {
-//   title: "Catalogue",
-// };
-
+// мета теги для англомовного сайту
 const englishMetaData = (params: {
   [key: string]: string | string[] | undefined;
 }) => {
@@ -43,10 +36,7 @@ const englishMetaData = (params: {
   };
 };
 
-// export async function generateMetadata({ params }: { params: Params }) {
-//   return params.locale === "en" ? englishMetaData : ukraineMetaData(params);
-// }
-
+// функція генерації метатегів на сторінці
 export async function generateMetadata({
   params,
   searchParams,
@@ -59,6 +49,7 @@ export async function generateMetadata({
     : ukraineMetaData(searchParams);
 }
 
+// Функція що рендерити сторінку Каталога
 export default async function Catalogue({
   params,
   searchParams,
@@ -70,11 +61,13 @@ export default async function Catalogue({
     "catalogue",
   ]);
 
+  // Відображення тайтла в залежності від вибраного тега 
   const tag =
     searchParams.tag === "Всі відео" || searchParams.tag === "All video"
       ? t("title-all")
       : `${t("title-tag")} ${searchParams.tag}`;
 
+  // Відображення в тайтлі нумерації сторінки сторінки
   const page =
     searchParams.page && +searchParams.page > 1 ? `${t("page")} ${searchParams.page}` : "";
 
@@ -91,11 +84,14 @@ export default async function Catalogue({
           {`${tag} ${page}`}
         </h2>
 
+        {/* Функція для передавання правильного перекладу */}
+        {/* При додаванні нової мови потрібно додати сюди назву файлу  */}
         <TranslationsProvider
           locale={params.locale}
           namespaces={"catalogue"}
           resources={resources}
         >
+          {/* Компонент де відбувається клієнтська логіка додатку  */}
           <CatalogWrapper />
         </TranslationsProvider>
       </div>

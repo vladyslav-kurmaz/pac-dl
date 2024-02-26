@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Sling as Hamburger } from "hamburger-react";
@@ -11,10 +10,14 @@ import arrow from "../../assets/image/arrow.png";
 import uk from "../../assets/image/flags/uk.webp";
 import en from "../../assets/image/flags/en.webp";
 
+// компонент для відображення меню в хедері
 const HamburgerMenu = () => {
+  // статус відображення меню
   const [showMenu, setShowMenu] = useState(false);
+  // переклад
   const { t } = useTranslation("header");
 
+  // якщо потрібно додати мову в селектор зміни мови її потрібно додати сюди
   const dataSelect = [
     {
       flag: uk,
@@ -71,13 +74,13 @@ const HamburgerMenu = () => {
             >
               {t("download_audio")}
             </Link>
-            <Link
+            {/* <Link
               href="/catalogue"
               onClick={() => setShowMenu(false)}
               className="ml-0 mb-4 link text-sm base:text-base"
             >
               {t("catalogue")}
-            </Link>
+            </Link> */}
           </div>
         </div>
       )}

@@ -1,4 +1,6 @@
+// хук запиту
 const useHttp = () => {
+  // функція запиту що повертає стату Promise
   const request = async (
     url: string,
     method?: string,
@@ -6,9 +8,6 @@ const useHttp = () => {
     headers?: HeadersInit
   ) => {
     try {
-
-
-
       const res = await fetch(url, { method, body, headers });
 
       if (!res.ok) {

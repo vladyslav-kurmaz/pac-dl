@@ -7,32 +7,43 @@ import { useEffect, useState } from "react";
 import { SimilarVideo, TopTag } from "@/types/types";
 import { useTranslation } from "react-i18next";
 import CatalogVideo from "../CatalogVideo/CatalogVideo";
-import Image from "next/image";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import LoadingCatalogueVideos from "../LoadingSkeleton/LoadingCatalogueVideos";
 import LoadingCatalogueTags from "../LoadingSkeleton/LoadingCatalogueTags";
 import Link from "next/link";
 
+// компонент обгортки каталога це суто клієнський компонент
 const CatalogWrapper = () => {
   const { t } = useTranslation("catalogue");
+  // отримуємо популяні теги
   const [popularTag, setPopularTag] = useState<null | TopTag[]>(null);
+  // хмінюється при виборі активного тегу
   const [activeTag, setActiveTag] = useState(t("allVideo"));
+  // в залежності від ширини екрану відображається різна кількість відео
   const [activeVideoOffset, setActiveVideoOffset] = useState(24);
+  // Сюди зберігаємо всіх відео що є в каталозі
   const [videoData, setVideoData] = useState<SimilarVideo[] | null>(null);
+  // Активна сторінка
   const [currentPage, setCurrentPage] = useState(1);
+  // Всі сторінки
   const [allPages, setAllPages] = useState(1);
+  // Сервіси що використовуємо в каталозі
   const { getPopuliarTags, getAllVideo, getFilterVideo } = PacDlServices();
+  // статус завантаження тегів та відео
   const [loadingTags, setLoadingTags] = useState(true);
   const [loadingVideos, setLoadingVideos] = useState(true);
 
+  // отримання тегів та сторнки з пошукових параметрів
   const searchParams = useSearchParams();
   const tagParams = searchParams.get("tag");
   const page = searchParams.get("page");
 
+  // при завантаженні сторінки отримуємо перелік тегів
   useEffect(() => {
     getTags();
   }, []);
 
+  // в залежності від ширини екрану відображається різна кількість відео
   useEffect(() => {
     const screenWidth = window.screen.width;
     if (screenWidth > 1200) {
@@ -42,28 +53,29 @@ const CatalogWrapper = () => {
     }
   }, []);
 
+  // при зміні тега в пошукових параметрах змінюється тег і в додатку аналогічно і 
   useEffect(() => {
     tagParams && setActiveTag(tagParams);
   }, [tagParams]);
 
+  // аналогічно і зі сторінкою
   useEffect(() => {
     page && setCurrentPage(+page);
   }, [page]);
 
-  useEffect(() => {}, [currentPage]);
+  // useEffect(() => {}, [currentPage]);
 
-  // useEffect(() => {
-  //   console.log(videoData);
-  // }, [videoData]);
-
+  // коли змінюється активний тег переходимо на першу сторінку
   useEffect(() => {
     setCurrentPage(1);
   }, [activeTag]);
 
+  // отримуємо відео в залежності від кількості відео активної сторінки та активного тега
   useEffect(() => {
     getAllCatalogueVideo(activeVideoOffset, currentPage, activeTag);
   }, [activeTag, currentPage]);
 
+  // фукція запиту на отримання тегів
   const getTags = async () => {
     setLoadingTags(true);
     try {
@@ -77,6 +89,7 @@ const CatalogWrapper = () => {
     }
   };
 
+  // функція запиту на отримання всіх відео
   const getAllCatalogueVideo = async (
     offset: number,
     currentPage: number,
@@ -84,17 +97,19 @@ const CatalogWrapper = () => {
   ) => {
     setLoadingVideos(true);
     try {
+      // якщо activeTag === "Всі відео" || activeTag === "All video" тоді робимо запит на всі відео
+      // якщо ні тоді запускає іншу функцію для отримання відфільрованих відео по тегу
       const popularVideo =
         activeTag === "Всі відео" || activeTag === "All video"
-          ? await getAllVideo(offset, currentPage)
-          : await getFilterVideo(activeTag, offset, currentPage);
-      setVideoData(await popularVideo.results);
+          ? await getAllVideo(offset, currentPage) // функція для отримання всіх відео
+          : await getFilterVideo(activeTag, offset, currentPage); // функція для отримання відфільтрованих по тегам
+      setVideoData(await popularVideo.results); 
       // setVideoData([]);
       setAllPages(
         (await popularVideo.count) / offset < 1
           ? 1
           : Math.ceil(popularVideo.count / offset)
-      );
+      ); //встановлення всіх сторінок
       setLoadingVideos(false);
     } catch (e) {
       setLoadingVideos(false);
@@ -102,6 +117,7 @@ const CatalogWrapper = () => {
     }
   };
 
+  // функція рендингу цифр пагінації на сторінці 
   const renderPagination = () => {
     return (
       <div className="flex w-full  items-center justify-around ">
@@ -118,11 +134,7 @@ const CatalogWrapper = () => {
             currentPage === allPages ? allPages : currentPage + 1
           }`}
           className="base:text-base text-[9px] cursor-pointer"
-          // onClick={() =>
-          // setCurrentPage(
-          //   currentPage === allPages ? allPages : currentPage + 1
-          // )
-          // }
+
         >
           {currentPage === allPages ? "" : currentPage + 1}
         </Link>
@@ -138,6 +150,8 @@ const CatalogWrapper = () => {
     );
   };
 
+  // рендеринг тегів якщо не відбувається процес завантаження
+  // стейт не дорівнює нулю та не дорівнює пустому масиву
   const renderTags =
     !loadingTags && popularTag !== null && popularTag?.length !== 0 ? (
       <CatalogTags
@@ -148,25 +162,33 @@ const CatalogWrapper = () => {
       />
     ) : null;
 
+  // рендеринг скелетона якщо відбувається завантаження 
   const renderLoaderTags = loadingTags ? <LoadingCatalogueTags /> : null;
 
+  // рендеринг повідомлення що тегів нема якщо теги не завантажується масив тегів дорівнює нулю або 
+  //  теги не завантажуються і стейт не дорівнює null
   const renderMessageTags =
     (!loadingTags && popularTag && popularTag?.length === 0) ||
-    (!loadingVideos && popularTag === null) ? (
+    (!loadingTags && popularTag === null) ? (
       <div className=" text-[13px] base:text-2xl text-center">
         {t("not-tags")}
       </div>
     ) : null;
 
+  // рендеринг скелетона якщо відбувається завантаження 
   const renderLoaderVideo = loadingVideos ? (
     <LoadingCatalogueVideos count={activeVideoOffset} />
   ) : null;
 
+  // рендеринг відео якщо не відбувається процес завантаження
+  // стейт не дорівнює нулю та не дорівнює пустому масиву
   const renderVideos =
     !loadingVideos && videoData !== null && videoData?.length !== 0 ? (
       <CatalogVideo videoData={videoData} />
     ) : null;
 
+  // рендеринг повідомлення що відео нема якщо відео не завантажується масив відео дорівнює нулю або 
+  //  відео не завантажуються і стейт не дорівнює null
   const renderVideoMessage =
     (!loadingVideos && videoData?.length === 0) ||
     (!loadingVideos && videoData === null) ? (
@@ -175,6 +197,7 @@ const CatalogWrapper = () => {
       </div>
     ) : null;
 
+  // рендер сторінки
   return (
     <div className="">
       <div className="mb-5 base:mb-24">
@@ -182,13 +205,8 @@ const CatalogWrapper = () => {
       </div>
 
       <div
-        // className={`flex flex-wrap justify-start mb-[27px] base:mb-[54px] small:justify-center sm:justify-start`}
-        // className="grid grid-rows-{n} grid-cols-4  auto-rows-auto gap-x-2.5 grid-flow-dense"
         className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 sml:grid-cols-3 lg:grid-cols-4 gap-x-4 justify-items-center"
       >
-        {/* {videoData && videoData !== null ? (
-          <CatalogVideo videoData={videoData} />
-        ) : null} */}
         {renderLoaderVideo}
         {renderVideoMessage}
         {renderVideos}
@@ -207,7 +225,7 @@ const CatalogWrapper = () => {
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 onClick={() => {
-                  // setCurrentPage(currentPage === 1 ? 1 : currentPage - 1);
+                  
                 }}
                 className={`base:w-10 base:h-10 w-7 h-7 ${
                   currentPage === 1
@@ -232,7 +250,6 @@ const CatalogWrapper = () => {
               </svg>
             </Link>
 
-            {/* {allPages > 1 ? renderPagination() : } */}
             {renderPagination()}
             <Link
               href={`/catalogue?tag=${activeTag}&page=${

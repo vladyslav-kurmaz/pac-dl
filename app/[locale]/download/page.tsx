@@ -7,6 +7,7 @@ import Image from "next/image";
 import lineRight from "@/assets/image/youtube/line-right.webp";
 import pacRight from "@/assets/image/youtube/pack-right.webp";
 
+// мета теги для україномовного сайту
 const ukraineMetaData = (params: {
   [key: string]: string | string[] | undefined;
 }) => {
@@ -16,6 +17,7 @@ const ukraineMetaData = (params: {
   };
 };
 
+// мета теги для англомовного сайту
 const englishMetaData = (params: {
   [key: string]: string | string[] | undefined;
 }) => {
@@ -25,10 +27,7 @@ const englishMetaData = (params: {
   };
 };
 
-type Props = {
-  searchParams: { [key: string]: string | string[] | undefined };
-};
-
+// функція генерації метатегів на сторінці
 export async function generateMetadata({
   params,
   searchParams,
@@ -41,11 +40,16 @@ export async function generateMetadata({
     : ukraineMetaData(searchParams);
 }
 
+// Функція рендеру сторінки завантаження
 export default async function Download({ params }: { params: Params }) {
+   // Функція що отримує статус мови та ресурси для перекладу
   const { t, resources } = await initTranslations(params?.locale, [
     "youtube",
     "elements",
   ]);
+
+  // Рендер статичної та динамічної верстки сторінки динаміна приходить з файлу WrapperForDownload 
+  // переклади передаються з серверного компонента в клієнський за рахунок TranslationsProvider
   return (
     <div className="relative">
       <Image
@@ -60,6 +64,8 @@ export default async function Download({ params }: { params: Params }) {
         className="absolute hidden base:block z-10 bottom-[4%] right-0"
       />
 
+      {/* Функція для передавання правильного перекладу */}
+      {/* При додаванні нової мови потрібно додати сюди назву файлу  */}
       <TranslationsProvider
         locale={params.locale}
         namespaces={[
@@ -73,6 +79,7 @@ export default async function Download({ params }: { params: Params }) {
         ]}
         resources={resources}
       >
+        {/* Компонент де відбувається клієнтська логіка додатку  */}
         <WrapperForDownload />
       </TranslationsProvider>
     </div>

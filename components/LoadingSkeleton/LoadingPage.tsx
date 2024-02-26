@@ -1,23 +1,17 @@
-import { Skeleton, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
-import Image from "next/image";
+import { Skeleton } from "@chakra-ui/react";
 
-
-import lineRight from "@/assets/image/youtube/line-right.webp";
-
-
+// компонент що відображає процес завантаження сторінки завантаження
 const LoadingPage = () => {
   return (
     <div className="mb-7 base:mb-32 w-full max-w-[347px] md:max-w-full relative left-1/2 -translate-x-1/2 flex flex-col items-center">
-      {/* <Image src={lineRight} alt="line right" className="absolute hidden base:block z-10 top-[4%] right-0"/> */}
-      
+   
       <div className="flex flex-col w-full items-center relative z-20 md:items-start md:flex-row md:justify-around base:justify-between">
         <div className="relative w-full max-w-[347px] h-[192px] mb-[30px] md:mr-2 mr-0 base:mb-0 base:max-w-[633px] base:h-[350px] rounded-[15px] base:rounded-[20px]">
           <Skeleton height="100%" width={"100%"} rounded={"20px"} />
 
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            // width="104"
-            // height="164"
+           
             className="base:w-[104px] base:h-[164px] w-[57px] h-[90px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
             viewBox="0 0 104 164"
             fill="none"
@@ -173,8 +167,7 @@ const LoadingPage = () => {
 
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                // width="104"
-                // height="164"
+  
                 className="base:w-[56px] base:h-[36px] w-[20px] h-[40px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                 viewBox="0 0 104 164"
                 fill="none"
@@ -212,8 +205,7 @@ const LoadingPage = () => {
 
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                // width="104"
-                // height="164"
+
                 className="base:w-[56px] base:h-[36px] w-[20px] h-[40px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                 viewBox="0 0 104 164"
                 fill="none"
@@ -251,8 +243,7 @@ const LoadingPage = () => {
 
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                // width="104"
-                // height="164"
+
                 className="base:w-[56px] base:h-[36px] w-[20px] h-[40px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                 viewBox="0 0 104 164"
                 fill="none"
@@ -290,8 +281,6 @@ const LoadingPage = () => {
 
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                // width="104"
-                // height="164"
                 className="base:w-[56px] base:h-[36px] w-[20px] h-[40px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                 viewBox="0 0 104 164"
                 fill="none"

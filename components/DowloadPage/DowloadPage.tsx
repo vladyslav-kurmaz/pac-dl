@@ -3,15 +3,15 @@ import { useTranslation } from "react-i18next";
 
 import { DataVideo, DowloadFormat, SimilarVideo } from "@/types/types";
 import ButtonCategories from "../Button/ButtonCategories";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import ButtonRounded from "../Button/ButtonRounded";
-import PacDlServices from "@/services/PacDlServices";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import notFound from "@/assets/image/error/image_not_found.webp";
 
 import RenderTags from "../Tags/Tags";
+import visualActiveFormat from "@/utils/visualActiveFormat";
 
 const DowloadPage = ({
   dataVideo,
@@ -20,10 +20,15 @@ const DowloadPage = ({
   dataVideo: DataVideo;
   similarVideo: SimilarVideo[];
 }) => {
+  // активний формат відео
   const [videoFormat, setVideoFormat] = useState("popular");
+  // показувати чи ні опис
   const [moreDescription, setMoreDescription] = useState(false);
+  // показувати чи ні більше форматів
   const [moreFormats, setMoreFormats] = useState(false);
+  // функція перекладу
   const { t } = useTranslation("elements");
+  // масив вибраних тегів
   const [hightlightAll, setHightlightAll] = useState<string[]>([]);
   const router = useRouter();
 
@@ -40,48 +45,12 @@ const DowloadPage = ({
   } = dataVideo;
   const [formatData, setFormatData] = useState<DowloadFormat[] | string>("");
 
+  // визваємо функцію для відображення даних з активного формату 
   useEffect(() => {
-    switch (videoFormat) {
-      case "popular": {
-        video?.length > 0
-          ? setFormatData([...video])
-          : setFormatData(t("video-not-found"));
-        break;
-      }
-      case "hd": {
-        video?.length > 0
-          ? setFormatData(
-              video.filter((item) =>
-                item?.format_note !== undefined
-                  ? +item?.format_note?.slice(
-                      0,
-                      item?.format_note?.length - 1
-                    ) >= 720 ||
-                    +item?.format_note >= 720 || 
-                    +item?.resolution?.split('x')[1] >= 720
-                    ||
-                    item?.format_note === "hd"
-                  : t("video-not-found")
-              )
-            )
-          : setFormatData(t("video-not-found"));
-        break;
-      }
-      case "audio": {
-        audio_only?.length > 0
-          ? setFormatData([...audio_only])
-          : setFormatData(t("audio-not-found"));
-        break;
-      }
-      case "all-formats": {
-        video?.length > 0 || audio_only?.length > 0 || video_only?.length > 0
-          ? setFormatData([...video, ...audio_only, ...video_only])
-          : setFormatData(t("formars-not-found"));
-        break;
-      }
-    }
+    visualActiveFormat(videoFormat, video, audio_only, video_only, setFormatData, t)
   }, [videoFormat]);
 
+  // функція рендерить формати 
   const renderFormats = () => {
     return typeof formatData !== "string" ? (
       formatData?.map((item, i) => {
@@ -119,14 +88,17 @@ const DowloadPage = ({
     );
   };
 
+  // функція для виділення тегів
   const onHightlightAll = () => {
     setHightlightAll(tag);
   };
 
+  // функція для копіювання тегів
   const copyAll = () => {
     navigator.clipboard.writeText(hightlightAll?.join(", "));
   };
 
+  // фунція для виводу схожих відео
   const renderSimilarVideo = () => {
     return similarVideo?.map((item) => {
       const { title, video_url, preview_url, id } = item;
@@ -140,6 +112,7 @@ const DowloadPage = ({
           className="flex flex-col items-center mb-[30px] w-[166px] lg:w-[269px] cursor-pointer"
           key={id}
         >
+          {/* визначає чи є посилання на фото в негативному випадку вставляє заглушку notFound */}
           {preview_url ? (
             <Image
               src={preview_url}
@@ -349,28 +322,9 @@ const DowloadPage = ({
 
             <div
               className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4  lg:grid-cols-4 gap-x-4 justify-items-center"
-              // className="w-full flex flex-wrap justify-between small:flex-col sm:flex-row"
             >
               {similarVideo?.length > 0 ? renderSimilarVideo() : null}
-              {/* <div className="flex flex-col items-center mr-1">
-                <div className="relative w-[166px] h-[93px] mb-1 base:mb-2  lg:w-[269px] lg:h-[149px] rounded-[15px] base:rounded-[20px]"></div>
-                <div className="w-[70%] h-[8px] mb-3 base:mb-6  base:h-[22px] "></div>
-              </div>
-
-              <div className="flex flex-col items-center mr-1">
-                <div className="relative w-[166px] h-[93px] mb-1 base:mb-2 lg:w-[269px] lg:h-[149px] rounded-[15px] base:rounded-[20px]"></div>
-                <div className="w-[70%] h-[8px] mb-3 base:mb-6  base:h-[22px] "></div>
-              </div>
-
-              <div className="flex flex-col items-center mr-1">
-                <div className="relative w-[166px] h-[93px] mb-1 base:mb-2 lg:w-[269px] lg:h-[149px] rounded-[15px] base:rounded-[20px]"></div>
-                <div className="w-[70%] h-[8px] mb-3 base:mb-6  base:h-[22px] "></div>
-              </div>
-
-              <div className="flex flex-col items-center">
-                <div className="relative w-[166px] h-[93px] mb-1 base:mb-2 lg:w-[269px] lg:h-[149px] rounded-[15px] base:rounded-[20px]"></div>
-                <div className="w-[70%] h-[8px] mb-3 base:mb-6  base:h-[22px] "></div>
-              </div> */}
+            
             </div>
           </div>
         ) : null}
@@ -380,3 +334,6 @@ const DowloadPage = ({
 };
 
 export default DowloadPage;
+
+
+

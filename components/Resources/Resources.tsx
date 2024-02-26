@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import { dataSocialNetwork } from "@/types/types";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -14,14 +13,14 @@ import soundcloudIcon from "@/assets/image/social/soundcloud.webp";
 import plusIcon from "../../assets/image/icons/plus.webp";
 
 const Resources = ({
-  // data,
   text,
 }: {
-  // data: dataSocialNetwork[];
   text: string;
 }) => {
+  // коли більше 10 соціальних мереж відображаєть кнопка більше при натисканні на яку змінюється цей стейт
   const [seeMore, setSeeMore] = useState(false);
 
+  // список соціальних мереж icon це посилання на іконку link це посилання на сторінку
   const sosialNetworks = [
     {
       icon: facebookIcon,
@@ -43,37 +42,10 @@ const Resources = ({
       icon: instagramIcon,
       link: "instagram",
     },
-    // {
-    //   icon: soundcloudIcon,
-    //   link: "soundcloud",
-    // },
-
-    // {
-    //   icon: facebookIcon,
-    //   link: 'facebook'
-    // },
-    // {
-    //   icon: youtubeIcon,
-    //   link: 'youtube'
-    // },
-    // {
-    //   icon: tictokIcon,
-    //   link: 'tictok'
-    // },
-    // {
-    //   icon: twitterIcon,
-    //   link: 'twitter'
-    // },
-    // {
-    //   icon: instagramIcon,
-    //   link: 'instagram'
-    // },
-    // {
-    //   icon: soundcloudIcon,
-    //   link: 'soundcloud'
-    // }
+   
   ];
 
+  // рендер іконок
   const renderIcons = () => {
     return sosialNetworks.map((item, i) => {
       const { icon, link } = item;
@@ -89,16 +61,6 @@ const Resources = ({
             <Image src={icon} priority={true} alt={link} className="w-full " />
           </Link>
         );
-      } else if (i === 9) {
-        // return (
-        //   <Link
-        //     href={`/${link}`}
-        //     className={`w-6 h-6 base:w-9 base:h-9  ${seeMore ? 'mb-3 base:mb-4 mr-0 base:mr-0' : 'mr-4 base:mr-7'}`}
-        //     key={link}
-        //   >
-        //     <Image src={icon} alt={link} className="w-full "/>
-        //   </Link>
-        // );
       } else {
         return (
           <Link
@@ -115,6 +77,7 @@ const Resources = ({
     });
   };
 
+  // відображення в залежності від кількості іконок
   const style =
     sosialNetworks?.length > 9
       ? "justify-start w-9/12"
@@ -126,6 +89,7 @@ const Resources = ({
         {renderIcons()}
       </div>
 
+      {/* більше 9 іконок відображаємо кнопку */}
       {sosialNetworks?.length > 9 && (
         <div
           className="base:w-[170px] w-[80px] flex flex-col base:flex-row   justify-between items-center"

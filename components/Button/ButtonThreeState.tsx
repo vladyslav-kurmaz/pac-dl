@@ -2,6 +2,7 @@
 
 import { Dispatch, MouseEvent, SetStateAction, useEffect, useState } from "react";
 
+// кнопка з 3 станами 
 const ButtonThreeState = ({
   text,
   disabled,

@@ -3,10 +3,8 @@ import ButtonNormal from "../Button/ButtonNormal";
 import ButtonRounded from "../Button/ButtonRounded";
 import Image, { StaticImageData } from "next/image";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import PacDlServices from "@/services/PacDlServices";
 import { useRouter, useSearchParams } from "next/navigation";
 import { DataVideo } from "@/types/types";
-import { useTranslation } from "react-i18next";
 
 const Input = ({
   placeholder,
@@ -31,7 +29,9 @@ const Input = ({
   setVideoData: Dispatch<SetStateAction<DataVideo | null>>;
   errors: string[];
 }) => {
+  // значення інпута
   const [inputValue, setInputValue] = useState("");
+  // статуси помилок
   const [inputError, setInputError] = useState(false);
   const [error500, setError500] = useState(false);
   const [required, setRequired] = useState(false);
@@ -46,14 +46,19 @@ const Input = ({
 
   const url = searchParams.get("url");
 
+  // перевірка на валідне значення і відповідь одразу
   useEffect(() => {
     validateInput(inputValue);
   }, [inputValue]);
 
+  // перевірка на наявність помилки і у випадку незміни значення вона очищується через 10 секунд
   useEffect(() => {
     setTimeout(() => localStorage.clear(), 10000);
 
-    if (typeof window !== "undefined" && localStorage.getItem("mediaTypeNotFound")) {
+    if (
+      typeof window !== "undefined" &&
+      localStorage.getItem("mediaTypeNotFound")
+    ) {
       setMediaTypeNotFound(true);
     } else {
       setMediaTypeNotFound(false);
@@ -102,16 +107,20 @@ const Input = ({
     }
   }, []);
 
+  // перевіряємо чи є get запит на завантаження відео і робимо запускаємо процес завантаження
+  // якщо ні повертаємо на головну
   useEffect(() => {
     if (typeof url === "string") {
       setVideoData(null);
       getVideo(url);
       setInputValue(url);
+      return;
     } else {
-      // router.push(`/`);
+      router.push(`/`);
     }
   }, [url]);
 
+  // функція валідації значення інпута чи є https / http
   const validateInput = (value: string) => {
     const regExp = value.match(/^(https?|http):\/\//);
 
@@ -122,12 +131,30 @@ const Input = ({
     }
   };
 
+  // перевіряєм чи є гет запит якщо так тоді робимо запит на сервер якщо ні тоді 
+  // викидаємо помилку що поле не заповнене 
   const getVideo = async (value: string) => {
     if (value?.length === 0) {
       setRequired(true);
     } else {
       router.push(`/download?url=${value}`);
     }
+  };
+
+  // очищення помилок
+  const removeError = () => {
+    setError500(false);
+    setRequired(false);
+    setErrorNotFindVideo(false);
+    setErrorDontSupport(false);
+    setErrorExtractor(false);
+    setMediaTypeNotFound(false);
+    localStorage.removeItem("error500");
+    localStorage.removeItem("errorNotFindVideo");
+    localStorage.removeItem("errorLongRequest");
+    localStorage.removeItem("errorDontSupport");
+    localStorage.removeItem("errorExtractor");
+    localStorage.removeItem("mediaTypeNotFound");
   };
 
   return (
@@ -152,17 +179,7 @@ const Input = ({
         className="w-full max-h-full pl-6 pr-2 base:pl-16 rounded-2xl placeholder:text-xs text-xs base:placeholder:text-xl base:text-xl border-none outline-none"
         value={inputValue}
         onChange={(e) => {
-          setError500(false);
-          setRequired(false);
-          setErrorNotFindVideo(false);
-          setErrorDontSupport(false);
-          setErrorExtractor(false);
-          setMediaTypeNotFound(false)
-          localStorage.removeItem("error500");
-          localStorage.removeItem("errorNotFindVideo");
-          localStorage.removeItem("errorLongRequest");
-          localStorage.removeItem("errorDontSupport");
-          localStorage.removeItem("errorExtractor");
+          removeError();
           setInputValue(e.target.value);
         }}
       />
@@ -170,19 +187,7 @@ const Input = ({
         <ButtonRounded
           disabled={loading || inputError}
           onClick={async () => {
-            setError500(false);
-            setRequired(false);
-            setErrorNotFindVideo(false);
-            setErrorDontSupport(false);
-            setErrorExtractor(false);
-            setErrorExtractor(false);
-            setMediaTypeNotFound(false)
-            localStorage.removeItem("error500");
-            localStorage.removeItem("errorNotFindVideo");
-            localStorage.removeItem("errorLongRequest");
-            localStorage.removeItem("errorDontSupport");
-            localStorage.removeItem("errorExtractor");
-            localStorage.removeItem("mediaTypeNotFound");
+            removeError();
 
             setInputValue(await navigator.clipboard.readText());
           }}
@@ -196,7 +201,7 @@ const Input = ({
           onClick={() => getVideo(inputValue)}
         />
       </div>
-
+        {/* відображення помилок */}
       {required && (
         <div className="absolute base:-bottom-9 -bottom-7 text-rose-600 text-xs base:text-base left-0">
           {errors[0]}
@@ -236,8 +241,6 @@ const Input = ({
           {errors[6]}
         </div>
       )}
-
-
 
       {mediaTypeNotFound && (
         <div className="absolute base:-bottom-9 -bottom-7 text-rose-600 text-xs base:text-base left-0">

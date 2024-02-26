@@ -1,10 +1,11 @@
 import useHttp from "@/hooks/useHttp";
 
 const PacDlServices = () => {
+  // при оновлені посилання на бекенд потрібно його змінити тут
   const _baseUrl = "https://pac-dl-deploy.onrender.com/video/";
-  const _dockerUrl = "http://localhost:8000/video/";
   const { request } = useHttp();
 
+  // ця функція використовувалась раніше
   const downloadVideos = async (body: BodyInit) => {
     const header = { "Content-Type": "application/json" };
     console.log(body);
@@ -17,7 +18,7 @@ const PacDlServices = () => {
       return e;
     }
   };
-
+  // функція для отримання відео з апі 
   const getVideoInfo = async (url: string) => {
     try {
       const req = await request(`${_baseUrl}video-info/?url=${url}`);
@@ -28,6 +29,7 @@ const PacDlServices = () => {
     }
   };
 
+  // функція для отримання топ відео з бекенда
   const getTopVideo = async (
     period: string,
     offcet?: number,
@@ -46,6 +48,7 @@ const PacDlServices = () => {
     }
   };
 
+  // функція для отримання топ тегів з бекенда
   const getPopuliarTags = async (offcet?: number, page?: number) => {
     const offsetUrl = offcet ? `&page_size=${offcet}` : null;
     const pageUrl = offcet ? `&page=${page}` : null;
@@ -64,6 +67,7 @@ const PacDlServices = () => {
     }
   };
 
+  // функція для отримання всі відео з бекенда
   const getAllVideo = async (offcet?: number, page?: number) => {
     const offsetUrl = offcet ? `&page_size=${offcet}` : null;
     const pageUrl = offcet ? `&page=${page}` : null;
@@ -82,6 +86,7 @@ const PacDlServices = () => {
     }
   };
 
+  // функція для отримання відфільтровані відео з бекенда
   const getFilterVideo = async (
     tag: string,
     offcet?: number,

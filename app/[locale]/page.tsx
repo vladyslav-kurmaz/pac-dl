@@ -1,14 +1,7 @@
 import Image from "next/image";
 import initTranslations from "@/app/i18n";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
-import Input from "@/components/Input/Input";
 
-// import facebookIcon from "@/assets/image/social/facebook.webp";
-// import youtubeIcon from "@/assets/image/social/youtube.webp";
-// import tictokIcon from "@/assets/image/social/tictok.webp";
-// import twitterIcon from "@/assets/image/social/twitter.webp";
-// import instagramIcon from "@/assets/image/social/instagram.webp";
-// import soundcloudIcon from "@/assets/image/social/soundcloud.webp";
 import urlOne from "@/assets/image/youtube/youtubeOne.webp";
 import urlTwo from "@/assets/image/youtube/youtubeTwo.webp";
 import video from "@/assets/image/youtube/video.webp";
@@ -21,30 +14,34 @@ import lineLeft from "@/assets/image/youtube/line-left.webp";
 import pacRight from "@/assets/image/youtube/pack-right.webp";
 import pacLeft from "@/assets/image/youtube/pack-left.webp";
 
-import Resources from "@/components/Resources/Resources";
-import TopVideo from "@/components/TopVideo/TopVideo";
 import Accordion from "@/components/Accordion/Accordion";
 import WraperForClientContentOnMainPage from "@/components/WraperForClientContentOnMainPage/WraperForClientContentOnMainPage";
 import TranslationsProvider from "@/components/TranslationProvider/TranslationProvider";
 
+// мета теги для україномовного сайту
 const ukraineMetaData = {
   title: "Завантажити відео з Youtube",
 };
 
+// мета теги для англомовного сайту
 const englishMetaData = {
   title: "Download video from Youtube",
 };
 
+// функція генерації метатегів на сторінці
 export async function generateMetadata({ params }: { params: Params }) {
   return params.locale === "en" ? englishMetaData : ukraineMetaData;
 }
 
+// Функція що рендерити головну сторінку
 export default async function Home({ params }: { params: Params }) {
+  // Функція що отримує статус мови та ресурси для перекладу
   const { t, resources } = await initTranslations(params?.locale, [
     "youtube",
     "elements",
   ]);
 
+  // Масив з питанням для акордиону на сторінці 
   const dataFaq = [
     {
       title:
@@ -66,6 +63,9 @@ export default async function Home({ params }: { params: Params }) {
     },
   ];
 
+
+// Рендер статичної та динамічної верстки сторінки динаміна приходить з файлу WraperForClientContentOnMainPage 
+// переклади передаються з серверного компонента в клієнський за рахунок TranslationsProvider
   return (
     <div className="relative pt-20 base:pt-48 ">
       <Image
@@ -96,6 +96,9 @@ export default async function Home({ params }: { params: Params }) {
         className="absolute hidden base:block z-10 bottom-[10%] right-0"
       />
       <div className="base:max-w-lg mx-auto px-4 relative z-20">
+
+        {/* Функція для передавання правильного перекладу */}
+        {/* При додаванні нової мови потрібно додати сюди назву файлу  */}
         <TranslationsProvider
           locale={params.locale}
           namespaces={[
@@ -110,12 +113,14 @@ export default async function Home({ params }: { params: Params }) {
           ]}
           resources={resources}
         >
+          {/* Компонент де відбувається клієнтська логіка додатку  */}
           <WraperForClientContentOnMainPage
-            // sosialNetworks={sosialNetworks}
             namespaces={"youtube"}
           />
         </TranslationsProvider>
 
+
+        {/* Статичний контент */}
         <h2 className="text-lg font-bold leading-6 base:leading-9 base:text-[32px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
           {t("faq")}
         </h2>
@@ -194,7 +199,6 @@ export default async function Home({ params }: { params: Params }) {
         </div>
 
         <div className="flex flex-wrap sm:flex-row  sm:justify-between base:flex-row base:justify-between  base:items-start">
-          {/* h-full max-h-[196px] base:max-h-[397px] */}
           <div className="max-w-[368px] sm:max-w-[45%] px-2 flex flex-col items-center base:items-start base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
             <Image
               src={video}
@@ -208,7 +212,7 @@ export default async function Home({ params }: { params: Params }) {
               {t("video-text")}
             </p>
           </div>
-          {/* h-full max-h-[196px] base:max-h-[397px] */}
+          
           <div className="max-w-[368px] sm:max-w-[45%] px-2 flex flex-col items-center base:items-start base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
             <Image
               src={audio}
@@ -222,7 +226,7 @@ export default async function Home({ params }: { params: Params }) {
               {t("audio-text")}
             </p>
           </div>
-          {/* h-full max-h-[196px] base:max-h-[397px] */}
+          
           <div className="max-w-[368px] flex sm:max-w-[45%] px-2 flex-col items-center base:items-start base:max-w-[496px] w-full h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
             <Image
               src={free}
@@ -236,7 +240,7 @@ export default async function Home({ params }: { params: Params }) {
               {t("free-text")}
             </p>
           </div>
-          {/* */}
+          
           <div className="max-w-[368px] flex sm:max-w-[45%] px-2 flex-col items-center base:items-start base:max-w-[496px] w-full  h-full max-h-[392px] base:max-h-[596px] mb-7 base:mb-14">
             <Image
               src={noprogram}

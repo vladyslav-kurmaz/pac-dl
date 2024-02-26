@@ -1,13 +1,9 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { usePathname } from "next/navigation";
-import { useTranslation } from "react-i18next";
 import i18nConfig from "@/i18nConfig";
-import { i18n } from "i18next";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
-// const { i18n } = useTranslation();
+// функція зміни мови та сетинг її в кукі
 export default function LanguageChanger(
   router: AppRouterInstance,
   currentPathname: string,

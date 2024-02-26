@@ -1,5 +1,5 @@
 import { Skeleton } from "@chakra-ui/react";
-
+// компонент що відображає процес завантаження відео
 const LoadingCatalogueVideos = ({ count }: { count: number }) => {
   const elements = [];
 

@@ -1,5 +1,6 @@
 "use client";
 
+// Кнопка інпута приймає {text, disabled, onClick, style}
 const ButtonNormal = ({
   text,
   disabled,

@@ -1,5 +1,6 @@
 // import { TValidatinForm } from "../types/types";
-
+// валідація форми в залежності від значення 
+// валідує ім'я, пошту, та повідомлення 
 const validationForm = (value: string, name: string) => {
   switch (name) {
     case "name":
@@ -48,9 +49,6 @@ const validationForm = (value: string, name: string) => {
       }
     case "message":
       // eslint-disable-next-line
-      // const validValueEmail = value.match(/^[\w\.-]+@[\w\.-]+\.\w+$/);
-      // const onlyLatiOrNumnEmail = value.match(/^[a-zA-Z0-9@.\-_]+$/);
-
       if (value.length < 10 && value.length > 0) {
         return {
           errorStatus: true,
@@ -64,27 +62,7 @@ const validationForm = (value: string, name: string) => {
           class: "",
         };
       }
-    // case "pass":
-    //   const onlyLatiOrNumnPass = value.match(/^[a-zA-Z0-9.\-_]+$/);
-    //   if (onlyLatiOrNumnPass === null) {
-    //     return {
-    //       errorStatus: true,
-    //       message: "Пароль доступно латинецею і цифрами",
-    //       class: "error",
-    //     };
-    //   } else if (value.length < 8) {
-    //     return {
-    //       errorStatus: true,
-    //       message: "Пароль мінімум 8 сиволів",
-    //       class: "error",
-    //     };
-    //   } else {
-    //     return {
-    //       errorStatus: false,
-    //       message: "Пароль заповнено правильно",
-    //       class: "done",
-    //     };
-    //   }
+    
     default:
       return null;
   }

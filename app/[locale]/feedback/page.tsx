@@ -5,8 +5,27 @@ import TranslationsProvider from "@/components/TranslationProvider/TranslationPr
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import Image from "next/image";
 
+const ukraineMetaData = {
+  title: "Залишити зворотній зв'язок",
+};
+
+// мета теги для англомовного сайту
+const englishMetaData = {
+  title: "Leave a review",
+};
+
+// функція генерації метатегів на сторінці
+export async function generateMetadata({ params }: { params: Params }) {
+  return params.locale === "en" ? englishMetaData : ukraineMetaData;
+}
+
+// Функція що рендерить сторінку Форми зворотьного зв'язку
 export default async function Feedback({ params }: { params: Params }) {
+  // Функція що отримує статус мови та ресурси для перекладу
   const { t, resources } = await initTranslations(params?.locale, ["feedback"]);
+
+  // Рендер статичної та динамічної верстки сторінки динаміна приходить з файлу FeedbackForm 
+  // переклади передаються з серверного компонента в клієнський за рахунок TranslationsProvider
   return (
     <div className="relative pt-20 base:pt-48 ">
       <Image
@@ -24,6 +43,7 @@ export default async function Feedback({ params }: { params: Params }) {
           namespaces={"feedback"}
           resources={resources}
         >
+          {/* обгорта для використання стейту */}
           <FeedbackForm />
         </TranslationsProvider>
       </div>

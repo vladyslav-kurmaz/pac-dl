@@ -1,7 +1,6 @@
 import Image from "next/image";
 import initTranslations from "@/app/i18n";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
-import Input from "@/components/Input/Input";
 
 import facebookIcon from "@/assets/image/social/facebook.webp";
 import youtubeIcon from "@/assets/image/social/youtube.webp";
@@ -21,83 +20,34 @@ import lineLeft from "@/assets/image/youtube/line-left.webp";
 import pacRight from "@/assets/image/youtube/pack-right.webp";
 import pacLeft from "@/assets/image/youtube/pack-left.webp";
 
-import clipIcon from "@/assets/image/icons/clip.webp";
-import Resources from "@/components/Resources/Resources";
-import TopVideo from "@/components/TopVideo/TopVideo";
 import Accordion from "@/components/Accordion/Accordion";
 import TranslationsProvider from "@/components/TranslationProvider/TranslationProvider";
 import WraperForClientContentOnMainPage from "@/components/WraperForClientContentOnMainPage/WraperForClientContentOnMainPage";
 
+// мета теги для україномовного сайту
 const ukraineMetaData = {
   title: "Завантажити відео з Tiktok",
 };
 
+// мета теги для англомовного сайту
 const englishMetaData = {
   title: "Download vidio from Tiktok",
 };
 
+// функція генерації метатегів на сторінці
 export async function generateMetadata({ params }: { params: Params }) {
   return params.locale === "en" ? englishMetaData : ukraineMetaData;
 }
 
+// Функція що рендерити головну сторінку
 export default async function Tiktok({ params }: { params: Params }) {
   const { t, resources } = await initTranslations(params?.locale, [
     "tiktok",
     "elements",
   ]);
 
-  const sosialNetworks = [
-    {
-      icon: facebookIcon,
-      link: "facebook",
-    },
-    {
-      icon: youtubeIcon,
-      link: "",
-    },
-    {
-      icon: tictokIcon,
-      link: "tiktok",
-    },
-    {
-      icon: twitterIcon,
-      link: "twitter",
-    },
-    {
-      icon: instagramIcon,
-      link: "instagram",
-    },
-    {
-      icon: soundcloudIcon,
-      link: "soundcloud",
-    },
-
-    // {
-    //   icon: facebookIcon,
-    //   link: 'facebook'
-    // },
-    // {
-    //   icon: youtubeIcon,
-    //   link: 'youtube'
-    // },
-    // {
-    //   icon: tictokIcon,
-    //   link: 'tictok'
-    // },
-    // {
-    //   icon: twitterIcon,
-    //   link: 'twitter'
-    // },
-    // {
-    //   icon: instagramIcon,
-    //   link: 'instagram'
-    // },
-    // {
-    //   icon: soundcloudIcon,
-    //   link: 'soundcloud'
-    // }
-  ];
-
+ 
+ // Масив з питанням для акордиону на сторінці 
   const dataFaq = [
     {
       title:
@@ -119,6 +69,8 @@ export default async function Tiktok({ params }: { params: Params }) {
     },
   ];
 
+  // Рендер статичної та динамічної верстки сторінки динаміна приходить з файлу WraperForClientContentOnMainPage 
+// переклади передаються з серверного компонента в клієнський за рахунок TranslationsProvider
   return (
     <div className="relative pt-20 base:pt-48 ">
       <Image
@@ -150,6 +102,9 @@ export default async function Tiktok({ params }: { params: Params }) {
       />
 
       <div className="z-20 relative base:max-w-lg mx-auto px-4">
+        
+        {/* Функція для передавання правильного перекладу */}
+        {/* При додаванні нової мови потрібно додати сюди назву файлу  */}
         <TranslationsProvider
           locale={params.locale}
           namespaces={[
@@ -163,9 +118,10 @@ export default async function Tiktok({ params }: { params: Params }) {
           ]}
           resources={resources}
         >
+          {/* Компонент де відбувається клієнтська логіка додатку  */}
           <WraperForClientContentOnMainPage namespaces={"tiktok"} />
         </TranslationsProvider>
-
+        {/* Статичний контент */}
         <h2 className="text-lg font-bold leading-6 base:leading-9 base:text-[32px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
           {t("faq")}
         </h2>

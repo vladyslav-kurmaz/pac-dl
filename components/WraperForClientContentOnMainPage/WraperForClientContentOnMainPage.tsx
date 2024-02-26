@@ -1,41 +1,28 @@
 "use client";
 
-import { DataVideo, SimilarVideo, dataSocialNetwork } from "@/types/types";
+import { DataVideo } from "@/types/types";
 import Input from "@/components/Input/Input";
 
 import clipIcon from "@/assets/image/icons/clip.webp";
 import { useTranslation } from "react-i18next";
-import { useEffect, useState } from "react";
-import LoadingPage from "../LoadingSkeleton/LoadingPage";
-import Image from "next/image";
-
-import lineRight from "@/assets/image/youtube/line-right.webp";
-import lineLeft from "@/assets/image/youtube/line-left.webp";
-import pacRight from "@/assets/image/youtube/pack-right.webp";
-import pacLeft from "@/assets/image/youtube/pack-left.webp";
-import DowloadPage from "../DowloadPage/DowloadPage";
-import { useSearchParams } from "next/navigation";
+import { useState } from "react";
 import Resources from "../Resources/Resources";
 import TopVideo from "../TopVideo/TopVideo";
-import TranslationsProvider from "../TranslationProvider/TranslationProvider";
+
+// клієнський компонент для обготрання динамічних компонентів сторінки
 
 const WraperForClientContentOnMainPage = ({
-  // sosialNetworks,
-  // dataFaq,
   namespaces,
 }: {
-  // sosialNetworks: dataSocialNetwork[];
-  // dataFaq: {
-  //   title: string;
-  //   answer: string;
-  // }[];
   namespaces: string;
 }) => {
-  const { t, i18n } = useTranslation(["elements", namespaces]);
+  const { t } = useTranslation(["elements", namespaces]);
+  // статус завантаження сторінки для передачі на інпут
   const [loading, setLoading] = useState(false);
-  const searchParams = useSearchParams();
+  // отримання відео данних
   const [videoData, setVideoData] = useState<DataVideo | null>(null);
 
+  // текстове бачення помилок для відображння їх у інпуті
   const inputErrors = [
     t(`required`),
     t("error500"),
@@ -47,6 +34,7 @@ const WraperForClientContentOnMainPage = ({
     t("mediaTypeNotFound"),
   ];
 
+  // контент з Input, Resources, TopVideo
   return (
     <>
       <h1 className="text-lg font-bold leading-6 base:leading-9 base:text-[40px] mx-auto mb-3 base:mb-14 text-center max-w-80 base:max-w-[857px]">
@@ -73,7 +61,6 @@ const WraperForClientContentOnMainPage = ({
 
       <div className="mb-7 base:mb-24">
         <Resources
-        //  data={sosialNetworks} 
          text={t("elements:showAll")} />
       </div>
 

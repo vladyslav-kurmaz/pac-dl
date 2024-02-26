@@ -3,12 +3,13 @@
 import { dataSelect } from "@/types/types";
 import Image from "next/image";
 import { StaticImageData } from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import LanguageChanger from "@/utils/LanguageChanger";
 import { useRouter, useSearchParams } from "next/navigation";
 import { usePathname } from "next/navigation";
 
+// комопонет для зміни мови
 const Select = ({
   data,
   arrowIcon,
@@ -21,24 +22,30 @@ const Select = ({
   classes?: string;
 }) => {
   const { i18n } = useTranslation();
+  // статус списку мов
   const [openList, setOpenList] = useState(false);
+  // вибрана мова
   const [currentLanguge, setCurrentLanguage] = useState(i18n.language);
   const router = useRouter();
   const currentPathname = usePathname();
   const searchParams = useSearchParams();
-  const searchTags = searchParams.get('tag');
-  const searchPage = searchParams.get('page');
-  // console.log(serchTags, serchPage);
+  const searchTags = searchParams.get("tag");
+  const searchPage = searchParams.get("page");
+
+  // функція що збирає дані про оновлення мови
   const changeLanguage = (value: string) => {
-    const tags = searchTags !== null ? `?tag=${searchTags}` : '';
-    const page = searchPage !== null ? `&page=${searchPage}` : '';
-
+    // перевіряє чи є гет параметри
+    const tags = searchTags !== null ? `?tag=${searchTags}` : "";
+    const page = searchPage !== null ? `&page=${searchPage}` : "";
+    // будуємо посилання
     const currentPathnameWithParams = `${currentPathname}${tags}${page}`;
-
+    // викликаємо функцію зміни мови на рівні додатку
     LanguageChanger(router, currentPathnameWithParams, value, currentLanguge);
+    // закриваємо список
     setOpenList(false);
   };
 
+  // рендер списка мов в залежності від даних
   const renderItem = (data: dataSelect[]) => {
     return data.map((item, i) => {
       const { flag, value, text } = item;
@@ -60,6 +67,7 @@ const Select = ({
     });
   };
 
+  // виділення вибраної мови
   const curentItem = (data: dataSelect[]) => {
     return data.map((item, i) => {
       const { flag, value, text } = item;
@@ -78,6 +86,10 @@ const Select = ({
     });
   };
 
+  const listStyle = openList
+    ? { transform: "rotate(90deg)", transition: "all .5s" }
+    : { transform: "rotate(0)", transition: "all .5s" };
+
   return (
     <div
       className={`relative flex justify-between items-center ${classes}`}
@@ -91,11 +103,7 @@ const Select = ({
           src={arrowIcon}
           onClick={(e) => setOpenList((state) => !state)}
           alt="arrow"
-          style={
-            openList
-              ? { transform: "rotate(90deg)", transition: "all .5s" }
-              : { transform: "rotate(0)", transition: "all .5s" }
-          }
+          style={listStyle}
           className="w-7 h-7"
         />
       )}

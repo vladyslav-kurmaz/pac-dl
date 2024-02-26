@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
+// компонент рендера тегів під час завантаження відео
 const RenderTags = ({
   tag,
   hightlightAll,
@@ -9,12 +10,16 @@ const RenderTags = ({
   hightlightAll: string[];
   setHightLightAll: Dispatch<SetStateAction<string[]>>;
 }) => {
+  // статус вибраний тег ні
   const [active, setActive] = useState(false);
 
+  // перевірка чи є тег в масиві вибраних тегів та додає йому стилі
   useEffect(() => {
     hightlightAll.includes(tag) ? setActive(true) : setActive(false);
   }, [hightlightAll]);
 
+  // функція що перевіряє чи є тег в масиві вибраних компонентів та 
+  // додає або видаляє його по необхідності
   const selectTags = (tag: string) => {
     if (hightlightAll.includes(tag)) {
       setActive(false);
@@ -38,7 +43,6 @@ const RenderTags = ({
       {tag}
     </div>
   );
-  // });
 };
 
 export default RenderTags;

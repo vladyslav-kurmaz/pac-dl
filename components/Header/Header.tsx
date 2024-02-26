@@ -2,22 +2,17 @@
 
 import initTranslations from "@/app/i18n";
 import Link from "next/link";
-import Image from "next/image";
-// import { Select } from "@chakra-ui/react";
 import Select from "../Select/Select";
-import { useTranslation } from "react-i18next";
 
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 
-import { Sling as Hamburger } from "hamburger-react";
-import { useState } from "react";
 import HamburgerMenu from "../HamburgerMenu/HamburgerMenu";
-import { useEffect } from "react";
 import TranslationsProvider from "../TranslationProvider/TranslationProvider";
 
 import uk from "../../assets/image/flags/uk.webp";
 import en from "../../assets/image/flags/en.webp";
 
+// приймає парамс для правильної локалізації
 const Header = async ({ params }: { params: Params }) => {
   const { t, resources } = await initTranslations(params?.locale, ["header"]);
 
@@ -89,12 +84,12 @@ const Header = async ({ params }: { params: Params }) => {
             <Link href="/music" className="ml-4 link text-sm base:text-base">
               {t("download_audio")}
             </Link>
-            <Link
+            {/* <Link
               href={`/catalogue?tag=${t("allVideo")}&page=1`}
               className="ml-4 link text-sm base:text-base"
             >
               {t("catalogue")}
-            </Link>
+            </Link> */}
 
             <div className="w-10 ml-4">
               <Select
@@ -102,40 +97,13 @@ const Header = async ({ params }: { params: Params }) => {
                   { flag: uk, value: "uk" },
                   { flag: en, value: "en" },
                 ]}
-                // flagIcon={[uk, en]}
               ></Select>
             </div>
           </nav>
 
           <div className="block base:hidden relative z-10">
             <HamburgerMenu />
-            {/* <Hamburger toggled={showMenu} toggle={setShowMenu}/> */}
           </div>
-
-          {/* {
-            showMenu ?
-              <div className="flex flex-col base:hidden h-screen z-10 w-full fixed -top-0 bg-white left-0">
-                <div className="w-10 ml-4">
-
-                </div>
-                <Link href="/" className="ml-4 link text-sm base:text-base">
-                  {t("download_video")}
-                </Link>
-                <Link href="/shorts" className="ml-4 link text-sm base:text-base">
-                  {t("download_shorts")}
-                </Link>
-                <Link href="/audio" className="ml-4 link text-sm base:text-base">
-                  {t("download_audio")}
-                </Link>
-                <Link href="/cataloq" className="ml-4 link text-sm base:text-base">
-                  {t("catalogue")}
-                </Link>
-
-                
-              </div>
-              :
-              null
-          } */}
         </div>
       </header>
     </TranslationsProvider>

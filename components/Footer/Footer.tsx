@@ -2,6 +2,7 @@ import initTranslations from "@/app/i18n";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import Link from "next/link";
 
+// отримує  params для мультимовності
 const Footer = async ({ params }: { params: Params }) => {
   const { t } = await initTranslations(params?.locale, ["footer"]);
 
@@ -12,8 +13,6 @@ const Footer = async ({ params }: { params: Params }) => {
           <div className="mb-6 w-28 md:w-52 relative left-1/2 -translate-x-1/2 base:translate-x-0 base:left-0">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              // width="217"
-              // height="51"
               className=" "
               viewBox="0 0 217 51"
               fill="none"
@@ -158,11 +157,11 @@ const Footer = async ({ params }: { params: Params }) => {
             {t("info")}
           </p>
           <ul>
-            <li className="mb-2.5 text-center base:text-start">
+            {/* <li className="mb-2.5 text-center base:text-start">
               <Link className="link text-sm base:text-base" href="/catalogue">
                 {t("popular-video")}
               </Link>
-            </li>
+            </li> */}
             <li className="mb-2.5 text-center base:text-start">
               <Link className="link text-sm base:text-base" href="/#topVideo">
                 {t("top-download-video")}

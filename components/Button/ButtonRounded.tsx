@@ -1,5 +1,6 @@
 "use client";
 
+// кнопка з скругленими гранями що приймає { text, disabled, style, onClick}
 const ButtonRounded = ({
   text,
   disabled,

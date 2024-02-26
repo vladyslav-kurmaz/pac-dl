@@ -2,10 +2,15 @@ import { TopTag } from "@/types/types";
 import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
 
+// компонент що рендеритть теги
 const CatalogTags = ({
+  // список тегів
   tags,
+  // активний тег
   activeTag,
+  // функіця що оприділяє активний тег
   setActiveTag,
+  // переклад тегу Всі відео в залежності від локалізації
   allVideo,
 }: {
   tags: TopTag[];
@@ -13,6 +18,8 @@ const CatalogTags = ({
   setActiveTag: Dispatch<SetStateAction<string>>;
   allVideo: string;
 }) => {
+
+  // Функція рендеру тега Всі відео
   const allTags = () => {
     return (
       <Link
@@ -28,6 +35,7 @@ const CatalogTags = ({
     );
   };
 
+  // Функція рендеру тегів що приходять з бекенду
   const renderTag = () => {
     return tags?.map((item) => {
       const { id, name } = item;
@@ -45,10 +53,11 @@ const CatalogTags = ({
       );
     });
   };
-  
+
+  // Рендер всіх тегів у обгортку та повернення їх на компонент вище 
   return (
     <div className="flex flex-wrap ">
-      {allTags()}
+      {Array.isArray(tags) ? allTags() : null}
       {Array.isArray(tags) ? renderTag() : null}
     </div>
   );

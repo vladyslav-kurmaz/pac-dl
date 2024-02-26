@@ -4,24 +4,31 @@ import initTranslations from "../i18n";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import Link from "next/link";
 
+// мета теги для україномовного сайту
 const ukraineMetaData = {
   title: "Сторнінка на знайдена",
 };
 
+// мета теги для англомовного сайту
 const englishMetaData = {
   title: "Page not found",
 };
 
+// функція генерації метатегів на сторінці
 export async function generateMetadata({ params }: { params: Params }) {
   return params.locale === "en" ? englishMetaData : ukraineMetaData;
 }
 
+// Функція що рендерить notFound сторінку
 export default async function notFound(params: Params) {
+   // Функція що отримує статус мови та ресурси для перекладу
   const { t } = await initTranslations(params?.locale, [
     "error",
     "elements",
   ]);
-
+  
+ // Рендер статичної верстки сторінки
+ 
   return (
     <div className="relative pt-20 base:pt-32 base:mb-24 mb-7">
       <div className="mx-auto px-6 flex flex-col items-center md:flex-row md:justify-around base:justify-between base:max-w-[916px]">

@@ -1,5 +1,6 @@
-import { Skeleton, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
+import { Skeleton } from "@chakra-ui/react";
 
+// компонент що відображає процес завантаження тегів
 const LoadingCatalogueTags = () => {
   return (
     <div className="flex justify-between flex-wrap">

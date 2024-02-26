@@ -4,6 +4,8 @@ import { I18nextProvider } from 'react-i18next';
 import initTranslations from '@/app/i18n';
 import { createInstance, Resource } from 'i18next';
 
+// Цей компонент використовується для обгортання клієнських 
+// компонентів щоб передати їм можливість робити переклад
 export default function TranslationsProvider({
   children,
   locale,

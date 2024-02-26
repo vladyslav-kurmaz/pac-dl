@@ -2,13 +2,15 @@
 
 import { FormEvent, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import ButtonNormal from "../Button/ButtonNormal";
 import validationForm from "@/utils/validationForm";
 
+// функція відправки форми зворотнього зв'язку 
 const FeedbackForm = () => {
   const { t } = useTranslation("feedback");
+  // статус активності на полі текст ареа
   const [focusTextArea, setFocusTextArea] = useState(false);
 
+  // список типу звернення
   const typeList = [
     t("question"),
     t("review"),
@@ -25,6 +27,7 @@ const FeedbackForm = () => {
 
   const [disableButton, setDisableButton] = useState(true);
 
+  // функція що перевіряє чи правильно заповнені ти чи можна розблоковувати кнопку відправлення форми 
   useEffect(() => {
     if (
       name?.length !== 0 &&
@@ -40,6 +43,7 @@ const FeedbackForm = () => {
     }
   }, [name, email, message]);
 
+  // функція що бере typeList та рендерити радіобатон кнопки з питаннями
   const renderRadio = () => {
     return typeList.map((item, i) => {
       return (
@@ -63,14 +67,17 @@ const FeedbackForm = () => {
     });
   };
 
+  // функція відправки форми в телеграм канал
   const sendForm = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    // токен бота 
     const botToken = "6722538862:AAHCydfQXohTknKXSCK4FD695SX_9TYGQM0";
+    // токен чату
     const chatId = "-1002075216843";
+    // урла куди потрібно робити запит
     const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
 
-    //
+    //у якому форматі відправляти дані в телеграм
     const transform = `
     Запит з сайту https://pac-dl.vercel.app/
       Ім'я: ${name},
@@ -79,11 +86,13 @@ const FeedbackForm = () => {
       ${message ? `Повідомлення: ${message}` : ""},
     `;
 
+    // дані що додаємо до запиту
     const data = {
       chat_id: chatId,
       text: transform,
     };
 
+    // запит
     try {
       const request = await fetch(url, {
         method: "POST",
@@ -93,6 +102,7 @@ const FeedbackForm = () => {
         body: JSON.stringify(data),
       });
 
+      // якщо все успішно відображаємо що все вдалось і через 5 секунд це повідомлення зникне
       if (request.ok) {
         setSuccess(true);
         setTimeout(() => setSuccess(false), 5000);
@@ -100,14 +110,17 @@ const FeedbackForm = () => {
     } catch (e) {
       console.error(e);
     }
+    // збиваємо дані в ноль
     setName("");
     setEmail("");
     setQuestion(typeList[0]);
     setMessage("");
   };
 
+  // верстка всього форми
   return (
     <div className="relative">
+      {/* перевіряємо що відображати повідомлення про успіх чи форму */}
       {success ? (
         <div className="w-full flex flex-col justify-center items-center h-[300px] mb-8 md:mb-12">
           <svg
@@ -175,7 +188,7 @@ const FeedbackForm = () => {
               placeholder={t("name")}
               className="rounded-[6px] md:rounded-[15px] w-full border border-slate-200 py-[9px] outline-none hover:border-black focus:border-black transition-all duration-500 hover:transition-all hover:duration-500 px-4 base:px-[33px] base:py-7 text-[14px] placeholder:text-[14px] placeholder:text-black base:text-base base:placeholder:text-base"
             />
-
+            {/* валідація форми */}
             {validationForm(name, "name")?.errorStatus ? (
               <div className="absolute md:-bottom-6 -bottom-4 left-1 text-[10px] md:text-[16px] text-red-600">
                 Введіть мінімум 2 символи
@@ -194,7 +207,7 @@ const FeedbackForm = () => {
               placeholder={t("email")}
               className="rounded-[6px] md:rounded-[15px] w-full border border-slate-200 py-[9px] outline-none hover:border-black focus:border-black transition-all duration-500 hover:transition-all hover:duration-500 px-4 base:px-[33px] base:py-7 text-[14px] placeholder:text-[14px] placeholder:text-black base:text-base base:placeholder:text-base"
             />
-
+            {/* валідація форми */}
             {validationForm(email, "email")?.errorStatus ? (
               <div className="absolute md:-bottom-6 -bottom-4 left-1 text-[10px] md:text-[16px] text-red-600">
                 Формат емайла example@gmail.com
@@ -222,7 +235,7 @@ const FeedbackForm = () => {
               onFocus={() => setFocusTextArea(true)}
               onBlur={() => setFocusTextArea(false)}
             />
-
+            {/* валідація форми */}
             {validationForm(message, "message")?.errorStatus ? (
               <div className="absolute md:-bottom-6 -bottom-4 left-1 text-[10px] md:text-[16px] text-red-600">
                 Введіть мінімум 10 символів
@@ -239,15 +252,6 @@ const FeedbackForm = () => {
           </button>
         </form>
       )}
-      {/* <div className="flex justify-end"> */}
-      {/* <button
-          disabled={disableButton}
-          className={`px-4 text-[9px] py-3 bg-violet2  disabled:text-violet-200 disabled:hover:bg-violet2 transition-all duration-500 hover:transition-all hover:duration-500 hover:bg-violet1 rounded-md md:rounded-2xl md:px-14 md:py-7 md:text-base box-border`}
-          onClick={() => {}}
-        >
-          {t("button")}
-        </button> */}
-      {/* </div> */}
     </div>
   );
 };
