@@ -25,6 +25,7 @@ export default function RootLayout({
   return (
     <html lang="uk">
       <body className={inter.className}>
+        {/* чакра потрібна для відображення скелетона */}
         <ChakraProvider>
           <Header params={params} />
           <main>{children}</main>

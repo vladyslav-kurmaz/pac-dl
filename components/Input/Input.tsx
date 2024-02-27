@@ -116,7 +116,7 @@ const Input = ({
       setInputValue(url);
       return;
     } else {
-      router.push(`/`);
+      // router.push(`/`);
     }
   }, [url]);
 

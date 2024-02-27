@@ -84,12 +84,12 @@ const Header = async ({ params }: { params: Params }) => {
             <Link href="/music" className="ml-4 link text-sm base:text-base">
               {t("download_audio")}
             </Link>
-            {/* <Link
+            <Link
               href={`/catalogue?tag=${t("allVideo")}&page=1`}
               className="ml-4 link text-sm base:text-base"
             >
               {t("catalogue")}
-            </Link> */}
+            </Link>
 
             <div className="w-10 ml-4">
               <Select
